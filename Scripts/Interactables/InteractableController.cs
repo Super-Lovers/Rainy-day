@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class InteractableController : MonoBehaviour, IInteractable
 {
@@ -11,6 +12,16 @@ public class InteractableController : MonoBehaviour, IInteractable
     {
         get { return IsObjectLocked; }
         set { IsObjectLocked = value; }
+    }
+
+    private void Start()
+    {
+        List<InteractableController> controllers = InteractablesManager.Instance.Interactables;
+
+        if (controllers.Contains(this) == false)
+        {
+            controllers.Add(this);
+        }
     }
 
     public void ToggleObject()

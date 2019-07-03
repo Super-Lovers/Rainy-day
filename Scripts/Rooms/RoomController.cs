@@ -3,6 +3,7 @@ using System;
 
 public class RoomController : MonoBehaviour
 {
+    [NonSerialized]
     public Sprite Background;
     public Waypoints Waypoints;
 
