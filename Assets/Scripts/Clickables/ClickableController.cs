@@ -39,7 +39,35 @@ public class ClickableController : MouseController
                 if (stove.IsItCurrentlyCooking == false && interactableController.PopupBubble.gameObject.activeSelf == false)
                 {
                     interactableController.PopupBubble.gameObject.SetActive(true);
-                    
+
+                    interactableController.PopupBubble.DisplayIcons();
+                }
+                break;
+            case "Bowl Selector":
+                interactableController = interactableClicked.GetComponent<InteractableController>();
+
+                if (interactableController.PopupBubble.gameObject.activeSelf == false)
+                {
+                    interactableController.PopupBubble.gameObject.SetActive(true);
+
+                    interactableController.PopupBubble.DisplayIcons();
+                }
+                break;
+            case "Cat":
+                interactableController = interactableClicked.GetComponent<InteractableController>();
+
+                if (interactableController.PopupBubble.gameObject.activeSelf == false)
+                {
+                    interactableController.PopupBubble.gameObject.SetActive(true);
+
+                    Cat catScript = interactableController.GetComponentInParent<Cat>();
+                    foreach (ExpressionController mood in catScript.Expressions) {
+                        if (mood.Expression == catScript.State) {
+                            catScript.FaceIcon.sprite = 
+                            mood.Variations[Random.Range(0, mood.Variations.Count)];
+                        }
+                    }
+
                     interactableController.PopupBubble.DisplayIcons();
                 }
                 break;

@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Bowls\Bowls.cs" />
      <Compile Include="Assets\Scripts\Cats\Cat.cs" />
      <Compile Include="Assets\Scripts\Cats\Cats.cs" />
+     <Compile Include="Assets\Scripts\Cats\ExpressionController.cs" />
      <Compile Include="Assets\Scripts\Cats\ICat.cs" />
      <Compile Include="Assets\Scripts\Cats\State.cs" />
      <Compile Include="Assets\Scripts\Cats\ToyController.cs" />
@@ -76,7 +77,6 @@
      <Compile Include="Assets\Scripts\Interactables\Objects\Stereo.cs" />
      <Compile Include="Assets\Scripts\Interactables\PropertiesController.cs" />
      <Compile Include="Assets\Scripts\Kitchen\MealController.cs" />
-     <Compile Include="Assets\Scripts\Kitchen\Meals.cs" />
      <Compile Include="Assets\Scripts\Kitchen\StoveController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Rooms\RoomController.cs" />

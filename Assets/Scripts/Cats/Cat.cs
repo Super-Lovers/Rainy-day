@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cat : MonoBehaviour, ICat
 {
@@ -57,6 +58,8 @@ public class Cat : MonoBehaviour, ICat
             _satisfaction = value;
         }
     }
+    [Header("Face and Mood ====================")]
+    [Space(10)]
     [SerializeField]
     private State _state;
     public State State
@@ -70,6 +73,8 @@ public class Cat : MonoBehaviour, ICat
             _state = value;
         }
     }
+    public Image FaceIcon;
+    public List<ExpressionController> Expressions = new List<ExpressionController>();
     #endregion
 
     [Header("Occupations ====================")]

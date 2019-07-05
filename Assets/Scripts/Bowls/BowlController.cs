@@ -2,7 +2,7 @@
 
 public class BowlController : MonoBehaviour
 {
-    public Sprite PortraitOfOwner;
+    public Cat CatOwner;
     public SustanenceController Sustenance;
 
     public void UpdateSustanence(SustanenceController sustenance)
