@@ -11,6 +11,10 @@ public class ClickableController : MouseController
 
         switch (properties.Name)
         {
+            case "Stereo":
+                interactableController = interactableClicked.GetComponent<InteractableController>();
+                interactableController.ToggleObject();
+                break;
             case "Doorway to Kitchen":
                 PlayerController.ChangeRoom("Kitchen");
                 break;
