@@ -76,14 +76,14 @@ public class PlayerController : MonoBehaviour
         {
             if (_camera.transform.position.x - _camera.orthographicSize > _currentRoomBoundsLeft)
             {
-                newCameraPosition.x -= (CameraSpeed * 0.1f) * Time.deltaTime;
+                newCameraPosition.x -= (CameraSpeed * 2) * Time.deltaTime;
             }
         }
         else if (direction == "Right")
         {
             if (_camera.transform.position.x + _camera.orthographicSize < _currentRoomBoundsRight)
             {
-                newCameraPosition.x += (CameraSpeed * 0.1f) * Time.deltaTime;
+                newCameraPosition.x += (CameraSpeed * 2) * Time.deltaTime;
             }
         }
 

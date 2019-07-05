@@ -1,5 +1,8 @@
-﻿public interface IInteractable
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public interface IInteractable
 {
-    UnityEngine.GameObject ObjectToToggle { get; set; }
     bool IsObjectLocked { get; set; }
+    void ToggleObject();
 }

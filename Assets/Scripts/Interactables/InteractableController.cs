@@ -3,17 +3,9 @@ using UnityEngine;
 
 public class InteractableController : MonoBehaviour, IInteractable
 {
-    public GameObject ObjectToToggle
-    {
-        get
-        {
-            return ObjectToToggle;
-        }
-        set
-        {
-            ObjectToToggle = value;
-        }
-    }
+    public List<GameObject> ObjectsToActivate = new List<GameObject>();
+    public List<GameObject> ObjectsToDeactivate = new List<GameObject>();
+
     [SerializeField]
     private bool _isObjectLocked;
     public bool IsObjectLocked
@@ -42,7 +34,11 @@ public class InteractableController : MonoBehaviour, IInteractable
 
     public void ToggleObject()
     {
-        ObjectToToggle.SetActive(true);
-        gameObject.SetActive(false);
+        foreach (GameObject obj in ObjectsToActivate) {
+            obj.SetActive(true);
+        }
+        foreach (GameObject obj in ObjectsToDeactivate) {
+            obj.SetActive(false);
+        }
     }
 }

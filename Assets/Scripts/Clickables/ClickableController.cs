@@ -21,7 +21,14 @@ public class ClickableController : MouseController
                 if (interactableController.PopupBubble.gameObject.activeSelf == false)
                 {
                     interactableController.PopupBubble.gameObject.SetActive(true);
-                    interactableController.PopupBubble.DisplayLabel();
+                    if (interactableController.PopupBubble.Type == PopupType.Text)
+                    {
+                        interactableController.PopupBubble.DisplayLabel();
+                    }
+                    else if (interactableController.PopupBubble.Type == PopupType.Icons)
+                    {
+                        interactableController.PopupBubble.DisplayIcons();
+                    }
                 }
                 break;
         }

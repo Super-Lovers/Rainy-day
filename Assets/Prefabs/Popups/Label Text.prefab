@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 34876974168250317}
   - component: {fileID: 8107713124724703759}
   m_Layer: 0
-  m_Name: Label
+  m_Name: Label Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,10 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6990afcca52194e8f6557d9d026e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GenericMessage: cock
-  LockedMessage: balls
+  Type: 0
+  GenericMessage: 
+  LockedMessage: 
   InteractableController: {fileID: 0}
-  TextLabel: {fileID: 0}
+  TextLabel: {fileID: 3599903215839951547}
 --- !u!1 &8965725869514649539
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{067A514D-F521-0C06-A4AF-EB07467E6BB1}</ProjectGuid>
+    <ProjectGuid>{ABF6D12E-A72C-E332-77F7-702B3D67D81D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Clickables\ClickableController.cs" />
      <Compile Include="Assets\Scripts\Clickables\MouseController.cs" />
      <Compile Include="Assets\Scripts\Clickables\PopupBubble.cs" />
+     <Compile Include="Assets\Scripts\Clickables\PopupType.cs" />
      <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
      <Compile Include="Assets\Scripts\Interactables\InteractableController.cs" />
      <Compile Include="Assets\Scripts\Interactables\InteractablesManager.cs" />
@@ -106,25 +107,25 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity Hub/2019.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -310,13 +311,13 @@
  <HintPath>C:/Program Files/Unity Hub/2019.1.4f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>C:/Projects/IvebeendreamingaboutyouIvebeenwishingiwasnicetoyouibeenthinkingthisisnotaneedoramust/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>C:/Projects/holdurbreathdimthelightshushhush/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity Hub/2019.1.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

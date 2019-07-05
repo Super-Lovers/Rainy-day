@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class PopupBubble : MonoBehaviour
 {
+    public PopupType Type;
+    [Header("Required if popup type is Text! =================")]
     public string GenericMessage;
     public string LockedMessage;
 
     #region Components
     [Space(10)]
     public InteractableController InteractableController;
+    [Header("Required if popup type is Text! =================")]
     public TextMeshProUGUI TextLabel;
     #endregion
 
     private void Start()
     {
-        TextLabel = GetComponentInChildren<TextMeshProUGUI>();
+        if (Type == PopupType.Text) {
+            TextLabel = GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
 
     public void DisplayLabel()
     {
-        Invoke("HideLabel", 3f);
+        Invoke("HidePopup", 3f);
 
         if (InteractableController.IsObjectLocked)
         {
@@ -32,7 +37,12 @@ public class PopupBubble : MonoBehaviour
         }
     }
 
-    private void HideLabel()
+    public void DisplayIcons()
+    {
+        Invoke("HidePopup", 3f);
+    }
+
+    private void HidePopup()
     {
         gameObject.SetActive(false);
     }
