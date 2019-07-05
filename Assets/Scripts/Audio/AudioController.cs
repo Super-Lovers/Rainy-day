@@ -23,7 +23,8 @@ public class AudioController : MonoBehaviour
         {
             soundSources.Add(_audioSource);
             _audioSource.volume = _audioManager.SoundEffectsVolume;
-        } else if (AudioType == AudioType.Background && backgroundSources.Contains(_audioSource) == false)
+        }
+        else if (AudioType == AudioType.Background && backgroundSources.Contains(_audioSource) == false)
         {
             backgroundSources.Add(_audioSource);
             _audioSource.volume = _audioManager.BackgroundMusicVolume;

@@ -46,10 +46,10 @@ public class PlayerController : MonoBehaviour
                 _isCameraTransitioning = true;
                 isRoomValid = true;
 
+                CurrentRoomController = room;
+
                 StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));
                 Rooms.Instance.StartRoomTransition();
-
-                CurrentRoomController = room;
 
                 _currentRoomBoundsLeft = CurrentRoomController.LeftBoundary.position.x + _camera.orthographicSize;
                 _currentRoomBoundsRight = CurrentRoomController.RightBoundary.position.x - _camera.orthographicSize;

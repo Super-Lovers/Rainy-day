@@ -56,12 +56,74 @@ public class AudioManager : MonoBehaviour
     {
         foreach (AudioSource audioSource in SoundSources)
         {
-            if (audioSource != null) { audioSource.volume = SoundEffectsVolume / 100f; }
+            if (audioSource != null)
+            {
+                audioSource.volume = SoundEffectsVolume / 100f;
+            }
         }
 
         foreach (AudioSource audioSource in BackgroundSources)
         {
-            if (audioSource != null) { audioSource.volume = BackgroundMusicVolume / 100f; }
+            if (audioSource != null)
+            {
+                audioSource.volume = BackgroundMusicVolume / 100f;
+            }
         }
     }
+
+    #region Sound effects events
+    public void MuteSoundEffects()
+    {
+        SoundEffectsVolume = 0;
+        UpdateVolume();
+    }
+
+    public void IncreaseSoundVolume()
+    {
+        if (SoundEffectsVolume <= 90)
+        {
+            SoundEffectsVolume += 10;
+        }
+
+        UpdateVolume();
+    }
+
+    public void DecreaseSoundVolume()
+    {
+        if (SoundEffectsVolume >= 10)
+        {
+            SoundEffectsVolume -= 10;
+        }
+        
+        UpdateVolume();
+    }
+    #endregion
+
+    #region Background music events
+    public void MuteBackgroundMusic()
+    {
+        BackgroundMusicVolume = 0;
+        UpdateVolume();
+    }
+
+    public void IncreaseBackgroundVolume()
+    {
+        if (BackgroundMusicVolume <= 90)
+        {
+            BackgroundMusicVolume += 10;
+        }
+        
+        UpdateVolume();
+    }
+
+    public void DecreaseBackgroundVolume()
+    {
+        if (BackgroundMusicVolume >= 10)
+        {
+            BackgroundMusicVolume -= 10;
+        }
+        
+        UpdateVolume();
+    }
+    #endregion
 }
