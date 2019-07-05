@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public RoomController CurrentRoomController;
     private float _currentRoomBoundsLeft;
     private float _currentRoomBoundsRight;
+    private bool _isCameraTransitioning;
     #endregion
 
     private void Start()
@@ -42,14 +43,17 @@ public class PlayerController : MonoBehaviour
         {
             if (room.Name == newRoom)
             {
+                _isCameraTransitioning = true;
                 isRoomValid = true;
+
+                StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));
+                Rooms.Instance.StartRoomTransition();
+
                 CurrentRoomController = room;
 
                 _currentRoomBoundsLeft = CurrentRoomController.LeftBoundary.position.x + _camera.orthographicSize;
                 _currentRoomBoundsRight = CurrentRoomController.RightBoundary.position.x - _camera.orthographicSize;
 
-                StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));
-                Rooms.Instance.StartRoomTransition();
                 break;
             }
         }
@@ -64,30 +68,34 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _camera.transform.transform.position = new Vector3(newOrigin.position.x, newOrigin.position.y, _camera.transform.position.z);
+        _isCameraTransitioning = false;
     }
 
     public void MoveCameraInDirection(string direction)
     {
-        _previousDirection = direction;
-        _isCameraMoving = true;
-        Vector3 newCameraPosition = _camera.transform.position;
-
-        if (direction == "Left")
+        if (_isCameraTransitioning == false)
         {
-            if (_camera.transform.position.x - _camera.orthographicSize > _currentRoomBoundsLeft)
-            {
-                newCameraPosition.x -= (CameraSpeed * 2) * Time.deltaTime;
-            }
-        }
-        else if (direction == "Right")
-        {
-            if (_camera.transform.position.x + _camera.orthographicSize < _currentRoomBoundsRight)
-            {
-                newCameraPosition.x += (CameraSpeed * 2) * Time.deltaTime;
-            }
-        }
+            _previousDirection = direction;
+            _isCameraMoving = true;
+            Vector3 newCameraPosition = _camera.transform.position;
 
-        _camera.transform.position = newCameraPosition;
+            if (direction == "Left")
+            {
+                if (_camera.transform.position.x - _camera.orthographicSize > _currentRoomBoundsLeft)
+                {
+                    newCameraPosition.x -= (CameraSpeed * 2) * Time.deltaTime;
+                }
+            }
+            else if (direction == "Right")
+            {
+                if (_camera.transform.position.x + _camera.orthographicSize < _currentRoomBoundsRight)
+                {
+                    newCameraPosition.x += (CameraSpeed * 2) * Time.deltaTime;
+                }
+            }
+
+            _camera.transform.position = newCameraPosition;
+        }
     }
 
     public void TogglePointerClick(bool boolean)

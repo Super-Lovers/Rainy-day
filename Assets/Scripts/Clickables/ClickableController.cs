@@ -6,6 +6,7 @@ public class ClickableController : MouseController
 
     public override void Execute(GameObject interactableClicked)
     {
+        InteractableController interactableController;
         PropertiesController properties = interactableClicked.GetComponent<PropertiesController>();
 
         switch (properties.Name)
@@ -17,7 +18,7 @@ public class ClickableController : MouseController
                 PlayerController.ChangeRoom("Living room");
                 break;
             case "Bowl":
-                InteractableController interactableController = interactableClicked.GetComponent<InteractableController>();
+                interactableController = interactableClicked.GetComponent<InteractableController>();
                 if (interactableController.PopupBubble.gameObject.activeSelf == false)
                 {
                     interactableController.PopupBubble.gameObject.SetActive(true);
@@ -29,6 +30,17 @@ public class ClickableController : MouseController
                     {
                         interactableController.PopupBubble.DisplayIcons();
                     }
+                }
+                break;
+            case "Stove":
+                StoveController stove = interactableClicked.GetComponent<StoveController>();
+                interactableController = interactableClicked.GetComponent<InteractableController>();
+
+                if (stove.IsItCurrentlyCooking == false && interactableController.PopupBubble.gameObject.activeSelf == false)
+                {
+                    interactableController.PopupBubble.gameObject.SetActive(true);
+                    
+                    interactableController.PopupBubble.DisplayIcons();
                 }
                 break;
         }

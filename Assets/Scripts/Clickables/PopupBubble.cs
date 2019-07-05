@@ -42,7 +42,7 @@ public class PopupBubble : MonoBehaviour
         Invoke("HidePopup", 3f);
     }
 
-    private void HidePopup()
+    public void HidePopup()
     {
         gameObject.SetActive(false);
     }
