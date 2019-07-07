@@ -154,6 +154,8 @@ public class Cat : MonoBehaviour, ICat
     AudioController _audioController;
     Rigidbody2D _rigidBody2D;
     InteractableController _interactableController;
+    Animator _animator;
+    SpriteRenderer _spriteRenderer;
     #endregion
 
     // State conditions
@@ -162,13 +164,17 @@ public class Cat : MonoBehaviour, ICat
     private bool _isEating;
     private bool _isMoving;
     private bool _isIdle;
+    private bool _isAnimationComplete = true;
     public bool IsClimbed;
 
     // Counters
     private int _timesPlayerIgnoredCat;
+    private int _timeBetweenPets;
 
     private void Start()
     {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _animator = GetComponentInChildren<Animator>();
         _audioController = GetComponentInChildren<AudioController>();
         _rigidBody2D = GetComponentInChildren<Rigidbody2D>();
         _interactableController = GetComponentInChildren<InteractableController>();
@@ -196,27 +202,32 @@ public class Cat : MonoBehaviour, ICat
 
                     if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
                     {
+                        SetCatAnimationTo("IsWalking");
                         MoveTo(CurrentWaypoint.gameObject);
                     }
                     else
                     {
                         _isMoving = false;
+                        SetCatAnimationTo("IsIdle");
                         ChangeRoom("Kitchen");
                     }
                 }
                 else if (Room.Name == "Kitchen")
                 {
-                    if (Vector2.Distance(transform.position, Bowl.transform.position) > 1f)
+                    if (Vector2.Distance(transform.position, Bowl.transform.position) > 0.4f)
                     {
+                        SetCatAnimationTo("IsWalking");
                         MoveTo(Bowl.gameObject);
                     }
                     else
                     {
                         _isMoving = false;
+                        SetCatAnimationTo("IsIdle");
                         if (Bowl.Sustenance != null)
                         {
                             if (_isEating == false)
                             {
+                                SetCatAnimationTo("IsEating");
                                 Eat();
                                 _isEating = true;
                             }
@@ -226,8 +237,6 @@ public class Cat : MonoBehaviour, ICat
                             if (_isDisplayingMood == false)
                             {
                                 DisplayMood(State.Hungry);
-                                Invoke("ResetMoodTimer", 5f);
-                                _isDisplayingMood = true;
                             }
                         }
                     }
@@ -254,15 +263,16 @@ public class Cat : MonoBehaviour, ICat
 
                 if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
                 {
+                    SetCatAnimationTo("IsWalking");
                     MoveTo(CurrentWaypoint.gameObject);
                 }
                 else
                 {
+                    SetCatAnimationTo("IsRelaxing");
                     _isMoving = false;
                 }
                 break;
             case State.Bored:
-
                 if (_isMoving == false)
                 {
                     if (_isIdle == false)
@@ -289,11 +299,13 @@ public class Cat : MonoBehaviour, ICat
 
                 if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
                 {
+                    SetCatAnimationTo("IsWalking");
                     // TODO: Change rooms for origin points
                     MoveTo(CurrentWaypoint.gameObject);
                 }
                 else
                 {
+                    SetCatAnimationTo("IsIdle");
                     _isMoving = false;
                 }
                 break;
@@ -301,16 +313,12 @@ public class Cat : MonoBehaviour, ICat
                 if (_isDisplayingMood == false)
                 {
                     DisplayMood(State.Happy);
-                    Invoke("ResetMoodTimer", 5f);
-                    _isDisplayingMood = true;
                 }
                 break;
             case State.Angry:
                 if (_isDisplayingMood == false)
                 {
                     DisplayMood(State.Angry);
-                    Invoke("ResetMoodTimer", 5f);
-                    _isDisplayingMood = true;
                 }
                 break;
             default:
@@ -323,9 +331,52 @@ public class Cat : MonoBehaviour, ICat
         StartCoroutine(Bite());
     }
 
+    private void SetCatAnimationTo(string animation)
+    {
+        if (_isAnimationComplete == true)
+        {
+            switch (animation)
+            {
+                case "IsWalking":
+                    _animator.SetBool("IsWalking", true);
+
+                    _animator.SetBool("IsIdle", false);
+                    _animator.SetBool("IsRelaxing", false);
+                    _animator.SetBool("IsEating", false);
+                    break;
+                case "IsIdle":
+                    _animator.SetBool("IsIdle", true);
+
+                    _animator.SetBool("IsWalking", false);
+                    _animator.SetBool("IsRelaxing", false);
+                    _animator.SetBool("IsEating", false);
+                    break;
+                case "IsEating":
+                    _animator.SetBool("IsEating", true);
+
+                    _animator.SetBool("IsWalking", false);
+                    _animator.SetBool("IsIdle", false);
+                    _animator.SetBool("IsRelaxing", false);
+                    break;
+                case "IsRelaxing":
+                    _animator.SetBool("IsRelaxing", true);
+
+                    _animator.SetBool("IsWalking", false);
+                    _animator.SetBool("IsIdle", false);
+                    _animator.SetBool("IsEating", false);
+                    break;
+            }
+        }
+    }
+
     private void MoveTo(GameObject obj)
     {
         _isMoving = true;
+        if (transform.position.x < obj.transform.position.x) {
+            _spriteRenderer.flipX = true;
+        } else if (transform.position.x > obj.transform.position.x) {
+            _spriteRenderer.flipX = false;
+        }
         transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (MovementSpeed * Time.deltaTime) * 0.015f);
     }
 
@@ -335,8 +386,10 @@ public class Cat : MonoBehaviour, ICat
         _isIdle = false;
     }
 
-    private void DisplayMood(State state)
+    public void DisplayMood(State state)
     {
+        Invoke("ResetMoodTimer", 5f);
+        _isDisplayingMood = true;
         _interactableController.PopupBubble.gameObject.SetActive(true);
 
         if (state == State.Angry)
@@ -397,37 +450,56 @@ public class Cat : MonoBehaviour, ICat
 
     public void ChangeRoom(string newRoom)
     {
-        bool isRoomValid = false;
-        foreach (RoomController room in Rooms.Instance.ListOfRooms)
+        if (Toy == null)
         {
-            if (room.Name == newRoom)
+            bool isRoomValid = false;
+            foreach (RoomController room in Rooms.Instance.ListOfRooms)
             {
-                isRoomValid = true;
-
-                foreach (WaypointController waypoint in room.Waypoints.ListOfWaypoints)
+                if (room.Name == newRoom)
                 {
-                    if (waypoint.Type == WaypointType.Origin)
+                    isRoomValid = true;
+
+                    foreach (WaypointController waypoint in room.Waypoints.ListOfWaypoints)
                     {
-                        transform.position = new Vector3(waypoint.transform.position.x, waypoint.transform.position.y, transform.position.z);
-                        break;
+                        if (waypoint.Type == WaypointType.Origin)
+                        {
+                            transform.position = new Vector3(waypoint.transform.position.x, waypoint.transform.position.y, transform.position.z);
+                            break;
+                        }
                     }
+
+                    Debug.Log($"<color=#000080ff>{Name}</color> moved from room <color=#ffff00>{Room}</color> to <color=#ffff00>{room}</color>.");
+                    Room = room;
+                    break;
                 }
-
-                Debug.Log($"<color=#000080ff>{Name}</color> moved from room <color=#ffff00>{Room}</color> to <color=#ffff00>{room}</color>.");
-                Room = room;
-                break;
             }
-        }
 
-        if (isRoomValid == false)
-        {
-            Debug.Log($"The room {newRoom} is not valid!");
+            if (isRoomValid == false)
+            {
+                Debug.Log($"The room {newRoom} is not valid!");
+            }
         }
     }
 
     public void Pet()
     {
-        throw new System.NotImplementedException();
+        if (_timeBetweenPets <= 0)
+        {
+            DisplayMood(State.Happy);
+            _audioController.PlaySound("Purr");
+
+            Debug.Log($"<color=#000080ff>{Name}</color> has been <color=#ff0000>pet</color>.");
+
+            _timeBetweenPets = Random.Range(5, 15);
+
+            StartCoroutine(ResetPetTimer());
+        }
+    }
+
+    private IEnumerator ResetPetTimer()
+    {
+        yield return new WaitForSeconds(_timeBetweenPets);
+        _timeBetweenPets = 0;
     }
 
     public void UpdateState(State newState)

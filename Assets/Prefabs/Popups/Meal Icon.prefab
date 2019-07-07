@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3119608911885313655}
   - component: {fileID: 6714692974228812896}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: Meal Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!114 &1955478577939468945
 MonoBehaviour:

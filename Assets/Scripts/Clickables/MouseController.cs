@@ -35,6 +35,20 @@ public abstract class MouseController : MonoBehaviour
                     Execute(hitInteractable.collider.gameObject);
                 }
             }
+        } else if (Input.GetMouseButtonDown(1))
+        {
+            hitInteractable = Physics2D.Raycast(
+                mousePosition,
+                Vector3.forward,
+                Mathf.Infinity,
+                InteractablesLayer);
+
+            if (hitInteractable.collider != null)
+            {
+                if (hitInteractable.collider.gameObject.GetComponentInParent<Cat>() != null) {
+                    hitInteractable.collider.gameObject.GetComponentInParent<Cat>().Pet();
+                }
+            }
         } else {
             hitInteractable = Physics2D.Raycast(
                 mousePosition,

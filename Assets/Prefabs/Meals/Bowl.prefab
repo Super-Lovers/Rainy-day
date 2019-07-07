@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210479575102328782}
   - component: {fileID: 210479575102327857}
-  - component: {fileID: 8627504480031038445}
+  - component: {fileID: 619743723662687596}
   - component: {fileID: 210479575102327856}
   - component: {fileID: 7845093296290439301}
   - component: {fileID: 1791202068931175162}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8627504480031038445
+--- !u!61 &619743723662687596
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,10 +95,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9, y: 9}
+  m_Size: {x: 0.45, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &210479575102327856
 MonoBehaviour:
@@ -365,7 +365,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c70e4c6020fc0f4aada773745be2587,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 5457475640275491371, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
+    - {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
 --- !u!1001 &3730468217615329398
 PrefabInstance:

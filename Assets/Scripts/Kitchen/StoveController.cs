@@ -22,7 +22,8 @@ public class StoveController : MonoBehaviour
         StartCoroutine(CompleteCooking(meal));
     }
 
-    private IEnumerator CompleteCooking(MealController meal) {
+    private IEnumerator CompleteCooking(MealController meal)
+    {
         PanCooking.SetActive(true);
         Effects.SetActive(true);
         IsItCurrentlyCooking = true;
@@ -39,7 +40,8 @@ public class StoveController : MonoBehaviour
 
     public void UpdateSustanence(BowlController bowl)
     {
-        if (MealPrepared.Quantity > 0 && bowl.Sustenance == null) {
+        if (MealPrepared.Quantity > 0 && bowl.Sustenance == null)
+        {
             bowl.UpdateSustanence(MealPrepared.Sustanence);
             bowl.MealObject.SetActive(true);
 
@@ -47,19 +49,22 @@ public class StoveController : MonoBehaviour
             Debug.Log($"Sustanence <color=#a52a2aff>{MealPrepared.Sustanence.Name}</color> is placed in {bowl.CatOwner.Name}'s bowl.");
         }
 
-        if (MealPrepared.Quantity <= 0) {
-            foreach (GameObject obj in Bowls) {
+        if (MealPrepared.Quantity <= 0)
+        {
+            foreach (GameObject obj in Bowls)
+            {
                 Image imageComponent = obj.GetComponent<Image>();
                 imageComponent.color = new Color(255, 255, 255, 1);
                 imageComponent.raycastTarget = true;
             }
-            
+
             PanFinishedCooking.SetActive(false);
             BowlSelector.SetActive(false);
         }
     }
 
-    public void DisableBowlIcon(Image bowlToDisable) {
+    public void DisableBowlIcon(Image bowlToDisable)
+    {
         bowlToDisable.color = new Color(255, 255, 255, 0.3f);
         bowlToDisable.raycastTarget = false;
     }

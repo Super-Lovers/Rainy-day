@@ -25,6 +25,7 @@ public class PopupBubble : MonoBehaviour
 
     public void DisplayLabel()
     {
+        // TODO: Change timer depending on object clicked.
         Invoke("HidePopup", 3f);
 
         if (InteractableController.IsObjectLocked)

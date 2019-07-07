@@ -67,16 +67,7 @@ public class ClickableController : MouseController
                         interactableController.PopupBubble.gameObject.SetActive(true);
 
                         Cat catScript = interactableController.GetComponentInParent<Cat>();
-                        foreach (ExpressionController mood in catScript.Expressions)
-                        {
-                            if (mood.Expression == catScript.State)
-                            {
-                                catScript.FaceIcon.sprite =
-                                mood.Variations[Random.Range(0, mood.Variations.Count)];
-                            }
-                        }
-
-                        interactableController.PopupBubble.DisplayIcons();
+                        catScript.DisplayMood(State.Hungry);
                     }
                     break;
             }

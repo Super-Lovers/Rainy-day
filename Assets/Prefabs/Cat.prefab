@@ -57,28 +57,22 @@ MonoBehaviour:
   Expressions:
   - Expression: 0
     Variations:
-    - {fileID: 21300000, guid: 8cc4bc61a66c5b94ea933a9953920ced, type: 3}
-    - {fileID: 21300000, guid: 611032175e8a9c445a3ed967a3488b11, type: 3}
+    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
   - Expression: 1
     Variations:
-    - {fileID: 21300000, guid: 9fc3dd1dc47f53341a6ee9a846024a31, type: 3}
-    - {fileID: 21300000, guid: 4a71668fb10170642b02c022d93fd752, type: 3}
+    - {fileID: 21300000, guid: ac2391b5bbe1ade4eba2d49aa184e108, type: 3}
   - Expression: 2
     Variations:
-    - {fileID: 21300000, guid: afab71dfecc8a0242acf4c81a608b225, type: 3}
-    - {fileID: 21300000, guid: 0d814cefd7333b146a1f54eb9e9ae301, type: 3}
+    - {fileID: 21300000, guid: c2ea264fc2ca63348a4035e9d489952c, type: 3}
   - Expression: 3
     Variations:
-    - {fileID: 21300000, guid: d8627240f74296f4db73fe7d4acf09d6, type: 3}
-    - {fileID: 21300000, guid: c370c6622188e0c439f1ee9e7dad54e9, type: 3}
+    - {fileID: 21300000, guid: c6f71cffa93ba1b45b83ef822a9a56e3, type: 3}
   - Expression: 4
     Variations:
-    - {fileID: 21300000, guid: cd3657c5d109ab04996064b308fc3404, type: 3}
-    - {fileID: 21300000, guid: 564fd7a5ec6bae843a0d5c448fc7ee3b, type: 3}
+    - {fileID: 21300000, guid: f90c38c86eef246449f9619d2b202cd0, type: 3}
   - Expression: 5
     Variations:
-    - {fileID: 21300000, guid: b8bb18c31f7194b4fb617c79ba71d115, type: 3}
-    - {fileID: 21300000, guid: 7ec39b8db9e9987459f3057b1bd354a5, type: 3}
+    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
   _room: {fileID: 0}
   _bowl: {fileID: 0}
   _toy: {fileID: 0}
@@ -228,6 +222,7 @@ GameObject:
   - component: {fileID: 6690636614081666617}
   - component: {fileID: 1816235346249819850}
   - component: {fileID: 5381488476034531121}
+  - component: {fileID: 9182924960662793821}
   - component: {fileID: 4869160228091683083}
   - component: {fileID: 8960789427823250740}
   - component: {fileID: 9172068431451333430}
@@ -291,7 +286,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 6a9bc8227efde0b4db5e150d5309fc98, type: 3}
+  m_Sprite: {fileID: 436930759913319910, guid: f41c8d90e287da44982eb1573a0ff4c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -339,6 +334,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.6}
   serializedVersion: 2
   m_Radius: 0.595
+--- !u!95 &9182924960662793821
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720345036865880645}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &4869160228091683083
 AudioSource:
   m_ObjectHideFlags: 0
