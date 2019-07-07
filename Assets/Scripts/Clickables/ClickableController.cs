@@ -13,7 +13,7 @@ public class ClickableController : MouseController
         {
             switch (properties.Name)
             {
-                case "Stereo":
+                default:
                     interactableController = interactableClicked.GetComponent<InteractableController>();
                     interactableController.ToggleObject();
                     break;

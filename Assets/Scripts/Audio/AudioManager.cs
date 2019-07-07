@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioSource> SoundSources = new List<AudioSource>();
 
     #region Audio volume controls
+    private float _previousSoundEffectsVolume;
     private float _soundEffectsVolume;
     public float SoundEffectsVolume
     {
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private float _previousBackgroundMusicVolume;
     private float _backgroundMusicVolume;
     public float BackgroundMusicVolume
     {
@@ -86,7 +88,12 @@ public class AudioManager : MonoBehaviour
     #region Sound effects events
     public void MuteSoundEffects()
     {
+        _previousSoundEffectsVolume = SoundEffectsVolume;
         SoundEffectsVolume = 0;
+    }
+
+    public void UnmuteSoundEffects() {
+        SoundEffectsVolume = _previousSoundEffectsVolume;
     }
 
     public void IncreaseSoundVolume()
@@ -109,7 +116,12 @@ public class AudioManager : MonoBehaviour
     #region Background music events
     public void MuteBackgroundMusic()
     {
+        _previousBackgroundMusicVolume = BackgroundMusicVolume;
         BackgroundMusicVolume = 0;
+    }
+
+    public void UnmuteBackgroundMusic() {
+        BackgroundMusicVolume = _previousBackgroundMusicVolume;
     }
 
     public void IncreaseBackgroundVolume()

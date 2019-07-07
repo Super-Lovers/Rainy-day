@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private bool _isCameraTransitioning;
     #endregion
 
+    private RoomController _previousRoom;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -59,7 +61,17 @@ public class PlayerController : MonoBehaviour
             {
                 _isCameraTransitioning = true;
                 isRoomValid = true;
-
+            
+                // TODO: door animation not working
+                if (_previousRoom == room)
+                {
+                    CurrentRoomController.EntranceDoor.SetBool("OpenDoor", false);
+                }
+                else
+                {
+                    CurrentRoomController.EntranceDoor.SetBool("OpenDoor", true);
+                }
+                _previousRoom = CurrentRoomController;
                 CurrentRoomController = room;
 
                 StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));

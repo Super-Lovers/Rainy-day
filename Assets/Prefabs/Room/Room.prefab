@@ -817,7 +817,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7728763084238149895}
   - component: {fileID: 7728763084238149913}
-  - component: {fileID: 7728763084238149912}
+  - component: {fileID: 4375849348603704011}
+  - component: {fileID: 7855222341326601348}
   - component: {fileID: 7728763084238149914}
   m_Layer: 8
   m_Name: Door
@@ -834,8 +835,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7728763084238149894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.37, y: -0.02, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: 3.6, y: 2.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7728763085751886681}
   m_RootOrder: 5
@@ -877,18 +878,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 7a6e64ce8b51477428166cb24f99dd69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0a36cfe2c7651c4f9f7bd99a457b7f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.6, y: 5.4}
+  m_Size: {x: 0.97, y: 3.83}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7728763084238149912
+--- !u!61 &4375849348603704011
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -898,22 +899,41 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.703125, y: 12}
-    newSize: {x: 9.6, y: 5.4}
+    oldSize: {x: 0.97, y: 3.83}
+    newSize: {x: 0.97, y: 3.83}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.6, y: 5.4}
+  m_Size: {x: 0.97, y: 3.83}
   m_EdgeRadius: 0
+--- !u!95 &7855222341326601348
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728763084238149894}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7728763084238149914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Living room
+  EntranceDoor: {fileID: 0}
   CameraOrigin: {fileID: 7728763084969731491}
   DepthLimit: 0
   LeftBoundary: {fileID: 7728763085243643887}
@@ -1414,12 +1435,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 110d511253c419e4185fea2dd2e761bc, type: 3}
---- !u!4 &104463700045269370 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7651954678912281032, guid: 110d511253c419e4185fea2dd2e761bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7728763084502425778}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &104463700045269371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7651954678912281033, guid: 110d511253c419e4185fea2dd2e761bc,
@@ -1432,6 +1447,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &104463700045269370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7651954678912281032, guid: 110d511253c419e4185fea2dd2e761bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7728763084502425778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7728763085565388715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1501,12 +1522,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 110d511253c419e4185fea2dd2e761bc, type: 3}
---- !u!4 &104463701128679011 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7651954678912281032, guid: 110d511253c419e4185fea2dd2e761bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7728763085565388715}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &104463701128679010 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7651954678912281033, guid: 110d511253c419e4185fea2dd2e761bc,
@@ -1519,6 +1534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &104463701128679011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7651954678912281032, guid: 110d511253c419e4185fea2dd2e761bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7728763085565388715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7728763085728330210
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -165,6 +165,8 @@ public class Cat : MonoBehaviour, ICat
     private bool _isMoving;
     private bool _isIdle;
     private bool _isAnimationComplete = true;
+    private bool _arePointsDecayed;
+    private bool _isMoodUpdated;
     public bool IsClimbed;
 
     // Counters
@@ -190,6 +192,17 @@ public class Cat : MonoBehaviour, ICat
 
     private void Update()
     {
+        // if (_isMoodUpdated == false)
+        // {
+        //     UpdateMood(2);
+        //     _isMoodUpdated = true;
+        // }
+        if (_arePointsDecayed == false)
+        {
+            DecayPoints(5, 5, 30);
+            _arePointsDecayed = true;
+        }
+
         switch (State)
         {
             case State.Hungry:
@@ -214,7 +227,7 @@ public class Cat : MonoBehaviour, ICat
                 }
                 else if (Room.Name == "Kitchen")
                 {
-                    if (Vector2.Distance(transform.position, Bowl.transform.position) > 0.4f)
+                    if (Vector2.Distance(transform.position, Bowl.transform.position) > 0.1f)
                     {
                         SetCatAnimationTo("IsWalking");
                         MoveTo(Bowl.gameObject);
@@ -222,7 +235,6 @@ public class Cat : MonoBehaviour, ICat
                     else
                     {
                         _isMoving = false;
-                        SetCatAnimationTo("IsIdle");
                         if (Bowl.Sustenance != null)
                         {
                             if (_isEating == false)
@@ -234,6 +246,7 @@ public class Cat : MonoBehaviour, ICat
                         }
                         else
                         {
+                            SetCatAnimationTo("IsIdle");
                             if (_isDisplayingMood == false)
                             {
                                 DisplayMood(State.Hungry);
@@ -326,6 +339,37 @@ public class Cat : MonoBehaviour, ICat
         }
     }
 
+    private void DecayPoints(int satisfaction, int nourishment, int interval)
+    {
+        Satisfaction -= satisfaction;
+        Nourishment -= nourishment;
+        Invoke("EnablePointsDecay", interval);
+    }
+
+    private void EnablePointsDecay() {
+        _arePointsDecayed = false;
+    }
+
+    private void UpdateMood(int interval) {
+        int randomNumber = Random.Range(1, 4);
+        switch (randomNumber) {
+            case 1:
+                State = State.Idle;
+                break;
+            case 2:
+                State = State.Relaxing;
+                break;
+            case 3:
+                State = State.Bored;
+                break;
+        }
+        Invoke("EnableMoodUpdate", interval);
+    }
+
+    private void EnableMoodUpdate() {
+        _isMoodUpdated = false;
+    }
+
     public void Eat()
     {
         StartCoroutine(Bite());
@@ -372,9 +416,12 @@ public class Cat : MonoBehaviour, ICat
     private void MoveTo(GameObject obj)
     {
         _isMoving = true;
-        if (transform.position.x < obj.transform.position.x) {
+        if (transform.position.x < obj.transform.position.x)
+        {
             _spriteRenderer.flipX = true;
-        } else if (transform.position.x > obj.transform.position.x) {
+        }
+        else if (transform.position.x > obj.transform.position.x)
+        {
             _spriteRenderer.flipX = false;
         }
         transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (MovementSpeed * Time.deltaTime) * 0.015f);
@@ -418,14 +465,14 @@ public class Cat : MonoBehaviour, ICat
     {
         yield return new WaitForSeconds(Bowl.Sustenance.TimeToDevour);
 
+        NourishmentDecayDelay = Bowl.Sustenance.NourishmentDecayDelay;
+        Nourishment += Bowl.Sustenance.NourishmentPoints;
+        Bowl.EatSustanence();
+
         _isEating = false;
         Debug.Log($"<color=#000080ff>{Name}</color> has devoured <color=#ff0000>{Bowl.Sustenance.Name}</color>.");
 
         // TODO: When the cat finishes eating a substance, play a sound effect.
-
-        NourishmentDecayDelay = Bowl.Sustenance.NourishmentDecayDelay;
-        Nourishment += Bowl.Sustenance.NourishmentPoints;
-        Bowl.EatSustanence();
     }
 
     public WaypointController GetNewWaypoint(WaypointType newWaypointType)
@@ -436,7 +483,7 @@ public class Cat : MonoBehaviour, ICat
 
         foreach (WaypointController waypoint in Room.Waypoints.ListOfWaypoints)
         {
-            if (waypoint.Type == newWaypointType && waypoint.IsWaypointOccupied == false)
+            if (waypoint.Type == newWaypointType)
             {
                 waypointsAvailable.Add(waypoint);
             }

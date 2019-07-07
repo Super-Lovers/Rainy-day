@@ -73,6 +73,9 @@ MonoBehaviour:
   - Expression: 5
     Variations:
     - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
+  - Expression: 6
+    Variations:
+    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
   _room: {fileID: 0}
   _bowl: {fileID: 0}
   _toy: {fileID: 0}
@@ -104,15 +107,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundEffects:
   - Name: Purr
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: 1b616ac2c128f7647864bc028c431304, type: 3}
   - Name: Hungry meow
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
   - Name: Sad meow
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: 1c1746aebba5109459c1dcbfa18f9e9f, type: 3}
   - Name: Angry meow
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: 29803712b302922448a53fb464b67e30, type: 3}
   - Name: Leisure meow
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
   AudioType: 0
 --- !u!82 &1226023052998105778
 AudioSource:

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class RoomController : MonoBehaviour
 {
     public string Name;
+    [Header("Only for the room which has the door facing it")]
+    public Animator EntranceDoor;
     [NonSerialized]
     public Sprite Background;
     [Header("Position of the camera entering the room")]
