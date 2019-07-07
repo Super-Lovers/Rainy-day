@@ -4,6 +4,7 @@ public class BowlController : MonoBehaviour
 {
     public Cat CatOwner;
     public SustanenceController Sustenance;
+    public GameObject MealObject;
 
     public void UpdateSustanence(SustanenceController sustenance)
     {
@@ -11,6 +12,8 @@ public class BowlController : MonoBehaviour
     }
     
     public void EatSustanence() {
+        CatOwner.State = State.Relaxing;
+        MealObject.SetActive(true);
         Destroy(Sustenance.gameObject);
     }
 }

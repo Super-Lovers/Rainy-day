@@ -5,5 +5,6 @@
     Bored,
     Angry,
     Hungry,
-    Relaxing
+    Relaxing,
+    Idle
 }

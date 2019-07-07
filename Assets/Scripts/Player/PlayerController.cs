@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     #region Camera properties
     private Camera _camera;
     [Range(0, 50)]
@@ -19,6 +21,18 @@ public class PlayerController : MonoBehaviour
     private float _currentRoomBoundsRight;
     private bool _isCameraTransitioning;
     #endregion
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {

@@ -79,12 +79,15 @@
      <Compile Include="Assets\Scripts\Kitchen\MealController.cs" />
      <Compile Include="Assets\Scripts\Kitchen\StoveController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Rooms\DepthScaleController.cs" />
      <Compile Include="Assets\Scripts\Rooms\RoomController.cs" />
      <Compile Include="Assets\Scripts\Rooms\Rooms.cs" />
      <Compile Include="Assets\Scripts\Rooms\TransitionController.cs" />
      <Compile Include="Assets\Scripts\Sustanence\ISustanence.cs" />
      <Compile Include="Assets\Scripts\Sustanence\Sustanence.cs" />
      <Compile Include="Assets\Scripts\Sustanence\SustanenceController.cs" />
+     <Compile Include="Assets\Scripts\User Interface\CatDisplay.cs" />
+     <Compile Include="Assets\Scripts\User Interface\InterfaceManager.cs" />
      <Compile Include="Assets\Scripts\Waypoints\WaypointController.cs" />
      <Compile Include="Assets\Scripts\Waypoints\Waypoints.cs" />
      <Compile Include="Assets\Scripts\Waypoints\WaypointType.cs" />

@@ -5,7 +5,6 @@ using System;
 public class Cats : MonoBehaviour
 {
     public static Cats Instance;
-    [NonSerialized]
     public List<Cat> ListOfCats = new List<Cat>();
 
     private void Awake()

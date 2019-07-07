@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AudioManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class AudioManager : MonoBehaviour
             if (value > 100) { _soundEffectsVolume = 100; }
             else if (value < 0) { _soundEffectsVolume = 0; }
             else { _soundEffectsVolume = value; }
+            UpdateVolume();
         }
     }
 
@@ -32,12 +34,20 @@ public class AudioManager : MonoBehaviour
             if (value > 100) { _backgroundMusicVolume = 100; }
             else if (value < 0) { _backgroundMusicVolume = 0; }
             else { _backgroundMusicVolume = value; }
+            UpdateVolume();
         }
     }
     #endregion
 
+    #region Components
+    [NonSerialized]
+    public AudioController AudioController;
+    #endregion
+
     private void Awake()
     {
+        AudioController = GetComponent<AudioController>();
+
         if (Instance != null && Instance != this)
         {
             Destroy(Instance);
@@ -69,13 +79,14 @@ public class AudioManager : MonoBehaviour
                 audioSource.volume = BackgroundMusicVolume / 100f;
             }
         }
+
+        AudioManager.Instance.AudioController.PlaySound("Volume Update");
     }
 
     #region Sound effects events
     public void MuteSoundEffects()
     {
         SoundEffectsVolume = 0;
-        UpdateVolume();
     }
 
     public void IncreaseSoundVolume()
@@ -84,8 +95,6 @@ public class AudioManager : MonoBehaviour
         {
             SoundEffectsVolume += 10;
         }
-
-        UpdateVolume();
     }
 
     public void DecreaseSoundVolume()
@@ -94,8 +103,6 @@ public class AudioManager : MonoBehaviour
         {
             SoundEffectsVolume -= 10;
         }
-        
-        UpdateVolume();
     }
     #endregion
 
@@ -103,7 +110,6 @@ public class AudioManager : MonoBehaviour
     public void MuteBackgroundMusic()
     {
         BackgroundMusicVolume = 0;
-        UpdateVolume();
     }
 
     public void IncreaseBackgroundVolume()
@@ -112,8 +118,6 @@ public class AudioManager : MonoBehaviour
         {
             BackgroundMusicVolume += 10;
         }
-        
-        UpdateVolume();
     }
 
     public void DecreaseBackgroundVolume()
@@ -122,8 +126,6 @@ public class AudioManager : MonoBehaviour
         {
             BackgroundMusicVolume -= 10;
         }
-        
-        UpdateVolume();
     }
     #endregion
 }

@@ -20,6 +20,22 @@ public class Cat : MonoBehaviour, ICat
             _name = value;
         }
     }
+    [Range(0, 100)]
+    [SerializeField]
+    private int _movementSpeed;
+    public int MovementSpeed
+    {
+        get
+        {
+            return _movementSpeed;
+        }
+        set
+        {
+            _movementSpeed = value;
+        }
+    }
+    [Space(10)]
+    public CatDisplay Display;
     [SerializeField]
     private int _nourishment;
     public int Nourishment
@@ -43,6 +59,7 @@ public class Cat : MonoBehaviour, ICat
         set
         {
             _nourishmentDecayDelay = value;
+            Display.UpdateSliders();
         }
     }
     [SerializeField]
@@ -56,6 +73,7 @@ public class Cat : MonoBehaviour, ICat
         set
         {
             _satisfaction = value;
+            Display.UpdateSliders();
         }
     }
     [Header("Face and Mood ====================")]
@@ -135,12 +153,25 @@ public class Cat : MonoBehaviour, ICat
     #region Components
     AudioController _audioController;
     Rigidbody2D _rigidBody2D;
+    InteractableController _interactableController;
     #endregion
+
+    // State conditions
+    private bool _isPlaying;
+    private bool _isDisplayingMood;
+    private bool _isEating;
+    private bool _isMoving;
+    private bool _isIdle;
+    public bool IsClimbed;
+
+    // Counters
+    private int _timesPlayerIgnoredCat;
 
     private void Start()
     {
         _audioController = GetComponentInChildren<AudioController>();
         _rigidBody2D = GetComponentInChildren<Rigidbody2D>();
+        _interactableController = GetComponentInChildren<InteractableController>();
 
         List<Cat> listOfCats = Cats.Instance.ListOfCats;
         if (listOfCats.Contains(this) == false)
@@ -148,19 +179,143 @@ public class Cat : MonoBehaviour, ICat
             listOfCats.Add(this);
         }
 
-        Invoke("Test", 0.1f);
-    }
-
-    private void Test()
-    {
-        // Eat();
-        // ChangeRoom("Kitchen");
-        // CurrentWaypoint = GetNewWaypoint(WaypointType.Generic);
+        Display.UpdateSliders();
     }
 
     private void Update()
     {
-        // TODO: Coroutines of the core game loop
+        switch (State)
+        {
+            case State.Hungry:
+                if (Room.Name != "Kitchen")
+                {
+                    if (CurrentWaypoint.Type != WaypointType.Origin)
+                    {
+                        CurrentWaypoint = GetNewWaypoint(WaypointType.Origin);
+                    }
+
+                    if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
+                    {
+                        MoveTo(CurrentWaypoint.gameObject);
+                    }
+                    else
+                    {
+                        _isMoving = false;
+                        ChangeRoom("Kitchen");
+                    }
+                }
+                else if (Room.Name == "Kitchen")
+                {
+                    if (Vector2.Distance(transform.position, Bowl.transform.position) > 1f)
+                    {
+                        MoveTo(Bowl.gameObject);
+                    }
+                    else
+                    {
+                        _isMoving = false;
+                        if (Bowl.Sustenance != null)
+                        {
+                            if (_isEating == false)
+                            {
+                                Eat();
+                                _isEating = true;
+                            }
+                        }
+                        else
+                        {
+                            if (_isDisplayingMood == false)
+                            {
+                                DisplayMood(State.Hungry);
+                                Invoke("ResetMoodTimer", 5f);
+                                _isDisplayingMood = true;
+                            }
+                        }
+                    }
+                }
+                break;
+            case State.Relaxing:
+                if (_isMoving == false)
+                {
+                    if (_isIdle == false)
+                    {
+                        if (Random.Range(0, 100) > 89)
+                        {
+                            CurrentWaypoint = GetNewWaypoint(WaypointType.Origin);
+                        }
+                        else
+                        {
+                            CurrentWaypoint = GetNewWaypoint(WaypointType.Generic);
+                        }
+
+                        Invoke("ResetMovement", Random.Range(6, 15));
+                        _isIdle = true;
+                    }
+                }
+
+                if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
+                {
+                    MoveTo(CurrentWaypoint.gameObject);
+                }
+                else
+                {
+                    _isMoving = false;
+                }
+                break;
+            case State.Bored:
+
+                if (_isMoving == false)
+                {
+                    if (_isIdle == false)
+                    {
+                        if (Random.Range(0, 100) > 89)
+                        {
+                            CurrentWaypoint = GetNewWaypoint(WaypointType.Origin);
+                        }
+                        else
+                        {
+                            CurrentWaypoint = GetNewWaypoint(WaypointType.Generic);
+                        }
+
+                        if (_timesPlayerIgnoredCat == 2)
+                        {
+                            State = State.Angry;
+                        }
+
+                        _timesPlayerIgnoredCat++;
+                        Invoke("ResetMovement", Random.Range(1, 6));
+                        _isIdle = true;
+                    }
+                }
+
+                if (Vector2.Distance(transform.position, CurrentWaypoint.transform.position) > 0.2f)
+                {
+                    // TODO: Change rooms for origin points
+                    MoveTo(CurrentWaypoint.gameObject);
+                }
+                else
+                {
+                    _isMoving = false;
+                }
+                break;
+            case State.Happy:
+                if (_isDisplayingMood == false)
+                {
+                    DisplayMood(State.Happy);
+                    Invoke("ResetMoodTimer", 5f);
+                    _isDisplayingMood = true;
+                }
+                break;
+            case State.Angry:
+                if (_isDisplayingMood == false)
+                {
+                    DisplayMood(State.Angry);
+                    Invoke("ResetMoodTimer", 5f);
+                    _isDisplayingMood = true;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public void Eat()
@@ -168,10 +323,50 @@ public class Cat : MonoBehaviour, ICat
         StartCoroutine(Bite());
     }
 
-    private IEnumerator Bite() {
+    private void MoveTo(GameObject obj)
+    {
+        _isMoving = true;
+        transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (MovementSpeed * Time.deltaTime) * 0.015f);
+    }
+
+    private void ResetMovement()
+    {
+        _isMoving = false;
+        _isIdle = false;
+    }
+
+    private void DisplayMood(State state)
+    {
+        _interactableController.PopupBubble.gameObject.SetActive(true);
+
+        if (state == State.Angry)
+        {
+            Satisfaction--;
+        }
+
+        foreach (ExpressionController mood in Expressions)
+        {
+            if (mood.Expression == State)
+            {
+                FaceIcon.sprite =
+                mood.Variations[Random.Range(0, mood.Variations.Count)];
+            }
+        }
+
+        _interactableController.PopupBubble.DisplayIcons();
+    }
+
+    private void ResetMoodTimer()
+    {
+        _isDisplayingMood = false;
+    }
+
+    private IEnumerator Bite()
+    {
         yield return new WaitForSeconds(Bowl.Sustenance.TimeToDevour);
 
-        Debug.Log($"<color=#00ff00>{Name}</color> has devoured <color=#ff0000>{Bowl.Sustenance.Name}</color>.");
+        _isEating = false;
+        Debug.Log($"<color=#000080ff>{Name}</color> has devoured <color=#ff0000>{Bowl.Sustenance.Name}</color>.");
 
         // TODO: When the cat finishes eating a substance, play a sound effect.
 
@@ -208,7 +403,17 @@ public class Cat : MonoBehaviour, ICat
             if (room.Name == newRoom)
             {
                 isRoomValid = true;
-                Debug.Log($"<color=#00ff00>{Name}</color> moved from room <color=#ffff00>{Room}</color> to <color=#ffff00>{room}</color>.");
+
+                foreach (WaypointController waypoint in room.Waypoints.ListOfWaypoints)
+                {
+                    if (waypoint.Type == WaypointType.Origin)
+                    {
+                        transform.position = new Vector3(waypoint.transform.position.x, waypoint.transform.position.y, transform.position.z);
+                        break;
+                    }
+                }
+
+                Debug.Log($"<color=#000080ff>{Name}</color> moved from room <color=#ffff00>{Room}</color> to <color=#ffff00>{room}</color>.");
                 Room = room;
                 break;
             }
@@ -229,5 +434,45 @@ public class Cat : MonoBehaviour, ICat
     {
         Debug.Log($"<color=#00ff00>{Name}</color>'s state has been changed from <color=#ffff00>{_state}</color> to <color=#ffff00>{newState}</color>.");
         _state = newState;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.transform.tag == "Toy")
+        {
+            if (State == State.Bored)
+            {
+                ToyController toy = other.GetComponent<ToyController>();
+
+                if (toy.Owner == null)
+                {
+                    _timesPlayerIgnoredCat = 0;
+                    State = State.Idle;
+                    toy.Owner = this;
+                    StartCoroutine(PlayWithToys(toy));
+                }
+            }
+        }
+    }
+
+    private IEnumerator PlayWithToys(ToyController toy)
+    {
+        _isPlaying = true;
+        // TODO: play playing animation
+        for (int i = 0; i < toy.TimeToPlay; i++)
+        {
+            Nourishment -= toy.TimeToPlay;
+            yield return new WaitForSeconds(1);
+        }
+
+        if (Nourishment > 49)
+        {
+            State = State.Relaxing;
+        }
+        else
+        {
+            State = State.Hungry;
+        }
+        toy.Owner = null;
     }
 }
