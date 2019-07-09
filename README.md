@@ -3,9 +3,12 @@ Rainy day was created for the TasJam LITE game jam. The theme was 'calm' which l
 
 # Credits
 Developer: Nikolay Ivanov
+
 Artist: Roger Recaldini
 
+
 The music used can be found here:
+
 Stereo playlist:
 
 https://soundcloud.com/dna-groove/fabric-of-time-pocket-tanks-in-game
@@ -15,6 +18,7 @@ https://soundcloud.com/betamaxtapes/clean-coffee
 https://soundcloud.com/w00ds/pink-skies
 
 Rain background music:
+
 https://freesound.org/people/Anthousai/sounds/398740/
 
 # Install instructions
