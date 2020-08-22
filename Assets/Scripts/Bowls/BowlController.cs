@@ -13,7 +13,7 @@ public class BowlController : MonoBehaviour
     }
     
     public void EatSustanence() {
-        CatOwner.State = State.Relaxing;
+        //CatOwner.State = State.Relaxing;
         MealObject.SetActive(false);
         Destroy(Sustenance.gameObject);
     }

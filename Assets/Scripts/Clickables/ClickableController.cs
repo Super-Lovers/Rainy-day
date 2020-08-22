@@ -67,7 +67,7 @@ public class ClickableController : MouseController
                         interactableController.PopupBubble.gameObject.SetActive(true);
 
                         Cat catScript = interactableController.GetComponentInParent<Cat>();
-                        catScript.DisplayMood(State.Hungry);
+                        //catScript.DisplayMood(State.Hungry);
                     }
                     break;
             }

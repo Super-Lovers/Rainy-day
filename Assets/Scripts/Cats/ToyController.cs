@@ -6,6 +6,7 @@ public class ToyController : MonoBehaviour
     public Cat Owner;
     public int TimeToPlay;
     private bool _isDragging;
+
     public bool IsDragging
     {
         get
@@ -18,9 +19,7 @@ public class ToyController : MonoBehaviour
         }
     }
 
-    #region Components
-    Rigidbody2D _rigidBody2D;
-    #endregion
+    private Rigidbody2D _rigidBody2D;
 
     private void Start()
     {
