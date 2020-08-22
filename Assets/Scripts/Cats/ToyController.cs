@@ -39,7 +39,9 @@ public class ToyController : MonoBehaviour
     {
         _isDragging = true;
         _rigidBody2D.gravityScale = 0;
-        gameObject.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.z);
+        gameObject.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+                                                    transform.position.z);
     }
 
     public void Drop()
