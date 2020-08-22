@@ -39,9 +39,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _camera = FindObjectOfType<Camera>();
-
-        _currentRoomBoundsLeft = CurrentRoomController.LeftBoundary.position.x + _camera.orthographicSize;
-        _currentRoomBoundsRight = CurrentRoomController.RightBoundary.position.x - _camera.orthographicSize;
     }
 
     private void Update()
@@ -76,9 +73,6 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));
                 Rooms.Instance.StartRoomTransition();
-
-                _currentRoomBoundsLeft = CurrentRoomController.LeftBoundary.position.x + _camera.orthographicSize;
-                _currentRoomBoundsRight = CurrentRoomController.RightBoundary.position.x - _camera.orthographicSize;
 
                 break;
             }

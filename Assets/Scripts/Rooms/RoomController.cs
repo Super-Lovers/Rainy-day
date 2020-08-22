@@ -12,11 +12,7 @@ public class RoomController : MonoBehaviour
     [Header("Position of the camera entering the room")]
     [Space(10)]
     public Transform CameraOrigin;
-    public float DepthLimit;
     [Header("Boundaries of the room")]
-    [Space(10)]
-    public Transform LeftBoundary;
-    public Transform RightBoundary;
     [Space(10)]
     public Waypoints Waypoints;
 
