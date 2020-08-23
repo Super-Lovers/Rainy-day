@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEditor.Animations;
+using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
@@ -42,10 +44,36 @@ public class Cat : MonoBehaviour
     [SerializeField]
     protected WaypointController waypoint;
 
+    private Animator animator_component;
+    private AnimatorController animator;
+    private Dictionary<string, string>
+        animations = new Dictionary<string, string>();
+
     private float time;
 
     private void Start() {
-        state = new CatEating();
+        animator_component = GetComponentInChildren<Animator>();
+
+        animator = Resources.Load<AnimatorController>(
+            $"Animations/Cats/{this.name}/{this.name + "CatAnimator"}");
+        animator_component.runtimeAnimatorController = animator;
+
+        //var walking_animation = Resources.Load<Animation>(
+        //    $"Animations/Cats/{this.name}/{this.name + "WalkAnimation"}");
+        //var eating_animation = Resources.Load<Animation>(
+        //    $"Animations/Cats/{this.name}/{this.name + "EatingAnimation"}");
+        //var standing_animation = Resources.Load<Animation>(
+        //    $"Animations/Cats/{this.name}/{this.name + "IdleAnimation"}");
+        //var sleeping_animation = Resources.Load<Animation>(
+        //    $"Animations/Cats/{this.name}/{this.name + "SleepingAnimation"}");
+        
+        animations.Add("Walking", $"{this.name + "WalkAnimation"}");
+        animations.Add("Eating", $"{this.name + "EatAnimation"}");
+        animations.Add("Standing", $"{this.name + "IdleAnimation"}");
+        animations.Add("Sleeping", $"{this.name + "WalkAnimation"}");
+
+        state = new CatWalking(animator, animations["Walking"]);
+        animator_component.Play(state.Animation);
     }
 
     private void Update() {
