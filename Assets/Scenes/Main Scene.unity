@@ -5256,6 +5256,16 @@ PrefabInstance:
       propertyPath: name
       value: Ashley
       objectReference: {fileID: 0}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: hunger
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: fatigue
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2097445856c98374ea5d431fd072587a, type: 3}
 --- !u!1001 &1367130868890097960

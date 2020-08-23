@@ -1,5 +1,4 @@
 ﻿using UnityEditor.Animations;
-using UnityEngine;
 
 class CatEating : CatState {
     public CatEating(AnimatorController animator, string animation) {

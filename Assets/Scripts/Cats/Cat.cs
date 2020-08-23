@@ -7,9 +7,11 @@ public class Cat : MonoBehaviour
     [SerializeField]
     protected string name;
 
-    [Space(10)]
-    [SerializeField]
     protected CatState state;
+    [SerializeField]
+    protected string state_name;
+    [SerializeField]
+    protected string emotionality;
 
     [Space(10)]
     [SerializeField]
@@ -58,35 +60,53 @@ public class Cat : MonoBehaviour
             $"Animations/Cats/{this.name}/{this.name + "CatAnimator"}");
         animator_component.runtimeAnimatorController = animator;
 
-        //var walking_animation = Resources.Load<Animation>(
-        //    $"Animations/Cats/{this.name}/{this.name + "WalkAnimation"}");
-        //var eating_animation = Resources.Load<Animation>(
-        //    $"Animations/Cats/{this.name}/{this.name + "EatingAnimation"}");
-        //var standing_animation = Resources.Load<Animation>(
-        //    $"Animations/Cats/{this.name}/{this.name + "IdleAnimation"}");
-        //var sleeping_animation = Resources.Load<Animation>(
-        //    $"Animations/Cats/{this.name}/{this.name + "SleepingAnimation"}");
-        
         animations.Add("Walking", $"{this.name + "WalkAnimation"}");
         animations.Add("Eating", $"{this.name + "EatAnimation"}");
         animations.Add("Standing", $"{this.name + "IdleAnimation"}");
         animations.Add("Sleeping", $"{this.name + "WalkAnimation"}");
 
         state = new CatWalking(animator, animations["Walking"]);
-        animator_component.Play(state.Animation);
     }
 
     private void Update() {
         if (time >= 1) {
             state.Cycle(this);
+            TrackState();
+
             time = 0;
         }
 
         time += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Responsible for updating the current state based on specific rules/conditions
+    /// </summary>
     private void TrackState() {
+        if (this.fatigue <= 60 &&
+            this.hunger < 60) {
+            if (this.happiness >= 50) {
+                if (Random.Range(0, 100) > 50) {
+                    state = new CatWalking(animator, animations["Walking"]);
+                } else {
+                    state = new CatStanding(animator, animations["Standing"]);
+                }
+            } else {
+                state = new CatStanding(animator, animations["Standing"]);
+            }
 
+            this.emotionality = "Relaxing";
+        } else if (this.fatigue > 60 && this.hunger < 60) {
+            state = new CatStanding(animator, animations["Standing"]);
+            this.emotionality = "Tired";
+        } else if (this.fatigue > 60 && this.hunger >= 60) {
+            this.emotionality = "Hungry and Tired";
+        } else if (this.fatigue <= 60 && this.hunger >= 60) {
+            this.emotionality = "Hungry";
+        }
+
+        animator_component.Play(state.Animation);
+        state_name = state.GetType().ToString();
     }
 
     //if (transform.position.x < obj.transform.position.x)

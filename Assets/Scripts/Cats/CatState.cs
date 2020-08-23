@@ -1,5 +1,4 @@
 ﻿using UnityEditor.Animations;
-using UnityEngine;
 
 public abstract class CatState {
     protected float happiness_change;
