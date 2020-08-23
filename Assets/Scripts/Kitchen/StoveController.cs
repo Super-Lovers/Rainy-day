@@ -46,7 +46,7 @@ public class StoveController : MonoBehaviour
             bowl.MealObject.SetActive(true);
 
             MealPrepared.Quantity--;
-            Debug.Log($"Sustanence <color=#a52a2aff>{MealPrepared.Sustanence.Name}</color> is placed in {bowl.CatOwner.Name}'s bowl.");
+            //Debug.Log($"Sustanence <color=#a52a2aff>{MealPrepared.Sustanence.Name}</color> is placed in {bowl.CatOwner.Name}'s bowl.");
         }
 
         if (MealPrepared.Quantity <= 0)

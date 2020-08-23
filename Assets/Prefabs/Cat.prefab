@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 59919993615597995}
-  - component: {fileID: 2391112870440625916}
-  - component: {fileID: 1576025157500965572}
+  - component: {fileID: 6621743896074103936}
   - component: {fileID: 6385480042700519357}
   - component: {fileID: 1226023052998105778}
   m_Layer: 0
@@ -35,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2391112870440625916
+--- !u!114 &6621743896074103936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,52 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39c5d74c73ce4e45a5ef9eab6ede2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Ashley
-  _movementSpeed: 0
-  Display: {fileID: 0}
-  _nourishment: 0
-  _satisfaction: 0
-  _state: 0
-  FaceIcon: {fileID: 2107124540149687025}
-  Expressions:
-  - Expression: 0
-    Variations:
-    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
-  - Expression: 1
-    Variations:
-    - {fileID: 21300000, guid: ac2391b5bbe1ade4eba2d49aa184e108, type: 3}
-  - Expression: 2
-    Variations:
-    - {fileID: 21300000, guid: c2ea264fc2ca63348a4035e9d489952c, type: 3}
-  - Expression: 3
-    Variations:
-    - {fileID: 21300000, guid: c6f71cffa93ba1b45b83ef822a9a56e3, type: 3}
-  - Expression: 4
-    Variations:
-    - {fileID: 21300000, guid: f90c38c86eef246449f9619d2b202cd0, type: 3}
-  - Expression: 5
-    Variations:
-    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
-  - Expression: 6
-    Variations:
-    - {fileID: 21300000, guid: 34848e149e163724b906c615a90f8d78, type: 3}
-  _room: {fileID: 0}
-  _bowl: {fileID: 0}
-  _toy: {fileID: 0}
-  _currentWaypoint: {fileID: 0}
-  IsClimbed: 0
---- !u!114 &1576025157500965572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2809260390526294667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c8f9b282ea678c42bb823a962dabf5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  name: 
+  happiness: 50
+  hunger: 50
+  fatigue: 50
+  room: {fileID: 0}
+  bowl: {fileID: 0}
+  toy: {fileID: 0}
+  waypoint: {fileID: 0}
 --- !u!114 &6385480042700519357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,18 +575,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebce89b3413a1af4e8b2e0b3ec141833, type: 3}
---- !u!114 &2107124540149687025 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 934655946001980402, guid: ebce89b3413a1af4e8b2e0b3ec141833,
-    type: 3}
-  m_PrefabInstance: {fileID: 1280871928038881539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1940038431875786389
 PrefabInstance:
   m_ObjectHideFlags: 0

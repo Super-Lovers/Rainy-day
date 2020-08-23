@@ -1,20 +1,37 @@
 ﻿using UnityEngine;
 
-public class Cat
+public class Cat : MonoBehaviour
 {
     [SerializeField]
     protected string name;
 
+    [Space(10)]
     [SerializeField]
     protected CatState state;
 
+    [Space(10)]
     [SerializeField]
-    protected int happiness;
-    [SerializeField]
-    protected int hunger;
-    [SerializeField]
-    protected int fatigue;
+    protected float happiness;
+    public float Happiness {
+        get { return this.happiness; }
+        set { this.happiness = value; }
+    }
 
+    [SerializeField]
+    protected float hunger;
+    public float Hunger {
+        get { return this.hunger; }
+        set { this.hunger = value; }
+    }
+
+    [SerializeField]
+    protected float fatigue;
+    public float Fatigue {
+        get { return this.fatigue; }
+        set { this.fatigue = value; }
+    }
+
+    [Space(10)]
     [SerializeField]
     protected RoomController room;
     [SerializeField]
@@ -27,6 +44,10 @@ public class Cat
 
     private float time;
 
+    private void Start() {
+        state = new CatEating();
+    }
+
     private void Update() {
         if (time >= 1) {
             state.Cycle(this);
@@ -34,18 +55,6 @@ public class Cat
         }
 
         time += Time.deltaTime;
-    }
-
-    public void UpdateHappiness(int value) {
-        this.happiness += value;
-    }
-
-    public void UpdateHunger(int value) {
-        this.hunger += value;
-    }
-
-    public void UpdateFatigue(int value) {
-        this.fatigue += value;
     }
 
     private void TrackState() {

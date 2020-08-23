@@ -518,7 +518,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CatOwner
       value: 
-      objectReference: {fileID: 249858297}
+      objectReference: {fileID: 0}
     - target: {fileID: 5203363060265094261, guid: bd4d86e81039b8649bf11ff7ab04cfd8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -572,18 +572,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 40159042}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &139931488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2391112870440625916, guid: 2097445856c98374ea5d431fd072587a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1698601215}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39c5d74c73ce4e45a5ef9eab6ede2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &188556277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5749540879265591726, guid: 6820f94275385774495d681c92c18da9,
@@ -741,18 +729,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &249858297 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2391112870440625916, guid: 2097445856c98374ea5d431fd072587a,
-    type: 3}
-  m_PrefabInstance: {fileID: 853943338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39c5d74c73ce4e45a5ef9eab6ede2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &298181812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,12 +2459,12 @@ PrefabInstance:
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.86
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.822
+      value: -2.82
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
@@ -3802,12 +3778,12 @@ PrefabInstance:
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.629
+      value: -0.9389999
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.665
+      value: -2.6629999
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
@@ -4278,7 +4254,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CatOwner
       value: 
-      objectReference: {fileID: 139931488}
+      objectReference: {fileID: 0}
     - target: {fileID: 5203363060265094261, guid: bd4d86e81039b8649bf11ff7ab04cfd8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4332,18 +4308,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1771672788}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1854631029 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2391112870440625916, guid: 2097445856c98374ea5d431fd072587a,
-    type: 3}
-  m_PrefabInstance: {fileID: 893948070839429647}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39c5d74c73ce4e45a5ef9eab6ede2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1968474666 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5749540879265591725, guid: 6820f94275385774495d681c92c18da9,
@@ -5168,12 +5132,12 @@ PrefabInstance:
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.22
+      value: -3.5299997
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.45
+      value: -2.578
       objectReference: {fileID: 0}
     - target: {fileID: 59919993615597995, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
@@ -5555,7 +5519,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CatOwner
       value: 
-      objectReference: {fileID: 1854631029}
+      objectReference: {fileID: 0}
     - target: {fileID: 5203363060265094261, guid: bd4d86e81039b8649bf11ff7ab04cfd8,
         type: 3}
       propertyPath: m_textInfo.characterCount

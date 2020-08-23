@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
 public abstract class CatState {
-    protected int happiness_change;
-    protected int hunger_change;
+    protected float happiness_change;
+    protected float hunger_change;
     protected float fatigue_change;
 
     protected Animation animation;
 
     protected virtual void SetVariables(
-        int happiness, int hunger, int fatigue) {
+        float happiness, float hunger, float fatigue) {
 
         this.happiness_change = happiness;
         this.hunger_change = hunger;
@@ -16,7 +16,9 @@ public abstract class CatState {
     }
 
     public virtual void Cycle(Cat cat) {
-        throw new System.NotImplementedException();
+        cat.Happiness += this.happiness_change;
+        cat.Hunger += this.hunger_change;
+        cat.Fatigue += this.fatigue_change;
     }
 
     protected virtual void SetAnimation(Animation animation) {

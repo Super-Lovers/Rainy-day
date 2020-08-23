@@ -46,7 +46,7 @@ public abstract class MouseController : MonoBehaviour
             if (hitInteractable.collider != null)
             {
                 if (hitInteractable.collider.gameObject.GetComponentInParent<Cat>() != null) {
-                    hitInteractable.collider.gameObject.GetComponentInParent<Cat>().Pet();
+                    //hitInteractable.collider.gameObject.GetComponentInParent<Cat>().Pet();
                 }
             }
         } else {

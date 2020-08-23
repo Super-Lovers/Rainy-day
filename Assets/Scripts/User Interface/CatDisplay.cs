@@ -8,7 +8,7 @@ public class CatDisplay : MonoBehaviour
     public Slider NourishmentSlider;
 
     public void UpdateSliders() {
-        HappinessSlider.value = CatOwner.Satisfaction * 0.01f;
-        NourishmentSlider.value = CatOwner.Nourishment * 0.01f;
+        //HappinessSlider.value = CatOwner.Satisfaction * 0.01f;
+        //NourishmentSlider.value = CatOwner.Nourishment * 0.01f;
     }
 }
