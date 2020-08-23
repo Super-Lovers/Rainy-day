@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\NotificationDisplay.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioType.cs" />
@@ -94,7 +95,6 @@
     <Compile Include="Assets\Scripts\Sustanence\ISustanence.cs" />
     <Compile Include="Assets\Scripts\Sustanence\Sustanence.cs" />
     <Compile Include="Assets\Scripts\Sustanence\SustanenceController.cs" />
-    <Compile Include="Assets\Scripts\User Interface\CatDisplay.cs" />
     <Compile Include="Assets\Scripts\User Interface\InterfaceManager.cs" />
     <Compile Include="Assets\Scripts\Waypoints\WaypointController.cs" />
     <Compile Include="Assets\Scripts\Waypoints\Waypoints.cs" />

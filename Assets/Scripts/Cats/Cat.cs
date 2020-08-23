@@ -51,9 +51,12 @@ public class Cat : MonoBehaviour
     private Dictionary<string, string>
         animations = new Dictionary<string, string>();
 
+    private NotificationDisplay notification_display;
+
     private float time;
 
     private void Start() {
+        notification_display = GetComponentInChildren<NotificationDisplay>();
         animator_component = GetComponentInChildren<Animator>();
 
         animator = Resources.Load<AnimatorController>(
@@ -91,18 +94,34 @@ public class Cat : MonoBehaviour
                 } else {
                     state = new CatStanding(animator, animations["Standing"]);
                 }
+
+                notification_display.SendNotification("Happy");
             } else {
                 state = new CatStanding(animator, animations["Standing"]);
+                notification_display.RemoveNotification("Happy");
             }
 
             this.emotionality = "Relaxing";
+
+            notification_display.RemoveNotification("Tired");
+            notification_display.RemoveNotification("Hungry");
         } else if (this.fatigue > 60 && this.hunger < 60) {
             state = new CatStanding(animator, animations["Standing"]);
             this.emotionality = "Tired";
+
+            notification_display.RemoveNotification("Hungry");
+            notification_display.SendNotification("Tired");
+            notification_display.RemoveNotification("Happy");
         } else if (this.fatigue > 60 && this.hunger >= 60) {
             this.emotionality = "Hungry and Tired";
+            notification_display.SendNotification("Tired");
+            notification_display.SendNotification("Hungry");
+            notification_display.RemoveNotification("Happy");
         } else if (this.fatigue <= 60 && this.hunger >= 60) {
             this.emotionality = "Hungry";
+            notification_display.SendNotification("Hungry");
+            notification_display.RemoveNotification("Tired");
+            notification_display.RemoveNotification("Happy");
         }
 
         animator_component.Play(state.Animation);
