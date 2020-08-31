@@ -57,6 +57,8 @@ public class Cat : MonoBehaviour
 
     private void Start() {
         notification_display = GetComponentInChildren<NotificationDisplay>();
+        notification_display.gameObject.SetActive(false);
+
         animator_component = GetComponentInChildren<Animator>();
 
         animator = Resources.Load<AnimatorController>(
@@ -95,33 +97,33 @@ public class Cat : MonoBehaviour
                     state = new CatStanding(animator, animations["Standing"]);
                 }
 
-                notification_display.SendNotification("Happy");
+                notification_display.SendNotification(Mood.Happy);
             } else {
                 state = new CatStanding(animator, animations["Standing"]);
-                notification_display.RemoveNotification("Happy");
+                notification_display.RemoveNotification(Mood.Happy);
             }
 
             this.emotionality = "Relaxing";
 
-            notification_display.RemoveNotification("Tired");
-            notification_display.RemoveNotification("Hungry");
+            notification_display.RemoveNotification(Mood.Tired);
+            notification_display.RemoveNotification(Mood.Hungry);
         } else if (this.fatigue > 60 && this.hunger < 60) {
             state = new CatStanding(animator, animations["Standing"]);
             this.emotionality = "Tired";
 
-            notification_display.RemoveNotification("Hungry");
-            notification_display.SendNotification("Tired");
-            notification_display.RemoveNotification("Happy");
+            notification_display.RemoveNotification(Mood.Hungry);
+            notification_display.SendNotification(Mood.Tired);
+            notification_display.RemoveNotification(Mood.Happy);
         } else if (this.fatigue > 60 && this.hunger >= 60) {
             this.emotionality = "Hungry and Tired";
-            notification_display.SendNotification("Tired");
-            notification_display.SendNotification("Hungry");
-            notification_display.RemoveNotification("Happy");
+            notification_display.SendNotification(Mood.Tired);
+            notification_display.SendNotification(Mood.Hungry);
+            notification_display.RemoveNotification(Mood.Happy);
         } else if (this.fatigue <= 60 && this.hunger >= 60) {
             this.emotionality = "Hungry";
-            notification_display.SendNotification("Hungry");
-            notification_display.RemoveNotification("Tired");
-            notification_display.RemoveNotification("Happy");
+            notification_display.SendNotification(Mood.Hungry);
+            notification_display.RemoveNotification(Mood.Tired);
+            notification_display.RemoveNotification(Mood.Happy);
         }
 
         animator_component.Play(state.Animation);

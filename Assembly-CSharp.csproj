@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Cats\CatStanding.cs" />
     <Compile Include="Assets\Scripts\Cats\CatState.cs" />
     <Compile Include="Assets\Scripts\Cats\CatWalking.cs" />
+    <Compile Include="Assets\Scripts\Cats\Mood.cs" />
     <Compile Include="Assets\Scripts\Cats\ToyController.cs" />
     <Compile Include="Assets\Scripts\Clickables\ClickableController.cs" />
     <Compile Include="Assets\Scripts\Clickables\MouseController.cs" />

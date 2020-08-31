@@ -1,54 +1,74 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationDisplay : MonoBehaviour
 {
     [SerializeField]
     private GameObject notificationPrefab;
+    [SerializeField]
+    private GameObject listLayout;
 
     private List<string> notifications = new List<string>();
     private List<GameObject> notifications_objects = new List<GameObject>();
 
-    public void SendNotification(string notification_type) {
+    public void SendNotification(Mood notification_type) {
         if (ExistNotification(notification_type)) { return; }
 
-        var notification = Instantiate(notificationPrefab, this.transform);
+        var notification = Instantiate(notificationPrefab, listLayout.transform);
+        var notification_type_string = notification_type.ToString();
 
         switch (notification_type) {
-            case "Hungry":
-                notification.GetComponent<TextMeshProUGUI>().text = "Hungry";
-                notifications.Add("Hungry");
+            case Mood.Hungry:
+                notification.GetComponent<Text>().text = "(￣﹃￣)";
                 break;
-            case "Tired":
-                notification.GetComponent<TextMeshProUGUI>().text = "Tired";
-                notifications.Add("Tired");
+            case Mood.Tired:
+                notification.GetComponent<Text>().text = "(￣ヘ￣)";
                 break;
-            case "Happy":
-                notification.GetComponent<TextMeshProUGUI>().text = "Happy";
-                notifications.Add("Happy");
+            case Mood.Hungry_and_tired:
+                notification.GetComponent<Text>().text = "(｡╯︵╰｡)";
+                break;
+            case Mood.Happy:
+                notification.GetComponent<Text>().text = "(￣ω￣)";
                 break;
         }
 
+        notifications.Add(notification_type_string);
         notifications_objects.Add(notification);
+
+        Toggle();
     }
 
-    public bool ExistNotification(string notification_type) {
-        return notifications.Contains(notification_type);
+    public bool ExistNotification(Mood notification_type) {
+        return notifications.Contains(notification_type.ToString());
     }
 
-    public void RemoveNotification(string notification_type) {
+    public void RemoveNotification(Mood notification_type) {
         GameObject notification_to_remove = null;
         for (int i = 0; i < notifications_objects.Count; i++) {
-            var notification_label = notifications_objects[i].GetComponent<TextMeshProUGUI>().text;
-            if (notification_label == notification_type) {
+            var notification_label = notifications_objects[i].GetComponent<Text>().text;
+            var current_notification_type = Mood.Happy;
+
+            if (notification_label == "(￣﹃￣)") { current_notification_type = Mood.Hungry; }
+            else if (notification_label == "(￣ヘ￣)") { current_notification_type = Mood.Tired; }
+            else if (notification_label == "(｡╯︵╰｡)") { current_notification_type = Mood.Hungry_and_tired; }
+            else if (notification_label == "(￣ω￣)") { current_notification_type = Mood.Happy; }
+
+            if (current_notification_type.ToString() == notification_type.ToString()) {
                 notification_to_remove = notifications_objects[i];
                 break;
             }
         }
 
-        notifications.Remove(notification_type);
+        notifications.Remove(notification_type.ToString());
         notifications_objects.Remove(notification_to_remove);
         Destroy(notification_to_remove);
+
+        Toggle();
+    }
+
+    private void Toggle() {
+        if (notifications.Count == 0) { this.gameObject.SetActive(false); }
+        else { this.gameObject.SetActive(true); }
     }
 }
