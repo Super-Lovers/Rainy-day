@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -46,6 +47,7 @@ public class Cat : MonoBehaviour
     [SerializeField]
     protected WaypointController waypoint;
 
+    private SpriteRenderer spriteRenderer;
     private Animator animator_component;
     private AnimatorController animator;
     private Dictionary<string, string>
@@ -54,8 +56,10 @@ public class Cat : MonoBehaviour
     private NotificationDisplay notification_display;
 
     private float time;
+    private float timeUntilNextAction;
 
     private void Start() {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         notification_display = GetComponentInChildren<NotificationDisplay>();
         notification_display.gameObject.SetActive(false);
 
@@ -71,6 +75,8 @@ public class Cat : MonoBehaviour
         animations.Add("Sleeping", $"{this.name + "WalkAnimation"}");
 
         state = new CatWalking(animator, animations["Walking"]);
+
+        waypoint = GetRandomWaypoint();
     }
 
     private void Update() {
@@ -81,7 +87,28 @@ public class Cat : MonoBehaviour
             time = 0;
         }
 
+        if (timeUntilNextAction <= 0) {
+            timeUntilNextAction = UnityEngine.Random.Range(3, 8);
+            waypoint = GetRandomWaypoint();
+        } else {
+            timeUntilNextAction -= Time.deltaTime;
+        }
+
         time += Time.deltaTime;
+
+        if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.1f) {
+            state = new CatStanding(animator, animations["Standing"]);
+        } else {
+            state = new CatWalking(animator, animations["Walking"]);
+
+            if (transform.position.x < waypoint.transform.position.x) {
+                spriteRenderer.flipX = true;
+            } else if (transform.position.x > waypoint.transform.position.x) {
+                spriteRenderer.flipX = false;
+            }
+
+            transform.position = Vector2.MoveTowards(transform.position, waypoint.transform.position, (100 * Time.deltaTime) * 0.015f);
+        }
     }
 
     /// <summary>
@@ -91,15 +118,15 @@ public class Cat : MonoBehaviour
         if (this.fatigue <= 60 &&
             this.hunger < 60) {
             if (this.happiness >= 50) {
-                if (Random.Range(0, 100) > 50) {
-                    state = new CatWalking(animator, animations["Walking"]);
+                if (UnityEngine.Random.Range(0, 100) > 50) {
+                    //state = new CatWalking(animator, animations["Walking"]);
                 } else {
-                    state = new CatStanding(animator, animations["Standing"]);
+                    //state = new CatStanding(animator, animations["Standing"]);
                 }
 
                 notification_display.SendNotification(Mood.Happy);
             } else {
-                state = new CatStanding(animator, animations["Standing"]);
+                //state = new CatStanding(animator, animations["Standing"]);
                 notification_display.RemoveNotification(Mood.Happy);
             }
 
@@ -108,7 +135,6 @@ public class Cat : MonoBehaviour
             notification_display.RemoveNotification(Mood.Tired);
             notification_display.RemoveNotification(Mood.Hungry);
         } else if (this.fatigue > 60 && this.hunger < 60) {
-            state = new CatStanding(animator, animations["Standing"]);
             this.emotionality = "Tired";
 
             notification_display.RemoveNotification(Mood.Hungry);
@@ -130,13 +156,25 @@ public class Cat : MonoBehaviour
         state_name = state.GetType().ToString();
     }
 
-    //if (transform.position.x < obj.transform.position.x)
-    //{
-    //    spriteRenderer.flipX = true;
-    //}
-    //else if (transform.position.x > obj.transform.position.x)
-    //{
-    //    spriteRenderer.flipX = false;
-    //}
-    //transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (100 * Time.deltaTime) * 0.015f);
+    private WaypointController GetRandomWaypoint() {
+        if (waypoint != null) {
+            waypoint.IsWaypointOccupied = false;
+        }
+        var availableWaypoints = new List<WaypointController>();
+
+        for (int i = 0; i < room.Waypoints.ListOfWaypoints.Count; i++) {
+            var waypoint = room.Waypoints.ListOfWaypoints[i];
+
+            if (waypoint.IsWaypointOccupied == false) {
+                availableWaypoints.Add(waypoint);
+            }
+        }
+
+        var newWaypoint = availableWaypoints[
+                   UnityEngine.Random.Range(0, availableWaypoints.Count)];
+
+        newWaypoint.IsWaypointOccupied = true;
+
+        return newWaypoint;
+    }
 }
