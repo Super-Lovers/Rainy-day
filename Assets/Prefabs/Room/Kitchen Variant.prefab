@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &366273509
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &1147263042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &1679588078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &1688014374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1001 &8084260926706506345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2340,6 +2340,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d4136b90a0c309a4eaf3bbb62248868f,
+        type: 3}
     - target: {fileID: 3119608911885313655, guid: 3513fb93f858a3b4fa62614c603527b4,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
@@ -2380,12 +2386,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d4136b90a0c309a4eaf3bbb62248868f,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3513fb93f858a3b4fa62614c603527b4, type: 3}
 --- !u!114 &8991859808003415370 stripped
@@ -2523,6 +2523,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 99ec4452ebdc26a4795dfc376d82d8ce,
+        type: 3}
     - target: {fileID: 5457475640275491371, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
       propertyPath: _name
@@ -2537,6 +2543,26 @@ PrefabInstance:
         type: 3}
       propertyPath: _timeToDevour
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Name
+      value: Lamb
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Sustanence
+      value: 
+      objectReference: {fileID: 4291307387703332016}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: TimeToCook
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Quantity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3119608911885313655, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
@@ -2578,32 +2604,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Name
-      value: Lamb
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Sustanence
-      value: 
-      objectReference: {fileID: 4291307387703332016}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: TimeToCook
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Quantity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 99ec4452ebdc26a4795dfc376d82d8ce,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
 --- !u!114 &7715318295780459530 stripped
@@ -2877,6 +2877,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0eb073a620db28c4888835fd3a0e0d3c,
+        type: 3}
     - target: {fileID: 5457475640275491371, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
       propertyPath: _name
@@ -2891,6 +2897,26 @@ PrefabInstance:
         type: 3}
       propertyPath: _timeToDevour
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Name
+      value: Chicken
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Sustanence
+      value: 
+      objectReference: {fileID: 4291307388373899529}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: TimeToCook
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Quantity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3119608911885313655, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
@@ -2932,32 +2958,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Name
-      value: Chicken
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Sustanence
-      value: 
-      objectReference: {fileID: 4291307388373899529}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: TimeToCook
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Quantity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0eb073a620db28c4888835fd3a0e0d3c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
 --- !u!114 &7715318295108850099 stripped
@@ -3207,6 +3207,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ac98ab98b2558184e94082ec2383039d,
         type: 3}
+    - target: {fileID: 7728763084238149913, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7728763084238149914, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: Name
@@ -3494,6 +3499,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44ca42e539572d84b85bb83cc850e8de,
+        type: 3}
     - target: {fileID: 5457475640275491371, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
       propertyPath: _name
@@ -3508,6 +3519,26 @@ PrefabInstance:
         type: 3}
       propertyPath: _timeToDevour
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Name
+      value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Sustanence
+      value: 
+      objectReference: {fileID: 4291307388684731343}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: TimeToCook
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
+        type: 3}
+      propertyPath: Quantity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3119608911885313655, guid: b4e838bd65f4e69408a18ce3109de8dc,
         type: 3}
@@ -3549,32 +3580,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Name
-      value: Fish
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Sustanence
-      value: 
-      objectReference: {fileID: 4291307388684731343}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: TimeToCook
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955478577939468945, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: Quantity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: b4e838bd65f4e69408a18ce3109de8dc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 44ca42e539572d84b85bb83cc850e8de,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e838bd65f4e69408a18ce3109de8dc, type: 3}
 --- !u!114 &7715318294815705973 stripped
@@ -3803,6 +3808,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85c52917af776e44a9f3e213a1f4a34d,
+        type: 3}
     - target: {fileID: 3119608911885313655, guid: 3513fb93f858a3b4fa62614c603527b4,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
@@ -3843,12 +3854,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 85c52917af776e44a9f3e213a1f4a34d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3513fb93f858a3b4fa62614c603527b4, type: 3}
 --- !u!114 &8991859808667107359 stripped
@@ -4179,6 +4184,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b029dc3ae7b602642b2034124673c3be,
+        type: 3}
     - target: {fileID: 3119608911885313655, guid: 3513fb93f858a3b4fa62614c603527b4,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
@@ -4219,12 +4230,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 934655946001980402, guid: 3513fb93f858a3b4fa62614c603527b4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b029dc3ae7b602642b2034124673c3be,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3513fb93f858a3b4fa62614c603527b4, type: 3}
 --- !u!114 &8991859809059364244 stripped

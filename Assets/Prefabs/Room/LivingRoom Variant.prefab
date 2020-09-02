@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &809046555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &1294658130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &1344372186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2876,7 +2876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1 &2104501035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   newRoom: {fileID: 0}
-  IsWaypointOccupied: 0
+  isWaypointOccupied: 0
 --- !u!1001 &1367130868646447008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3184,6 +3184,11 @@ PrefabInstance:
       propertyPath: Waypoints.ListOfWaypoints.Array.data[7]
       value: 
       objectReference: {fileID: 2099948879}
+    - target: {fileID: 7728763084238149913, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7728763085211719305, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: m_Sprite

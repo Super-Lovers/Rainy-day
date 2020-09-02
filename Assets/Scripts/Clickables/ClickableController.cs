@@ -60,15 +60,9 @@ public class ClickableController : MouseController
                     }
                     break;
                 case "Cat":
-                    interactableController = interactableClicked.GetComponent<InteractableController>();
+                    var audioController = interactableClicked.GetComponentInParent<Cat>().audioController;
 
-                    if (interactableController.PopupBubble.gameObject.activeSelf == false)
-                    {
-                        interactableController.PopupBubble.gameObject.SetActive(true);
-
-                        Cat catScript = interactableController.GetComponentInParent<Cat>();
-                        //catScript.DisplayMood(State.Hungry);
-                    }
+                    audioController.PlaySound("Purr_short");
                     break;
             }
         }

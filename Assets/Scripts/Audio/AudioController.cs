@@ -34,9 +34,8 @@ public class AudioController : MonoBehaviour
     public void PlaySound(string soundName)
     {
         bool isSoundFileFound = false;
-        foreach (SoundFile soundFile in _soundEffects)
-        {
-            if (soundFile.Name == soundName)
+        foreach (SoundFile soundFile in _soundEffects) {
+            if (soundFile.Name == soundName && _audioSource.isPlaying == false)
             {
                 isSoundFileFound = true;
                 _audioSource.PlayOneShot(soundFile.AudioClip);

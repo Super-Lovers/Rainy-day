@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEditor.Animations;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Cat : MonoBehaviour
@@ -49,9 +47,10 @@ public class Cat : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Animator animator_component;
-    private AnimatorController animator;
+    private RuntimeAnimatorController animator;
     private Dictionary<string, string>
         animations = new Dictionary<string, string>();
+    public AudioController audioController;
 
     private NotificationDisplay notification_display;
 
@@ -61,13 +60,15 @@ public class Cat : MonoBehaviour
 
     private void Start() {
         enteringNewRoom = true;
+
+        audioController = GetComponent<AudioController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         notification_display = GetComponentInChildren<NotificationDisplay>();
         notification_display.gameObject.SetActive(false);
 
         animator_component = GetComponentInChildren<Animator>();
 
-        animator = Resources.Load<AnimatorController>(
+        animator = Resources.Load<RuntimeAnimatorController>(
             $"Animations/Cats/{this.name}/{this.name + "CatAnimator"}");
         animator_component.runtimeAnimatorController = animator;
 
@@ -78,8 +79,8 @@ public class Cat : MonoBehaviour
 
         state = new CatWalking(animator, animations["Walking"]);
 
-        //waypoint = GetRandomWaypoint(false);
-        EnterRoom("Kitchen");
+        waypoint = GetRandomWaypoint(false);
+        //EnterRoom("Kitchen");
     }
 
     private void Update() {

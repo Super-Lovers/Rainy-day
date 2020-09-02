@@ -2033,10 +2033,15 @@ PrefabInstance:
       propertyPath: room
       value: 
       objectReference: {fileID: 1367130868890097961}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: hunger
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 599495370740557372, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.47
+      value: 1.198
       objectReference: {fileID: 0}
     - target: {fileID: 2422248443286642693, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
@@ -3307,6 +3312,16 @@ PrefabInstance:
       propertyPath: room
       value: 
       objectReference: {fileID: 1367130868890097961}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: fatigue
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 599495370740557372, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.272
+      objectReference: {fileID: 0}
     - target: {fileID: 2422248443286642693, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4423,6 +4438,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.27
       objectReference: {fileID: 0}
+    - target: {fileID: 599495370740557372, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.102
+      objectReference: {fileID: 0}
     - target: {fileID: 2422248443286642693, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4611,6 +4631,11 @@ PrefabInstance:
     - target: {fileID: 4478722379319501463, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226023052998105778, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

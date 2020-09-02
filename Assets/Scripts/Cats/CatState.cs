@@ -1,4 +1,4 @@
-﻿using UnityEditor.Animations;
+﻿using UnityEngine;
 
 public abstract class CatState {
     protected float happiness_change;
@@ -10,7 +10,7 @@ public abstract class CatState {
         get { return this.animation; }
         set { this.animation = value; }
     }
-    protected AnimatorController animator;
+    protected RuntimeAnimatorController animator;
 
     protected virtual void SetVariables(
         float happiness, float hunger, float fatigue) {
@@ -26,7 +26,7 @@ public abstract class CatState {
         cat.Fatigue += this.fatigue_change;
     }
 
-    protected virtual void SetAnimator(AnimatorController animator) {
+    protected virtual void SetAnimator(RuntimeAnimatorController animator) {
         this.animator = animator;
     }
 }
