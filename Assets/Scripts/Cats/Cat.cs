@@ -57,8 +57,10 @@ public class Cat : MonoBehaviour
 
     private float time;
     private float timeUntilNextAction;
+    private bool enteringNewRoom;
 
     private void Start() {
+        enteringNewRoom = true;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         notification_display = GetComponentInChildren<NotificationDisplay>();
         notification_display.gameObject.SetActive(false);
@@ -76,7 +78,8 @@ public class Cat : MonoBehaviour
 
         state = new CatWalking(animator, animations["Walking"]);
 
-        waypoint = GetRandomWaypoint();
+        //waypoint = GetRandomWaypoint(false);
+        EnterRoom("Kitchen");
     }
 
     private void Update() {
@@ -87,28 +90,52 @@ public class Cat : MonoBehaviour
             time = 0;
         }
 
-        if (timeUntilNextAction <= 0) {
-            timeUntilNextAction = UnityEngine.Random.Range(3, 8);
-            waypoint = GetRandomWaypoint();
-        } else {
-            timeUntilNextAction -= Time.deltaTime;
+        if (enteringNewRoom == false) {
+            if (timeUntilNextAction <= 0) {
+                timeUntilNextAction = UnityEngine.Random.Range(3, 8);
+                waypoint = GetRandomWaypoint(false);
+            } else {
+                timeUntilNextAction -= Time.deltaTime;
+            }
         }
 
         time += Time.deltaTime;
 
-        if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.1f) {
+        if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
             state = new CatStanding(animator, animations["Standing"]);
+
+            if (enteringNewRoom == true) {
+                enteringNewRoom = false;
+            }
+
+            if (waypoint.Type == WaypointType.Origin) {
+                changeToRoom(waypoint.newRoom);
+            }
         } else {
             state = new CatWalking(animator, animations["Walking"]);
 
-            if (transform.position.x < waypoint.transform.position.x) {
-                spriteRenderer.flipX = true;
-            } else if (transform.position.x > waypoint.transform.position.x) {
-                spriteRenderer.flipX = false;
-            }
-
-            transform.position = Vector2.MoveTowards(transform.position, waypoint.transform.position, (100 * Time.deltaTime) * 0.015f);
+            Walk();
         }
+    }
+
+    private void Walk() {
+        if (transform.position.x < waypoint.transform.position.x) {
+            spriteRenderer.flipX = true;
+        } else if (transform.position.x > waypoint.transform.position.x) {
+            spriteRenderer.flipX = false;
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position, waypoint.transform.position, (100 * Time.deltaTime) * 0.015f);
+    }
+
+    private void changeToRoom(RoomController room) {
+        this.room = room;
+        waypoint = GetRandomWaypoint(true);
+
+        gameObject.transform.position = new Vector3(
+            waypoint.transform.position.x,
+            waypoint.transform.position.y,
+            transform.position.z);
     }
 
     /// <summary>
@@ -156,24 +183,42 @@ public class Cat : MonoBehaviour
         state_name = state.GetType().ToString();
     }
 
-    private WaypointController GetRandomWaypoint() {
+    private void EnterRoom(string name) {
+        for (int i = 0; i < room.Waypoints.ListOfWaypoints.Count; i++) {
+            var newWaypoint = room.Waypoints.ListOfWaypoints[i];
+            if (newWaypoint.newRoom.Name == name) {
+                waypoint = newWaypoint;
+                break;
+            }
+        }
+    }
+
+    private WaypointController GetRandomWaypoint(bool ignoreOrigin) {
         if (waypoint != null) {
-            waypoint.IsWaypointOccupied = false;
+            waypoint.isWaypointOccupied = false;
         }
         var availableWaypoints = new List<WaypointController>();
 
         for (int i = 0; i < room.Waypoints.ListOfWaypoints.Count; i++) {
             var waypoint = room.Waypoints.ListOfWaypoints[i];
 
-            if (waypoint.IsWaypointOccupied == false) {
-                availableWaypoints.Add(waypoint);
+            if (ignoreOrigin == true) {
+                if (waypoint.Type != WaypointType.Origin) {
+                    if (waypoint.isWaypointOccupied == false) {
+                        availableWaypoints.Add(waypoint);
+                    }
+                }
+            } else {
+                if (waypoint.isWaypointOccupied == false) {
+                    availableWaypoints.Add(waypoint);
+                }
             }
         }
 
         var newWaypoint = availableWaypoints[
                    UnityEngine.Random.Range(0, availableWaypoints.Count)];
 
-        newWaypoint.IsWaypointOccupied = true;
+        newWaypoint.isWaypointOccupied = true;
 
         return newWaypoint;
     }
