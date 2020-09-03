@@ -11,6 +11,6 @@ public class Bowls : MonoBehaviour
 
     public void UpdateSustanenceOfBowl(BowlController bowl)
     {
-        bowl.UpdateSustanence(Stove.MealPrepared.Sustanence);
+        bowl.UpdateMeal(Stove.MealPrepared);
     }
 }

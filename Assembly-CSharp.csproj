@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MealIconController.cs" />
     <Compile Include="Assets\NotificationDisplay.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
@@ -80,8 +81,6 @@
     <Compile Include="Assets\Scripts\Cats\ToyController.cs" />
     <Compile Include="Assets\Scripts\Clickables\ClickableController.cs" />
     <Compile Include="Assets\Scripts\Clickables\MouseController.cs" />
-    <Compile Include="Assets\Scripts\Clickables\PopupBubble.cs" />
-    <Compile Include="Assets\Scripts\Clickables\PopupType.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Interactables\InteractableController.cs" />
     <Compile Include="Assets\Scripts\Interactables\InteractablesManager.cs" />
@@ -93,9 +92,6 @@
     <Compile Include="Assets\Scripts\Rooms\RoomController.cs" />
     <Compile Include="Assets\Scripts\Rooms\Rooms.cs" />
     <Compile Include="Assets\Scripts\Rooms\TransitionController.cs" />
-    <Compile Include="Assets\Scripts\Sustanence\ISustanence.cs" />
-    <Compile Include="Assets\Scripts\Sustanence\Sustanence.cs" />
-    <Compile Include="Assets\Scripts\Sustanence\SustanenceController.cs" />
     <Compile Include="Assets\Scripts\User Interface\InterfaceManager.cs" />
     <Compile Include="Assets\Scripts\Waypoints\WaypointController.cs" />
     <Compile Include="Assets\Scripts\Waypoints\Waypoints.cs" />

@@ -23,41 +23,14 @@ public class ClickableController : MouseController
                 case "Doorway to Living room":
                     PlayerController.ChangeRoom("Living room");
                     break;
-                case "Bowl":
-                    interactableController = interactableClicked.GetComponent<InteractableController>();
-                    if (interactableController.PopupBubble.gameObject.activeSelf == false)
-                    {
-                        interactableController.PopupBubble.gameObject.SetActive(true);
-                        if (interactableController.PopupBubble.Type == PopupType.Text)
-                        {
-                            interactableController.PopupBubble.DisplayLabel();
-                        }
-                        else if (interactableController.PopupBubble.Type == PopupType.Icons)
-                        {
-                            interactableController.PopupBubble.DisplayIcons();
-                        }
-                    }
-                    break;
                 case "Stove":
                     StoveController stove = interactableClicked.GetComponent<StoveController>();
                     interactableController = interactableClicked.GetComponent<InteractableController>();
 
-                    if (stove.IsItCurrentlyCooking == false && interactableController.PopupBubble.gameObject.activeSelf == false)
-                    {
-                        interactableController.PopupBubble.gameObject.SetActive(true);
-
-                        interactableController.PopupBubble.DisplayIcons();
-                    }
+                    interactableController.ToggleObject();
                     break;
                 case "Bowl Selector":
                     interactableController = interactableClicked.GetComponent<InteractableController>();
-
-                    if (interactableController.PopupBubble.gameObject.activeSelf == false)
-                    {
-                        interactableController.PopupBubble.gameObject.SetActive(true);
-
-                        interactableController.PopupBubble.DisplayIcons();
-                    }
                     break;
                 case "Cat":
                     var catController = interactableClicked.GetComponentInParent<Cat>();

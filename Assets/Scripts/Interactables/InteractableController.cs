@@ -20,8 +20,6 @@ public class InteractableController : MonoBehaviour, IInteractable
         }
     }
 
-    public PopupBubble PopupBubble;
-
     private void Start()
     {
         List<InteractableController> controllers = InteractablesManager.Instance.Interactables;

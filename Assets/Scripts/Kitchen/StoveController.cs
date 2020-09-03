@@ -17,9 +17,13 @@ public class StoveController : MonoBehaviour
     public GameObject PanCooking;
     public GameObject PanFinishedCooking;
 
+    [Space(10)]
+    public GameObject foodPanel;
+
     public void Cook(MealController meal)
     {
         StartCoroutine(CompleteCooking(meal));
+        foodPanel.SetActive(false);
     }
 
     private IEnumerator CompleteCooking(MealController meal)
@@ -38,11 +42,11 @@ public class StoveController : MonoBehaviour
         PanFinishedCooking.SetActive(true);
     }
 
-    public void UpdateSustanence(BowlController bowl)
+    public void UpdateMeal(BowlController bowl)
     {
-        if (MealPrepared.Quantity > 0 && bowl.Sustenance == null)
+        if (MealPrepared.Quantity > 0 && bowl.Meal == null)
         {
-            bowl.UpdateSustanence(MealPrepared.Sustanence);
+            bowl.UpdateMeal(MealPrepared);
             bowl.MealObject.SetActive(true);
 
             MealPrepared.Quantity--;

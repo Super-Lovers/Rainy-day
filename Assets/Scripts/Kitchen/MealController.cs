@@ -4,16 +4,20 @@ using UnityEngine;
 public class MealController : MonoBehaviour
 {
     public string Name;
-    public SustanenceController Sustanence;
     public int TimeToCook;
+    public int TimeToDevour;
     public int Quantity;
 
     #region Components
     [NonSerialized]
-    public StoveController Stove;
+    public StoveController stove;
     #endregion
 
     private void Start() {
-        Stove = GetComponentInParent<StoveController>();
+        stove = GetComponentInParent<StoveController>();
+    }
+
+    public void OnMouseUp() {
+        stove.Cook(this);
     }
 }
