@@ -45,18 +45,26 @@ public class Cat : MonoBehaviour
     [SerializeField]
     protected WaypointController waypoint;
 
+    // Object components
     private SpriteRenderer spriteRenderer;
     private Animator animator_component;
     private RuntimeAnimatorController animator;
-    private Dictionary<string, string>
-        animations = new Dictionary<string, string>();
     public AudioController audioController;
-
     private NotificationDisplay notification_display;
 
+    // Animations
+    private Dictionary<string, string>
+        animations = new Dictionary<string, string>();
+
+    // Moving and standing variables
     private float time;
     private float timeUntilNextAction;
     private bool enteringNewRoom;
+
+    // Petting mechanic variables
+    private const float DEFAULT_CHANCE_TO_PET = 5;
+    private float chance_to_pet = 5; // 0 to 100%
+    private float time_until_next_pet;
 
     private void Start() {
         enteringNewRoom = true;
@@ -89,6 +97,10 @@ public class Cat : MonoBehaviour
             TrackState();
 
             time = 0;
+        }
+
+        if (time_until_next_pet > 0) {
+            time_until_next_pet -= Time.deltaTime;
         }
 
         if (enteringNewRoom == false) {
@@ -146,7 +158,7 @@ public class Cat : MonoBehaviour
         if (this.fatigue <= 60 &&
             this.hunger < 60) {
             if (this.happiness >= 50) {
-                if (UnityEngine.Random.Range(0, 100) > 50) {
+                if (Random.Range(0, 100) > 50) {
                     //state = new CatWalking(animator, animations["Walking"]);
                 } else {
                     //state = new CatStanding(animator, animations["Standing"]);
@@ -155,29 +167,29 @@ public class Cat : MonoBehaviour
                 notification_display.SendNotification(Mood.Happy);
             } else {
                 //state = new CatStanding(animator, animations["Standing"]);
-                notification_display.RemoveNotification(Mood.Happy);
+                StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
             }
 
             this.emotionality = "Relaxing";
 
-            notification_display.RemoveNotification(Mood.Tired);
-            notification_display.RemoveNotification(Mood.Hungry);
+            StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
+            StartCoroutine(notification_display.RemoveNotification(Mood.Hungry, 0));
         } else if (this.fatigue > 60 && this.hunger < 60) {
             this.emotionality = "Tired";
 
-            notification_display.RemoveNotification(Mood.Hungry);
+            StartCoroutine(notification_display.RemoveNotification(Mood.Hungry, 0));
             notification_display.SendNotification(Mood.Tired);
-            notification_display.RemoveNotification(Mood.Happy);
+            StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue > 60 && this.hunger >= 60) {
             this.emotionality = "Hungry and Tired";
             notification_display.SendNotification(Mood.Tired);
             notification_display.SendNotification(Mood.Hungry);
-            notification_display.RemoveNotification(Mood.Happy);
+            StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue <= 60 && this.hunger >= 60) {
             this.emotionality = "Hungry";
             notification_display.SendNotification(Mood.Hungry);
-            notification_display.RemoveNotification(Mood.Tired);
-            notification_display.RemoveNotification(Mood.Happy);
+            StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
+            StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         }
 
         animator_component.Play(state.Animation);
@@ -217,10 +229,30 @@ public class Cat : MonoBehaviour
         }
 
         var newWaypoint = availableWaypoints[
-                   UnityEngine.Random.Range(0, availableWaypoints.Count)];
+                   Random.Range(0, availableWaypoints.Count)];
 
         newWaypoint.isWaypointOccupied = true;
 
         return newWaypoint;
+    }
+
+    /// <summary>
+    /// Whenever the user taps on the cat, there will be a chance to increase
+    /// the pet's happiness. This function contains the mechanic for that.
+    /// </summary>
+    public void Pet() {
+        if (time_until_next_pet <= 0) {
+            var chance = Random.Range(0, 101);
+
+            if (chance <= chance_to_pet) {
+                Happiness += Random.Range(7, 10);
+                chance_to_pet = DEFAULT_CHANCE_TO_PET;
+                notification_display.SendNotification(Mood.Purry);
+            } else {
+                chance_to_pet += Random.Range(4, 8);
+            }
+
+            time_until_next_pet = Random.Range(2, 8);
+        }
     }
 }

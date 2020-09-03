@@ -2,5 +2,6 @@
     Happy,
     Tired,
     Hungry,
-    Hungry_and_tired
+    Hungry_and_tired,
+    Purry
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,19 +32,25 @@ public class NotificationDisplay : MonoBehaviour
             case Mood.Happy:
                 notification.GetComponent<Text>().text = "(￣ω￣)";
                 break;
+            case Mood.Purry:
+                notification.GetComponent<Text>().text = "(≧◡≦)♡";
+                break;
         }
 
         notifications.Add(notification_type_string);
         notifications_objects.Add(notification);
 
         Toggle();
+        StartCoroutine(RemoveNotification(Mood.Purry, 3));
     }
 
     public bool ExistNotification(Mood notification_type) {
         return notifications.Contains(notification_type.ToString());
     }
 
-    public void RemoveNotification(Mood notification_type) {
+    public IEnumerator RemoveNotification(Mood notification_type, int delay) {
+        yield return new WaitForSeconds(delay);
+
         GameObject notification_to_remove = null;
         for (int i = 0; i < notifications_objects.Count; i++) {
             var notification_label = notifications_objects[i].GetComponent<Text>().text;
@@ -53,6 +60,7 @@ public class NotificationDisplay : MonoBehaviour
             else if (notification_label == "(￣ヘ￣)") { current_notification_type = Mood.Tired; }
             else if (notification_label == "(｡╯︵╰｡)") { current_notification_type = Mood.Hungry_and_tired; }
             else if (notification_label == "(￣ω￣)") { current_notification_type = Mood.Happy; }
+            else if (notification_label == "(≧◡≦)♡") { current_notification_type = Mood.Purry; }
 
             if (current_notification_type.ToString() == notification_type.ToString()) {
                 notification_to_remove = notifications_objects[i];

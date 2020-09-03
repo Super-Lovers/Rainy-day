@@ -60,9 +60,11 @@ public class ClickableController : MouseController
                     }
                     break;
                 case "Cat":
-                    var audioController = interactableClicked.GetComponentInParent<Cat>().audioController;
+                    var catController = interactableClicked.GetComponentInParent<Cat>();
+                    var audioController = catController.audioController;
 
                     audioController.PlaySound("Purr_short");
+                    catController.Pet();
                     break;
             }
         }
