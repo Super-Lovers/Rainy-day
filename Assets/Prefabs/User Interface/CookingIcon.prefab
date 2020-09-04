@@ -155,8 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   TimeToCook: 2
-  TimeToDevour: 0
-  Quantity: 3
+  TimeToDevour: 1
 --- !u!114 &3071658504380860383
 MonoBehaviour:
   m_ObjectHideFlags: 0

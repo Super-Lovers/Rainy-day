@@ -10,10 +10,10 @@ public class BowlController : MonoBehaviour
     public void UpdateMeal(MealController meal)
     {
         Meal = meal;
+        MealObject.SetActive(true);
     }
     
     public void EatSustanence() {
-        //CatOwner.State = State.Relaxing;
         MealObject.SetActive(false);
     }
 }

@@ -66,6 +66,9 @@ public class Cat : MonoBehaviour
     private float chance_to_pet = 5; // 0 to 100%
     private float time_until_next_pet;
 
+    // Meals references
+    private bool isEating = false;
+
     private void Start() {
         enteringNewRoom = true;
 
@@ -92,9 +95,10 @@ public class Cat : MonoBehaviour
     }
 
     private void Update() {
+        TrackState();
+
         if (time >= 1) {
             state.Cycle(this);
-            TrackState();
 
             time = 0;
         }
@@ -102,6 +106,35 @@ public class Cat : MonoBehaviour
         if (time_until_next_pet > 0) {
             time_until_next_pet -= Time.deltaTime;
         }
+
+        time += Time.deltaTime;
+
+        if (this.emotionality == "Hungry" && bowl.MealObject.activeSelf == true && isEating == false) {
+            if (room.Name != "Kitchen") {
+                EnterRoom("Kitchen");
+                Walk();
+
+                if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
+                    if (waypoint.Type == WaypointType.Origin) {
+                        ChangeToRoom(waypoint.newRoom);
+                    }
+                }
+
+                return;
+            }
+
+            if (Vector2.Distance(transform.position, bowl.transform.position) < 0.1f) {
+                state = new CatEating(animator, animations["Eating"]);
+                Invoke("StopEating", bowl.Meal.TimeToDevour);
+
+                isEating = true;
+            }
+
+            WalkTo(bowl.transform);
+            return;
+        }
+
+        if (isEating) { return; }
 
         if (enteringNewRoom == false) {
             if (timeUntilNextAction <= 0) {
@@ -112,8 +145,6 @@ public class Cat : MonoBehaviour
             }
         }
 
-        time += Time.deltaTime;
-
         if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
             state = new CatStanding(animator, animations["Standing"]);
 
@@ -122,13 +153,23 @@ public class Cat : MonoBehaviour
             }
 
             if (waypoint.Type == WaypointType.Origin) {
-                changeToRoom(waypoint.newRoom);
+                ChangeToRoom(waypoint.newRoom);
             }
         } else {
             state = new CatWalking(animator, animations["Walking"]);
 
             Walk();
         }
+    }
+
+    private void WalkTo(Transform obj) {
+        if (transform.position.x < obj.transform.position.x) {
+            spriteRenderer.flipX = true;
+        } else if (transform.position.x > obj.transform.position.x) {
+            spriteRenderer.flipX = false;
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (100 * Time.deltaTime) * 0.015f);
     }
 
     private void Walk() {
@@ -141,7 +182,7 @@ public class Cat : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, waypoint.transform.position, (100 * Time.deltaTime) * 0.015f);
     }
 
-    private void changeToRoom(RoomController room) {
+    private void ChangeToRoom(RoomController room) {
         this.room = room;
         waypoint = GetRandomWaypoint(true);
 
@@ -254,5 +295,11 @@ public class Cat : MonoBehaviour
 
             time_until_next_pet = Random.Range(2, 8);
         }
+    }
+
+    private void StopEating() {
+        state = new CatStanding(animator, animations["Standing"]);
+        bowl.EatSustanence();
+        isEating = false;
     }
 }

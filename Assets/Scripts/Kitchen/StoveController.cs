@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StoveController : MonoBehaviour
 {
@@ -9,8 +8,7 @@ public class StoveController : MonoBehaviour
     public MealController MealPrepared;
 
     [Header("Bowl distribution references")]
-    public GameObject BowlSelector;
-    public List<GameObject> Bowls = new List<GameObject>();
+    public List<BowlController> Bowls = new List<BowlController>();
 
     [Header("Phases of meal being prepared")]
     public GameObject Effects;
@@ -31,45 +29,27 @@ public class StoveController : MonoBehaviour
         PanCooking.SetActive(true);
         Effects.SetActive(true);
         IsItCurrentlyCooking = true;
+
         yield return new WaitForSeconds(meal.TimeToCook);
+
         Effects.SetActive(false);
         PanCooking.SetActive(false);
         IsItCurrentlyCooking = false;
+
         MealPrepared = meal;
 
-        BowlSelector.SetActive(true);
         Debug.Log($"The meal <color=#a52a2aff>{meal.Name}</color> is done cooking!");
         PanFinishedCooking.SetActive(true);
+
+        UpdateMeals();
     }
 
-    public void UpdateMeal(BowlController bowl)
+    public void UpdateMeals()
     {
-        if (MealPrepared.Quantity > 0 && bowl.Meal == null)
-        {
+        for (int i = 0; i < Bowls.Count; i++) {
+            var bowl = Bowls[i];
+
             bowl.UpdateMeal(MealPrepared);
-            bowl.MealObject.SetActive(true);
-
-            MealPrepared.Quantity--;
-            //Debug.Log($"Sustanence <color=#a52a2aff>{MealPrepared.Sustanence.Name}</color> is placed in {bowl.CatOwner.Name}'s bowl.");
         }
-
-        if (MealPrepared.Quantity <= 0)
-        {
-            foreach (GameObject obj in Bowls)
-            {
-                Image imageComponent = obj.GetComponent<Image>();
-                imageComponent.color = new Color(255, 255, 255, 1);
-                imageComponent.raycastTarget = true;
-            }
-
-            PanFinishedCooking.SetActive(false);
-            BowlSelector.SetActive(false);
-        }
-    }
-
-    public void DisableBowlIcon(Image bowlToDisable)
-    {
-        bowlToDisable.color = new Color(255, 255, 255, 0.3f);
-        bowlToDisable.raycastTarget = false;
     }
 }

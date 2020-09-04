@@ -4,9 +4,10 @@ using UnityEngine;
 public class MealController : MonoBehaviour
 {
     public string Name;
+    [Header("(in seconds)")]
     public int TimeToCook;
+    [Header("(in seconds)")]
     public int TimeToDevour;
-    public int Quantity;
 
     #region Components
     [NonSerialized]
