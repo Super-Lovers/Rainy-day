@@ -3,21 +3,8 @@
 public class ToyController : MonoBehaviour
 {
     public string Name;
-    public Cat Owner;
     public int TimeToPlay;
-    private bool _isDragging;
-
-    public bool IsDragging
-    {
-        get
-        {
-            return _isDragging;
-        }
-        set
-        {
-            _isDragging = value;
-        }
-    }
+    public bool isDragging;
 
     private Rigidbody2D _rigidBody2D;
 
@@ -28,7 +15,7 @@ public class ToyController : MonoBehaviour
 
     private void Update()
     {
-        if (_isDragging)
+        if (isDragging)
         {
             Drag();
         }
@@ -36,7 +23,7 @@ public class ToyController : MonoBehaviour
 
     public void Drag()
     {
-        _isDragging = true;
+        isDragging = true;
         _rigidBody2D.gravityScale = 0;
         gameObject.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                                     Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
@@ -46,6 +33,6 @@ public class ToyController : MonoBehaviour
     public void Drop()
     {
         _rigidBody2D.gravityScale = 1;
-        _isDragging = false;
+        isDragging = false;
     }
 }

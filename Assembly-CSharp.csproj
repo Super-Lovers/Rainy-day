@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Bowls\Bowls.cs" />
     <Compile Include="Assets\Scripts\Cats\Cat.cs" />
     <Compile Include="Assets\Scripts\Cats\CatEating.cs" />
+    <Compile Include="Assets\Scripts\Cats\CatPlaying.cs" />
     <Compile Include="Assets\Scripts\Cats\CatSleeping.cs" />
     <Compile Include="Assets\Scripts\Cats\CatStanding.cs" />
     <Compile Include="Assets\Scripts\Cats\CatState.cs" />

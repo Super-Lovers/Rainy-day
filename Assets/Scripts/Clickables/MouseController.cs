@@ -26,9 +26,9 @@ public abstract class MouseController : MonoBehaviour
             if (hitInteractable.collider != null)
             {
                 if (_toyRenderer != null) {
-                    if (_toyController.IsDragging == true) {
+                    if (_toyController.isDragging == true) {
                         _toyController.Drop();
-                    } else if (_toyController.IsDragging == false) {
+                    } else if (_toyController.isDragging == false) {
                         _toyController.Drag();
                     }
                 } else {

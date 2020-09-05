@@ -3,5 +3,6 @@
     Tired,
     Hungry,
     Hungry_and_tired,
-    Purry
+    Purry,
+    Playing
 }

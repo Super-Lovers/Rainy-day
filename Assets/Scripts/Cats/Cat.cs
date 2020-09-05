@@ -69,6 +69,9 @@ public class Cat : MonoBehaviour
     // Meals references
     private bool isEating = false;
 
+    // Playing with toy references
+    private bool isPlaying = false;
+
     private void Start() {
         enteringNewRoom = true;
 
@@ -135,6 +138,24 @@ public class Cat : MonoBehaviour
         }
 
         if (isEating) { return; }
+
+        if (this.emotionality != "Tired" &&
+            this.emotionality != "Hungry and Tired" &&
+            this.emotionality != "Hungry" &&
+            this.happiness < 40) {
+            if (Vector2.Distance(transform.position, toy.transform.position) < 0.5f) {
+                isPlaying = true;
+
+                state = new CatPlaying(animator, animations["Standing"]);
+                notification_display.SendNotification(Mood.Playing);
+
+                Invoke("StopPlaying", toy.TimeToPlay);
+            } else {
+                if (isPlaying) { StopPlaying(); }
+            }
+        }
+
+        if (isPlaying) { return; }
 
         if (enteringNewRoom == false) {
             if (timeUntilNextAction <= 0) {
@@ -301,5 +322,12 @@ public class Cat : MonoBehaviour
         state = new CatStanding(animator, animations["Standing"]);
         bowl.EatSustanence();
         isEating = false;
+    }
+
+    private void StopPlaying() {
+        state = new CatStanding(animator, animations["Standing"]);
+        StartCoroutine(notification_display.RemoveNotification(Mood.Playing, 0));
+
+        isPlaying = false;
     }
 }

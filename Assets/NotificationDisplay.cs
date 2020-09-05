@@ -35,6 +35,9 @@ public class NotificationDisplay : MonoBehaviour
             case Mood.Purry:
                 notification.GetComponent<Text>().text = "(≧◡≦)♡";
                 break;
+            case Mood.Playing:
+                notification.GetComponent<Text>().text = "ヽ(♡‿♡)ノ";
+                break;
         }
 
         notifications.Add(notification_type_string);
@@ -42,6 +45,7 @@ public class NotificationDisplay : MonoBehaviour
 
         Toggle();
         StartCoroutine(RemoveNotification(Mood.Purry, 3));
+        //StartCoroutine(RemoveNotification(Mood.Playing, 3));
     }
 
     public bool ExistNotification(Mood notification_type) {
@@ -61,6 +65,7 @@ public class NotificationDisplay : MonoBehaviour
             else if (notification_label == "(｡╯︵╰｡)") { current_notification_type = Mood.Hungry_and_tired; }
             else if (notification_label == "(￣ω￣)") { current_notification_type = Mood.Happy; }
             else if (notification_label == "(≧◡≦)♡") { current_notification_type = Mood.Purry; }
+            else if (notification_label == "ヽ(♡‿♡)ノ") { current_notification_type = Mood.Playing; }
 
             if (current_notification_type.ToString() == notification_type.ToString()) {
                 notification_to_remove = notifications_objects[i];

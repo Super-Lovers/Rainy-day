@@ -2055,6 +2055,11 @@ PrefabInstance:
       propertyPath: bowl
       value: 
       objectReference: {fileID: 358423819}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: toy
+      value: 
+      objectReference: {fileID: 1367130868890097962}
     - target: {fileID: 599495370740557372, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4508,7 +4513,7 @@ PrefabInstance:
     - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: fatigue
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
@@ -4520,6 +4525,16 @@ PrefabInstance:
       propertyPath: bowl
       value: 
       objectReference: {fileID: 1709261634}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: toy
+      value: 
+      objectReference: {fileID: 1367130868890097963}
+    - target: {fileID: 6621743896074103936, guid: 2097445856c98374ea5d431fd072587a,
+        type: 3}
+      propertyPath: happiness
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 599495370740557372, guid: 2097445856c98374ea5d431fd072587a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4810,6 +4825,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e79cb5dfeb5e9a428190ab3d07b160b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1367130868890097962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 524397139, guid: 7d4d5ecdecb0a9444862c62e43e70333,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367130868890097960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fbccae945d80a41b0da795f6e05be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1367130868890097963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 792674197, guid: 7d4d5ecdecb0a9444862c62e43e70333,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367130868890097960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fbccae945d80a41b0da795f6e05be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5749540880157703047
@@ -5396,5 +5435,18 @@ PrefabInstance:
       propertyPath: Bowls.Array.data[2]
       value: 
       objectReference: {fileID: 1709261634}
+    - target: {fileID: 2273810135241566016, guid: 92667da6df0cc3941a9a6a32a689b674,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215539431, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688014374, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
