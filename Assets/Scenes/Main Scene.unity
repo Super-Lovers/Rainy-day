@@ -5014,6 +5014,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 329187739, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8771625985029186808, guid: 7d4d5ecdecb0a9444862c62e43e70333,
         type: 3}
       propertyPath: lights_switch
@@ -5047,6 +5051,18 @@ PrefabInstance:
     - target: {fileID: 329187741, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
       propertyPath: m_SortingOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 329187741, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 329187741, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_Color.g
+      value: 0.07658172
+      objectReference: {fileID: 0}
+    - target: {fileID: 329187741, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_Color.b
+      value: 0.26415092
       objectReference: {fileID: 0}
     - target: {fileID: 2680511311001214840, guid: 7d4d5ecdecb0a9444862c62e43e70333,
         type: 3}
@@ -5662,9 +5678,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1977930609129955074, guid: 92667da6df0cc3941a9a6a32a689b674,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1227106126, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227106127, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227106127, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
+      propertyPath: m_Color.g
+      value: 0.07658172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227106127, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}
+      propertyPath: m_Color.b
+      value: 0.26415092
       objectReference: {fileID: 0}
     - target: {fileID: 8276163066034656711, guid: 92667da6df0cc3941a9a6a32a689b674,
         type: 3}
@@ -5753,5 +5786,10 @@ PrefabInstance:
       propertyPath: background_elements
       value: 
       objectReference: {fileID: 277766659}
+    - target: {fileID: 6540867049215978471, guid: 92667da6df0cc3941a9a6a32a689b674,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.58
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92667da6df0cc3941a9a6a32a689b674, type: 3}

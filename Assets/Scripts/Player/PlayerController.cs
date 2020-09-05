@@ -5,22 +5,18 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    #region Camera properties
     private Camera _camera;
     [Range(0, 50)]
     public float CameraSpeed;
     private bool _isPointerDown;
     private bool _isCameraMoving;
     private string _previousDirection;
-    #endregion
 
-    #region Current room parameters
     [Space(10)]
     public RoomController CurrentRoomController;
     private float _currentRoomBoundsLeft;
     private float _currentRoomBoundsRight;
     private bool _isCameraTransitioning;
-    #endregion
 
     private RoomController _previousRoom;
 
@@ -49,8 +45,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeRoom(string newRoom)
-    {
+    public void ChangeRoom(string newRoom) {
+
+        CurrentRoomController.EntranceDoor.Play("DoorOpenAnimation", -1, 0);
+
         bool isRoomValid = false;
         foreach (RoomController room in Rooms.Instance.ListOfRooms)
         {
@@ -58,16 +56,7 @@ public class PlayerController : MonoBehaviour
             {
                 _isCameraTransitioning = true;
                 isRoomValid = true;
-            
-                // TODO: door animation not working
-                if (_previousRoom == room)
-                {
-                    CurrentRoomController.EntranceDoor.SetBool("OpenDoor", false);
-                }
-                else
-                {
-                    CurrentRoomController.EntranceDoor.SetBool("OpenDoor", true);
-                }
+
                 _previousRoom = CurrentRoomController;
                 CurrentRoomController = room;
 
