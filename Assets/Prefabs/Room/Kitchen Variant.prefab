@@ -1055,9 +1055,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: 0100ecc19bdcd504f94c386c6ef930f4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 0.83137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3267,6 +3267,11 @@ PrefabInstance:
       propertyPath: Waypoints.ListOfWaypoints.Array.data[4]
       value: 
       objectReference: {fileID: 2223782138225058648}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: lights
+      value: 
+      objectReference: {fileID: 2067242453}
     - target: {fileID: 4375849348603704011, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

@@ -16,6 +16,10 @@ public class RoomController : MonoBehaviour
     [Space(10)]
     public Waypoints Waypoints;
 
+    [Space(10)]
+    [SerializeField]
+    private GameObject lights;
+
     private void Awake()
     {
         Background = GetComponentsInChildren<SpriteRenderer>()[0].sprite;
@@ -27,5 +31,9 @@ public class RoomController : MonoBehaviour
         {
             listOfRooms.Add(this);
         }
+    }
+
+    public bool IsLightsOn() {
+        return lights.activeSelf;
     }
 }

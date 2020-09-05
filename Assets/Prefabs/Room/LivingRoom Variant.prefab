@@ -259,7 +259,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: 0100ecc19bdcd504f94c386c6ef930f4, type: 3}
-  m_Color: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 1}
+  m_Color: {r: 0.25490198, g: 0.25490198, b: 0.25490198, a: 0.83137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3605,6 +3605,16 @@ PrefabInstance:
       propertyPath: Waypoints.ListOfWaypoints.Array.data[7]
       value: 
       objectReference: {fileID: 2099948879}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: lights_switch
+      value: 
+      objectReference: {fileID: 518782544}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: lights
+      value: 
+      objectReference: {fileID: 518782544}
     - target: {fileID: 7728763084238149913, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: m_SortingOrder

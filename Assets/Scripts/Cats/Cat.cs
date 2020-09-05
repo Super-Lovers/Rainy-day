@@ -72,6 +72,9 @@ public class Cat : MonoBehaviour
     // Playing with toy references
     private bool isPlaying = false;
 
+    // Sleeping references
+    private bool isSleeping = false;
+
     private void Start() {
         enteringNewRoom = true;
 
@@ -89,7 +92,7 @@ public class Cat : MonoBehaviour
         animations.Add("Walking", $"{this.name + "WalkAnimation"}");
         animations.Add("Eating", $"{this.name + "EatAnimation"}");
         animations.Add("Standing", $"{this.name + "IdleAnimation"}");
-        animations.Add("Sleeping", $"{this.name + "WalkAnimation"}");
+        animations.Add("Sleeping", $"{this.name + "RelaxAnimation"}");
 
         state = new CatWalking(animator, animations["Walking"]);
 
@@ -112,7 +115,10 @@ public class Cat : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (this.emotionality == "Hungry" && bowl.MealObject.activeSelf == true && isEating == false) {
+        if ((this.emotionality == "Hungry" ||
+            this.emotionality == "Hungry and Tired") &&
+            bowl.MealObject.activeSelf == true &&
+            isEating == false) {
             if (room.Name != "Kitchen") {
                 EnterRoom("Kitchen");
                 Walk();
@@ -138,6 +144,23 @@ public class Cat : MonoBehaviour
         }
 
         if (isEating) { return; }
+
+        if (this.emotionality == "Tired" &&
+            room.IsLightsOn() == false &&
+            isSleeping == false &&
+            Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
+
+            state = new CatSleeping(animator, animations["Sleeping"]);
+
+            StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
+            notification_display.SendNotification(Mood.Sleeping);
+
+            isSleeping = true;
+
+            Invoke("StopSleeping", 120);
+        }
+
+        if (isSleeping) { return; }
 
         if (this.emotionality != "Tired" &&
             this.emotionality != "Hungry and Tired" &&
@@ -240,16 +263,22 @@ public class Cat : MonoBehaviour
             this.emotionality = "Tired";
 
             StartCoroutine(notification_display.RemoveNotification(Mood.Hungry, 0));
-            notification_display.SendNotification(Mood.Tired);
+            if (isSleeping == false) {
+                notification_display.SendNotification(Mood.Tired);
+            }
             StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue > 60 && this.hunger >= 60) {
             this.emotionality = "Hungry and Tired";
-            notification_display.SendNotification(Mood.Tired);
-            notification_display.SendNotification(Mood.Hungry);
+            if (isSleeping == false) {
+                notification_display.SendNotification(Mood.Tired);
+                notification_display.SendNotification(Mood.Hungry);
+            }
             StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue <= 60 && this.hunger >= 60) {
             this.emotionality = "Hungry";
-            notification_display.SendNotification(Mood.Hungry);
+            if (isSleeping == false) {
+                notification_display.SendNotification(Mood.Hungry);
+            }
             StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
             StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         }
@@ -329,5 +358,12 @@ public class Cat : MonoBehaviour
         StartCoroutine(notification_display.RemoveNotification(Mood.Playing, 0));
 
         isPlaying = false;
+    }
+
+    private void StopSleeping() {
+        state = new CatStanding(animator, animations["Standing"]);
+        StartCoroutine(notification_display.RemoveNotification(Mood.Sleeping, 0));
+
+        isSleeping = false;
     }
 }
