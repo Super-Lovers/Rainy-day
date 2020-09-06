@@ -85,7 +85,6 @@ public class AudioManager : MonoBehaviour
         AudioManager.Instance.AudioController.PlaySound("Volume Update");
     }
 
-    #region Sound effects events
     public void MuteSoundEffects()
     {
         _previousSoundEffectsVolume = SoundEffectsVolume;
@@ -111,9 +110,7 @@ public class AudioManager : MonoBehaviour
             SoundEffectsVolume -= 10;
         }
     }
-    #endregion
 
-    #region Background music events
     public void MuteBackgroundMusic()
     {
         _previousBackgroundMusicVolume = BackgroundMusicVolume;
@@ -139,5 +136,4 @@ public class AudioManager : MonoBehaviour
             BackgroundMusicVolume -= 10;
         }
     }
-    #endregion
 }

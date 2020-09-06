@@ -7,6 +7,9 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private string sceneToLoadOnPress;
 
+    [SerializeField]
+    private GameObject pauseMenu;
+
     public void ToggleWindow(Object window) {
         GameObject obj = (GameObject)window;
         obj.SetActive(!obj.activeSelf);
@@ -15,8 +18,14 @@ public class InterfaceManager : MonoBehaviour
 
     private void Update() {
         if (SceneManager.GetActiveScene().name == "Start Scene") {
-            if (Input.anyKeyDown) {
+            if (Input.GetKeyUp(KeyCode.Space)) {
                 SceneManager.LoadScene(sceneToLoadOnPress);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+            if (pauseMenu != null) {
+                pauseMenu.SetActive(!pauseMenu.activeSelf);
             }
         }
     }
