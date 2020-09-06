@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoadOnPress: Start Scene
+  pauseMenu: {fileID: 0}
 --- !u!1 &426667412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,22 +1323,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1393034403, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393034407, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362210692, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362210697, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 58893139, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1365,6 +1350,26 @@ PrefabInstance:
     - target: {fileID: 541841114, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362210692, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393034403, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362210697, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393034407, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890756897, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1890756895, guid: 7d4d5ecdecb0a9444862c62e43e70333, type: 3}
@@ -1619,7 +1624,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 111dc37879d9be7408827257c1fdc9e5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.431
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

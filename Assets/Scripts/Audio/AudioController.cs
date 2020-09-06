@@ -20,12 +20,12 @@ public class AudioController : MonoBehaviour
         if (AudioType == AudioType.Sound && soundSources.Contains(_audioSource) == false)
         {
             soundSources.Add(_audioSource);
-            _audioSource.volume = _audioManager.SoundEffectsVolume;
+            _audioSource.volume = _audioManager.SoundEffectsVolume / 100f;
         }
         else if (AudioType == AudioType.Background && backgroundSources.Contains(_audioSource) == false)
         {
             backgroundSources.Add(_audioSource);
-            _audioSource.volume = _audioManager.BackgroundMusicVolume;
+            _audioSource.volume = _audioManager.BackgroundMusicVolume / 100f;
         }
     }
 

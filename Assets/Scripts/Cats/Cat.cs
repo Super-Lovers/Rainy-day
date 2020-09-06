@@ -78,7 +78,12 @@ public class Cat : MonoBehaviour
     // Sleeping references
     private bool isSleeping = false;
 
+    // Meowing references
+    private float meowDelay;
+    private float meowCounter = 0;
+
     private void Start() {
+        meowDelay = Random.Range(10, 26);
         enteringNewRoom = true;
 
         audioController = GetComponent<AudioController>();
@@ -109,6 +114,24 @@ public class Cat : MonoBehaviour
 
     private void Update() {
         TrackState();
+
+        if (meowCounter < meowDelay) {
+            meowCounter += Time.deltaTime;
+        } else {
+            var chance = Random.Range(0, 101);
+            if (chance < 33) {
+                audioController.PlaySound("Meow 1");
+            }
+            if (chance >= 33 && chance < 66) {
+                audioController.PlaySound("Meow 2");
+            }
+            if (chance >= 66 && chance < 100) {
+                audioController.PlaySound("Meow 3");
+            }
+
+            meowDelay = Random.Range(10, 26);
+            meowCounter = 0;
+        }
 
         if (time >= 1) {
             state.Cycle(this);

@@ -9,9 +9,9 @@ public class AudioManager : MonoBehaviour
     public List<AudioSource> BackgroundSources = new List<AudioSource>();
     public List<AudioSource> SoundSources = new List<AudioSource>();
 
-    #region Audio volume controls
     private float _previousSoundEffectsVolume;
-    private float _soundEffectsVolume;
+    [SerializeField]
+    private float _soundEffectsVolume = 10;
     public float SoundEffectsVolume
     {
         get { return _soundEffectsVolume; }
@@ -27,7 +27,8 @@ public class AudioManager : MonoBehaviour
     }
 
     private float _previousBackgroundMusicVolume;
-    private float _backgroundMusicVolume;
+    [SerializeField]
+    private float _backgroundMusicVolume = 10;
     public float BackgroundMusicVolume
     {
         get { return _backgroundMusicVolume; }
@@ -39,12 +40,9 @@ public class AudioManager : MonoBehaviour
             UpdateVolume();
         }
     }
-    #endregion
 
-    #region Components
     [NonSerialized]
     public AudioController AudioController;
-    #endregion
 
     private void Awake()
     {

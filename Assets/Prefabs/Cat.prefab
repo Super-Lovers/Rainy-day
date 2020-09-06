@@ -155,8 +155,11 @@ MonoBehaviour:
   room: {fileID: 0}
   bowl: {fileID: 0}
   toy: {fileID: 0}
+  model: {fileID: 0}
   waypoint: {fileID: 0}
   audioController: {fileID: 0}
+  isEating: 0
+  isPlaying: 0
 --- !u!114 &6385480042700519357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,14 +175,12 @@ MonoBehaviour:
   _soundEffects:
   - Name: Purr_short
     AudioClip: {fileID: 8300000, guid: 7954afefc9096d948b9f967e9cb90645, type: 3}
-  - Name: Hungry meow
+  - Name: Meow 1
     AudioClip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
-  - Name: Sad meow
-    AudioClip: {fileID: 8300000, guid: 1c1746aebba5109459c1dcbfa18f9e9f, type: 3}
-  - Name: Angry meow
-    AudioClip: {fileID: 8300000, guid: 29803712b302922448a53fb464b67e30, type: 3}
-  - Name: Leisure meow
-    AudioClip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
+  - Name: Meow 2
+    AudioClip: {fileID: 8300000, guid: 0443dfeeda5dea2409e320360e47fb09, type: 3}
+  - Name: Meow 3
+    AudioClip: {fileID: 8300000, guid: 1370ef4d2d8937f458bf79aebf61f057, type: 3}
   AudioType: 0
 --- !u!82 &1226023052998105778
 AudioSource:

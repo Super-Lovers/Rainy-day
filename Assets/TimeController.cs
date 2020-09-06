@@ -28,33 +28,36 @@ public class TimeController : MonoBehaviour
     }
 
     private void Update() {
-        if (timer >= 1) {
-            if (current_minute_increment == 0.60f) {
-                minutes++;
+        if (background_elements != null) {
+            if (timer >= 1) {
+                if (current_minute_increment == 0.60f) {
+                    minutes++;
 
-                if (minutes == 60) {
-                    hour++;
-                    minutes = 0;
+                    if (minutes == 60) {
+                        hour++;
+                        minutes = 0;
+                    }
+
+                    string minutesStr = minutes < 10 ? "0" + minutes : minutes.ToString();
+                    if (clock_text != null) {
+                        clock_text.text = string.Format("{0}:{1}", hour, minutesStr);
+                    }
+
+                    current_minute_increment = 0;
+
+                    if (current_bg_color.r > 0.2f) {
+
+                        DarkenBackgroundElements();
+                    }
                 }
 
-                string minutesStr = minutes < 10 ? "0" + minutes : minutes.ToString();
-                if (clock_text != null) {
-                    clock_text.text = string.Format("{0}:{1}", hour, minutesStr);
-                }
+                current_minute_increment += minute_increment;
 
-                current_minute_increment = 0;
-
-                if (current_bg_color.r > 0.2f) {
-                    DarkenBackgroundElements();
-                }
+                timer = 0;
             }
 
-            current_minute_increment += minute_increment;
-
-            timer = 0;
+            timer += Time.deltaTime;
         }
-
-        timer += Time.deltaTime;
     }
 
     private void DarkenBackgroundElements() {
