@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool _isCameraTransitioning;
 
     private RoomController _previousRoom;
+    private AudioController audioController;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _camera = FindObjectOfType<Camera>();
+        audioController = GetComponent<AudioController>();
     }
 
     private void Update()
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeRoom(string newRoom) {
 
         CurrentRoomController.EntranceDoor.Play("DoorOpenAnimation", -1, 0);
+        audioController.PlaySound("Open Door");
 
         bool isRoomValid = false;
         foreach (RoomController room in Rooms.Instance.ListOfRooms)

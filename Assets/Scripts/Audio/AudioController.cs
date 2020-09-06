@@ -7,10 +7,8 @@ public class AudioController : MonoBehaviour
     private List<SoundFile> _soundEffects = new List<SoundFile>();
     public AudioType AudioType;
 
-    #region Components
     AudioManager _audioManager;
     AudioSource _audioSource;
-    #endregion
 
     private void Start()
     {
@@ -47,5 +45,26 @@ public class AudioController : MonoBehaviour
         {
             Debug.Log($"The sound file <color=#ff0000>{soundName}</color> is not valid!");
         }
+    }
+
+    public void PlayLoopedSound(string soundName) {
+        bool isSoundFileFound = false;
+        foreach (SoundFile soundFile in _soundEffects) {
+            if (soundFile.Name == soundName && _audioSource.isPlaying == false) {
+                isSoundFileFound = true;
+
+                _audioSource.clip = soundFile.AudioClip;
+                _audioSource.Play();
+                break;
+            }
+        }
+
+        if (isSoundFileFound == false) {
+            Debug.Log($"The sound file <color=#ff0000>{soundName}</color> is not valid!");
+        }
+    }
+
+    public void Stop() {
+        _audioSource.Stop();
     }
 }

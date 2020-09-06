@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CatsModel.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioType.cs" />

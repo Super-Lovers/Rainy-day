@@ -41,7 +41,10 @@ public class Cat : MonoBehaviour
     protected BowlController bowl;
     [SerializeField]
     protected ToyController toy;
+    [SerializeField]
+    private CatsModel model;
 
+    [Space(10)]
     [SerializeField]
     protected WaypointController waypoint;
 
@@ -67,7 +70,7 @@ public class Cat : MonoBehaviour
     private float time_until_next_pet;
 
     // Meals references
-    private bool isEating = false;
+    public bool isEating = false;
 
     // Playing with toy references
     private bool isPlaying = false;
@@ -97,6 +100,10 @@ public class Cat : MonoBehaviour
         state = new CatWalking(animator, animations["Walking"]);
 
         waypoint = GetRandomWaypoint(false);
+
+        if (model.cats.Contains(this) == false) {
+            model.cats.Add(this);
+        }
         //EnterRoom("Kitchen");
     }
 
@@ -137,6 +144,7 @@ public class Cat : MonoBehaviour
                 state = new CatEating(animator, animations["Eating"]);
                 Invoke("StopEating", bowl.Meal.TimeToDevour);
 
+                model.ToggleCatEatingSounds(true);
                 isEating = true;
             }
 
@@ -351,6 +359,8 @@ public class Cat : MonoBehaviour
     private void StopEating() {
         state = new CatStanding(animator, animations["Standing"]);
         bowl.EatSustanence();
+
+        model.ToggleCatEatingSounds(false);
         isEating = false;
     }
 
