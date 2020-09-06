@@ -73,7 +73,7 @@ public class Cat : MonoBehaviour
     public bool isEating = false;
 
     // Playing with toy references
-    private bool isPlaying = false;
+    public bool isPlaying = false;
 
     // Sleeping references
     private bool isSleeping = false;
@@ -178,6 +178,7 @@ public class Cat : MonoBehaviour
             if (Vector2.Distance(transform.position, toy.transform.position) < 0.5f) {
                 isPlaying = true;
 
+                model.ToggleCatPlayingSounds(true);
                 state = new CatPlaying(animator, animations["Standing"]);
                 notification_display.SendNotification(Mood.Playing);
 
@@ -368,6 +369,7 @@ public class Cat : MonoBehaviour
         state = new CatStanding(animator, animations["Standing"]);
         StartCoroutine(notification_display.RemoveNotification(Mood.Playing, 0));
 
+        model.ToggleCatPlayingSounds(false);
         isPlaying = false;
     }
 

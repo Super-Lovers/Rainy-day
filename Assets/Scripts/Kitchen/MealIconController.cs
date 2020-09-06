@@ -8,7 +8,10 @@ public class MealIconController : MonoBehaviour
     private Color initialColor;
     private Color32 hoverColor;
 
+    private AudioController audioController;
+
     private void Start() {
+        audioController = GetComponent<AudioController>();
         imageComponent = GetComponent<Image>();
 
         initialColor = imageComponent.color;
@@ -20,6 +23,7 @@ public class MealIconController : MonoBehaviour
             new Vector3(HOVER_RADIUS, HOVER_RADIUS, HOVER_RADIUS);
 
         imageComponent.color = hoverColor;
+        audioController.PlaySound("UI hover");
     }
 
     public void OnMouseExit() {
