@@ -118,7 +118,8 @@ public class Cat : MonoBehaviour
         if ((this.emotionality == "Hungry" ||
             this.emotionality == "Hungry and Tired") &&
             bowl.MealObject.activeSelf == true &&
-            isEating == false) {
+            isEating == false &&
+            isSleeping == false) {
             if (room.Name != "Kitchen") {
                 EnterRoom("Kitchen");
                 Walk();

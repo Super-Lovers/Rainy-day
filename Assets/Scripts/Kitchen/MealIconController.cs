@@ -27,4 +27,10 @@ public class MealIconController : MonoBehaviour
 
         imageComponent.color = initialColor;
     }
+
+    public void OnMouseUp() {
+        transform.localScale = Vector3.one;
+
+        imageComponent.color = initialColor;
+    }
 }
