@@ -146,6 +146,8 @@ public class Cat : MonoBehaviour
 
                 model.ToggleCatEatingSounds(true);
                 isEating = true;
+            } else {
+                state = new CatWalking(animator, animations["Walking"]);
             }
 
             WalkTo(bowl.transform);
