@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 210479575102327857}
   - component: {fileID: 619743723662687596}
   - component: {fileID: 210479575102327856}
-  - component: {fileID: 7845093296290439301}
-  - component: {fileID: 1791202068931175162}
   m_Layer: 8
   m_Name: Bowl
   m_TagString: Untagged
@@ -122,38 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b31031c931dde488eafd31dc26e789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CatOwner: {fileID: 0}
-  Sustenance: {fileID: 0}
-  Room: {fileID: 0}
-  MealObject: {fileID: 2283127550337335421}
---- !u!114 &7845093296290439301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210479575102328783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectsToActivate: []
-  ObjectsToDeactivate: []
-  _isObjectLocked: 0
---- !u!114 &1791202068931175162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210479575102328783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Bowl
+  catOwner: {fileID: 0}
+  meal: {fileID: 0}
+  room: {fileID: 0}
+  meal_object: {fileID: 2283127550337335421}
 --- !u!1 &2283127550337335421
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,20 +2,19 @@
 
 public class ToyController : MonoBehaviour
 {
-    public string Name;
-    public int TimeToPlay;
-    public bool isDragging;
+    public int time_to_play;
+    public bool is_dragging;
 
-    private Rigidbody2D _rigidBody2D;
+    private new Rigidbody2D rigidbody;
 
     private void Start()
     {
-        _rigidBody2D = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (isDragging)
+        if (is_dragging)
         {
             Drag();
         }
@@ -23,8 +22,8 @@ public class ToyController : MonoBehaviour
 
     public void Drag()
     {
-        isDragging = true;
-        _rigidBody2D.gravityScale = 0;
+        is_dragging = true;
+        rigidbody.gravityScale = 0;
         gameObject.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                                     Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
                                                     transform.position.z);
@@ -32,7 +31,7 @@ public class ToyController : MonoBehaviour
 
     public void Drop()
     {
-        _rigidBody2D.gravityScale = 1;
-        isDragging = false;
+        rigidbody.gravityScale = 1;
+        is_dragging = false;
     }
 }

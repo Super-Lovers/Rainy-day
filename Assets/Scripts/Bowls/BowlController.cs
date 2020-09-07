@@ -2,18 +2,18 @@
 
 public class BowlController : MonoBehaviour
 {
-    public Cat CatOwner;
-    public MealController Meal;
-    public RoomController Room;
-    public GameObject MealObject;
+    public Cat catOwner;
+    public MealController meal;
+    public RoomController room;
+    public GameObject meal_object;
 
     public void UpdateMeal(MealController meal)
     {
-        Meal = meal;
-        MealObject.SetActive(true);
+        this.meal = meal;
+        meal_object.SetActive(true);
     }
     
     public void EatSustanence() {
-        MealObject.SetActive(false);
+        meal_object.SetActive(false);
     }
 }

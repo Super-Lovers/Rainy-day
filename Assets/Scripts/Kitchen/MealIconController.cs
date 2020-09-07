@@ -4,37 +4,37 @@ using UnityEngine.UI;
 public class MealIconController : MonoBehaviour
 {
     private const float HOVER_RADIUS = 1.4f;
-    private Image imageComponent;
-    private Color initialColor;
-    private Color32 hoverColor;
+    private Image image_component;
+    private Color initial_color;
+    private Color32 hover_color;
 
-    private AudioController audioController;
+    private AudioController audio_controller;
 
     private void Start() {
-        audioController = GetComponent<AudioController>();
-        imageComponent = GetComponent<Image>();
+        audio_controller = GetComponent<AudioController>();
+        image_component = GetComponent<Image>();
 
-        initialColor = imageComponent.color;
-        hoverColor = new Color32(255, 255, 255, 255);
+        initial_color = image_component.color;
+        hover_color = new Color32(255, 255, 255, 255);
     }
 
     public void OnMouseOver() {
         transform.localScale = 
             new Vector3(HOVER_RADIUS, HOVER_RADIUS, HOVER_RADIUS);
 
-        imageComponent.color = hoverColor;
-        audioController.PlaySound("UI hover");
+        image_component.color = hover_color;
+        audio_controller.PlaySound("UI hover");
     }
 
     public void OnMouseExit() {
         transform.localScale = Vector3.one;
 
-        imageComponent.color = initialColor;
+        image_component.color = initial_color;
     }
 
     public void OnMouseUp() {
         transform.localScale = Vector3.one;
 
-        imageComponent.color = initialColor;
+        image_component.color = initial_color;
     }
 }

@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class MealController : MonoBehaviour
 {
-    public string Name;
+    public new string name;
     [Header("(in seconds)")]
-    public int TimeToCook;
+    public int time_to_cook;
     [Header("(in seconds)")]
-    public int TimeToDevour;
+    public int time_to_devour;
 
-    #region Components
     [NonSerialized]
     public StoveController stove;
-    #endregion
 
     private void Start() {
         stove = GetComponentInParent<StoveController>();

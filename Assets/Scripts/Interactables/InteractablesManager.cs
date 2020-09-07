@@ -4,7 +4,7 @@ using UnityEngine;
 public class InteractablesManager : MonoBehaviour
 {
     public static InteractablesManager Instance;
-    public List<InteractableController> Interactables = new List<InteractableController>();
+    public List<InteractableController> interactables = new List<InteractableController>();
 
     private void Awake()
     {
@@ -18,21 +18,20 @@ public class InteractablesManager : MonoBehaviour
         }
     }
 
-    public void UpdateInteractableState(InteractableController interactable, bool newLockedState)
+    public void UpdateInteractableState(InteractableController interactable, bool new_locked_state)
     {
-        bool isMatchFound = false;
-        foreach (InteractableController controller in Interactables)
+        var is_match_found = false;
+        foreach (var controller in interactables)
         {
             if (controller == interactable)
             {
-                isMatchFound = true;
-                controller.IsObjectLocked = newLockedState;
+                is_match_found = true;
+                controller.IsObjectLocked = new_locked_state;
                 break;
             }
         }
 
-        if (isMatchFound == false)
-        {
+        if (PlayerController.Instance.debug_mode == true && is_match_found == false) {
             Debug.Log($"The interactabl component of <color=#ff0000>{interactable.gameObject.name}</color> is not valid!");
         }
     }

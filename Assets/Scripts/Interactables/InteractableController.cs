@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class InteractableController : MonoBehaviour, IInteractable
 {
-    public List<GameObject> ObjectsToActivate = new List<GameObject>();
-    public List<GameObject> ObjectsToDeactivate = new List<GameObject>();
+    public List<GameObject> objects_to_activate = new List<GameObject>();
+    public List<GameObject> objects_to_deactivate = new List<GameObject>();
 
     [SerializeField]
-    private bool _isObjectLocked;
+    private bool is_object_locked;
     public bool IsObjectLocked
     {
         get
         {
-            return _isObjectLocked;
+            return is_object_locked;
         }
         set
         {
-            _isObjectLocked = value;
+            is_object_locked = value;
         }
     }
 
     private void Start()
     {
-        List<InteractableController> controllers = InteractablesManager.Instance.Interactables;
+        var controllers = InteractablesManager.Instance.interactables;
 
         if (controllers.Contains(this) == false)
         {
@@ -32,10 +32,10 @@ public class InteractableController : MonoBehaviour, IInteractable
 
     public void ToggleObject()
     {
-        foreach (GameObject obj in ObjectsToActivate) {
+        foreach (var obj in objects_to_activate) {
             obj.SetActive(true);
         }
-        foreach (GameObject obj in ObjectsToDeactivate) {
+        foreach (var obj in objects_to_deactivate) {
             obj.SetActive(false);
         }
     }

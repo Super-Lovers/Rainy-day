@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class SoundFile
 {
-    public string Name;
-    public AudioClip AudioClip;
+    public string name;
+    public AudioClip audio_clip;
 }

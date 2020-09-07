@@ -427,9 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fbccae945d80a41b0da795f6e05be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Poop
-  TimeToPlay: 120
-  isDragging: 0
+  time_to_play: 0
+  is_dragging: 0
 --- !u!212 &524397138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -664,11 +663,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 1487939668}
-  ObjectsToDeactivate:
-  - {fileID: 541841114}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &541841116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  name: 
 --- !u!1 &582155349
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,11 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 1890756885}
-  ObjectsToDeactivate:
-  - {fileID: 582155349}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &582155355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Stereo
+  name: 
 --- !u!50 &582155354
 Rigidbody2D:
   serializedVersion: 4
@@ -1088,9 +1083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fbccae945d80a41b0da795f6e05be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Poop
-  TimeToPlay: 120
-  isDragging: 0
+  time_to_play: 0
+  is_dragging: 0
 --- !u!212 &792674196
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1219,9 +1213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  newRoom: {fileID: 0}
-  isWaypointOccupied: 0
+  type: 0
+  new_room: {fileID: 0}
+  is_waypoint_occupied: 0
 --- !u!1 &809046555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,9 +1385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
-  newRoom: {fileID: 0}
-  isWaypointOccupied: 0
+  type: 1
+  new_room: {fileID: 0}
+  is_waypoint_occupied: 0
 --- !u!1 &1294658130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,9 +1431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  newRoom: {fileID: 0}
-  isWaypointOccupied: 0
+  type: 0
+  new_room: {fileID: 0}
+  is_waypoint_occupied: 0
 --- !u!1 &1344372186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,14 +1639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 1393034403}
-  - {fileID: 58893139}
-  - {fileID: 329187739}
-  ObjectsToDeactivate:
-  - {fileID: 1362210692}
-  - {fileID: 518782544}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &1362210694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  name: 
 --- !u!1 &1376549843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,14 +1833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 1362210692}
-  - {fileID: 518782544}
-  ObjectsToDeactivate:
-  - {fileID: 1393034403}
-  - {fileID: 329187739}
-  - {fileID: 58893139}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &1393034404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,7 +1848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  name: 
 --- !u!1 &1487939668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,11 +1998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 541841114}
-  ObjectsToDeactivate:
-  - {fileID: 1487939668}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &1487939669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,7 +2013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  name: 
 --- !u!1 &1522591134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,11 +2478,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e96e20e01300f47911ae64c2bba536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToActivate:
-  - {fileID: 582155349}
-  ObjectsToDeactivate:
-  - {fileID: 1890756885}
-  _isObjectLocked: 0
+  objects_to_activate: []
+  objects_to_deactivate: []
+  is_object_locked: 0
 --- !u!114 &1890756895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2513,11 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db2fdd4921c01c4aa261314153ca086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicClips:
-  - {fileID: 8300000, guid: 15122550efba1844c93cc0e749e68477, type: 3}
-  - {fileID: 8300000, guid: f09933c0d2f1dc84a8fe9c5b0a847b08, type: 3}
-  - {fileID: 8300000, guid: bc5fc58c681d8f541ac848011aeb6dfe, type: 3}
-  - {fileID: 8300000, guid: 65e3479bcc3e9c64299019e9bcd0f5d2, type: 3}
+  music_clips: []
 --- !u!114 &1890756894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,7 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Stereo
+  name: 
 --- !u!114 &1890756893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,8 +2519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9cbb6544cb3b44e891a066e3e82e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEffects: []
-  AudioType: 1
+  sound_effects: []
+  audio_type: 0
 --- !u!50 &1890756892
 Rigidbody2D:
   serializedVersion: 4
@@ -2870,9 +2846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  newRoom: {fileID: 0}
-  isWaypointOccupied: 0
+  type: 0
+  new_room: {fileID: 0}
+  is_waypoint_occupied: 0
 --- !u!1 &2104501035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,9 +3006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c8cbf2f59f794888c16d58e27829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  newRoom: {fileID: 0}
-  isWaypointOccupied: 0
+  type: 0
+  new_room: {fileID: 0}
+  is_waypoint_occupied: 0
 --- !u!61 &1052648683975857821
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3540,6 +3516,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4020043887224576216, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: clock_text
+      value: 
+      objectReference: {fileID: 8859045533308320440}
     - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: Waypoints.ListOfWaypoints.Array.size
@@ -3615,6 +3596,21 @@ PrefabInstance:
       propertyPath: lights
       value: 
       objectReference: {fileID: 518782544}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: entrance_door
+      value: 
+      objectReference: {fileID: 9221785793182268196}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: camera_origin
+      value: 
+      objectReference: {fileID: 8771625983546581507}
+    - target: {fileID: 7728763085751886680, guid: 4435ca2141c420b4aa06988803ec38ac,
+        type: 3}
+      propertyPath: name
+      value: Living room
+      objectReference: {fileID: 0}
     - target: {fileID: 7728763084238149913, guid: 4435ca2141c420b4aa06988803ec38ac,
         type: 3}
       propertyPath: m_SortingOrder
@@ -3641,11 +3637,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ccd2718b502fbfd48baa21efd17ee6c6, type: 2}
-    - target: {fileID: 4020043887224576216, guid: 4435ca2141c420b4aa06988803ec38ac,
-        type: 3}
-      propertyPath: clock_text
-      value: 
-      objectReference: {fileID: 8859045533308320440}
     m_RemovedComponents:
     - {fileID: 3636531956608932545, guid: 4435ca2141c420b4aa06988803ec38ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4435ca2141c420b4aa06988803ec38ac, type: 3}

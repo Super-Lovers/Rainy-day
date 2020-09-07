@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class Waypoints
 {
-    public List<WaypointController> ListOfWaypoints = new List<WaypointController>();
+    public List<WaypointController> waypoints = new List<WaypointController>();
 }

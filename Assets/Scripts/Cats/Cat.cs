@@ -4,31 +4,29 @@ using UnityEngine;
 public class Cat : MonoBehaviour
 {
     [SerializeField]
-    protected string name;
+    private new string name = default;
 
-    protected CatState state;
+    private CatState state;
     [SerializeField]
-    protected string state_name;
-    [SerializeField]
-    protected string emotionality;
+    private string emotionality;
 
     [Space(10)]
     [SerializeField]
-    protected float happiness;
+    private float happiness;
     public float Happiness {
         get { return this.happiness; }
         set { this.happiness = value; }
     }
 
     [SerializeField]
-    protected float hunger;
+    private float hunger;
     public float Hunger {
         get { return this.hunger; }
         set { this.hunger = value; }
     }
 
     [SerializeField]
-    protected float fatigue;
+    private float fatigue;
     public float Fatigue {
         get { return this.fatigue; }
         set { this.fatigue = value; }
@@ -36,23 +34,23 @@ public class Cat : MonoBehaviour
 
     [Space(10)]
     [SerializeField]
-    protected RoomController room;
+    private RoomController room;
     [SerializeField]
-    protected BowlController bowl;
+    private BowlController bowl = default;
     [SerializeField]
-    protected ToyController toy;
+    private ToyController toy = default;
     [SerializeField]
-    private CatsModel model;
+    private CatsModel model = default;
 
     [Space(10)]
     [SerializeField]
-    protected WaypointController waypoint;
+    private WaypointController waypoint;
 
     // Object components
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer sprite_renderer;
     private Animator animator_component;
     private RuntimeAnimatorController animator;
-    public AudioController audioController;
+    public AudioController audio_controller;
     private NotificationDisplay notification_display;
 
     // Animations
@@ -61,8 +59,8 @@ public class Cat : MonoBehaviour
 
     // Moving and standing variables
     private float time;
-    private float timeUntilNextAction;
-    private bool enteringNewRoom;
+    private float time_until_next_action;
+    private bool entering_new_room;
 
     // Petting mechanic variables
     private const float DEFAULT_CHANCE_TO_PET = 5;
@@ -70,24 +68,24 @@ public class Cat : MonoBehaviour
     private float time_until_next_pet;
 
     // Meals references
-    public bool isEating = false;
+    public bool is_eating = false;
 
     // Playing with toy references
-    public bool isPlaying = false;
+    public bool is_playing = false;
 
     // Sleeping references
-    private bool isSleeping = false;
+    private bool is_sleeping = false;
 
     // Meowing references
-    private float meowDelay;
-    private float meowCounter = 0;
+    private float meow_delay;
+    private float meow_counter = 0;
 
     private void Start() {
-        meowDelay = Random.Range(10, 26);
-        enteringNewRoom = true;
+        meow_delay = Random.Range(8, 26);
+        entering_new_room = true;
 
-        audioController = GetComponent<AudioController>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        audio_controller = GetComponent<AudioController>();
+        sprite_renderer = GetComponentInChildren<SpriteRenderer>();
         notification_display = GetComponentInChildren<NotificationDisplay>();
         notification_display.gameObject.SetActive(false);
 
@@ -115,22 +113,22 @@ public class Cat : MonoBehaviour
     private void Update() {
         TrackState();
 
-        if (meowCounter < meowDelay) {
-            meowCounter += Time.deltaTime;
+        if (meow_counter < meow_delay) {
+            meow_counter += Time.deltaTime;
         } else {
             var chance = Random.Range(0, 101);
             if (chance < 33) {
-                audioController.PlaySound("Meow 1");
+                audio_controller.PlaySound("Meow 1");
             }
             if (chance >= 33 && chance < 66) {
-                audioController.PlaySound("Meow 2");
+                audio_controller.PlaySound("Meow 2");
             }
             if (chance >= 66 && chance < 100) {
-                audioController.PlaySound("Meow 3");
+                audio_controller.PlaySound("Meow 3");
             }
 
-            meowDelay = Random.Range(10, 26);
-            meowCounter = 0;
+            meow_delay = Random.Range(8, 26);
+            meow_counter = 0;
         }
 
         if (time >= 1) {
@@ -147,16 +145,16 @@ public class Cat : MonoBehaviour
 
         if ((this.emotionality == "Hungry" ||
             this.emotionality == "Hungry and Tired") &&
-            bowl.MealObject.activeSelf == true &&
-            isEating == false &&
-            isSleeping == false) {
-            if (room.Name != "Kitchen") {
+            bowl.meal_object.activeSelf == true &&
+            is_eating == false &&
+            is_sleeping == false) {
+            if (room.name != "Kitchen") {
                 EnterRoom("Kitchen");
                 Walk();
 
                 if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
-                    if (waypoint.Type == WaypointType.Origin) {
-                        ChangeToRoom(waypoint.newRoom);
+                    if (waypoint.type == WaypointType.Origin) {
+                        ChangeToRoom(waypoint.new_room);
                     }
                 }
 
@@ -165,10 +163,10 @@ public class Cat : MonoBehaviour
 
             if (Vector2.Distance(transform.position, bowl.transform.position) < 0.1f) {
                 state = new CatEating(animator, animations["Eating"]);
-                Invoke("StopEating", bowl.Meal.TimeToDevour);
+                Invoke("StopEating", bowl.meal.time_to_devour);
 
                 model.ToggleCatEatingSounds(true);
-                isEating = true;
+                is_eating = true;
             } else {
                 state = new CatWalking(animator, animations["Walking"]);
             }
@@ -177,11 +175,11 @@ public class Cat : MonoBehaviour
             return;
         }
 
-        if (isEating) { return; }
+        if (is_eating) { return; }
 
         if (this.emotionality == "Tired" &&
             room.IsLightsOn() == false &&
-            isSleeping == false &&
+            is_sleeping == false &&
             Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
 
             state = new CatSleeping(animator, animations["Sleeping"]);
@@ -189,50 +187,50 @@ public class Cat : MonoBehaviour
             StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
             notification_display.SendNotification(Mood.Sleeping);
 
-            isSleeping = true;
+            is_sleeping = true;
 
             Invoke("StopSleeping", 120);
         }
 
-        if (isSleeping) { return; }
+        if (is_sleeping) { return; }
 
         if (this.emotionality != "Tired" &&
             this.emotionality != "Hungry and Tired" &&
             this.emotionality != "Hungry" &&
             this.happiness < 40) {
             if (Vector2.Distance(transform.position, toy.transform.position) < 0.5f) {
-                isPlaying = true;
+                is_playing = true;
 
                 model.ToggleCatPlayingSounds(true);
                 state = new CatPlaying(animator, animations["Standing"]);
                 notification_display.SendNotification(Mood.Playing);
 
-                Invoke("StopPlaying", toy.TimeToPlay);
+                Invoke("StopPlaying", toy.time_to_play);
             } else {
-                if (isPlaying) { StopPlaying(); }
+                if (is_playing) { StopPlaying(); }
             }
         }
 
-        if (isPlaying) { return; }
+        if (is_playing) { return; }
 
-        if (enteringNewRoom == false) {
-            if (timeUntilNextAction <= 0) {
-                timeUntilNextAction = UnityEngine.Random.Range(3, 8);
+        if (entering_new_room == false) {
+            if (time_until_next_action <= 0) {
+                time_until_next_action = UnityEngine.Random.Range(3, 8);
                 waypoint = GetRandomWaypoint(false);
             } else {
-                timeUntilNextAction -= Time.deltaTime;
+                time_until_next_action -= Time.deltaTime;
             }
         }
 
         if (Vector2.Distance(transform.position, waypoint.transform.position) < 0.2f) {
             state = new CatStanding(animator, animations["Standing"]);
 
-            if (enteringNewRoom == true) {
-                enteringNewRoom = false;
+            if (entering_new_room == true) {
+                entering_new_room = false;
             }
 
-            if (waypoint.Type == WaypointType.Origin) {
-                ChangeToRoom(waypoint.newRoom);
+            if (waypoint.type == WaypointType.Origin) {
+                ChangeToRoom(waypoint.new_room);
             }
         } else {
             state = new CatWalking(animator, animations["Walking"]);
@@ -243,9 +241,9 @@ public class Cat : MonoBehaviour
 
     private void WalkTo(Transform obj) {
         if (transform.position.x < obj.transform.position.x) {
-            spriteRenderer.flipX = true;
+            sprite_renderer.flipX = true;
         } else if (transform.position.x > obj.transform.position.x) {
-            spriteRenderer.flipX = false;
+            sprite_renderer.flipX = false;
         }
 
         transform.position = Vector2.MoveTowards(transform.position, obj.transform.position, (100 * Time.deltaTime) * 0.015f);
@@ -253,9 +251,9 @@ public class Cat : MonoBehaviour
 
     private void Walk() {
         if (transform.position.x < waypoint.transform.position.x) {
-            spriteRenderer.flipX = true;
+            sprite_renderer.flipX = true;
         } else if (transform.position.x > waypoint.transform.position.x) {
-            spriteRenderer.flipX = false;
+            sprite_renderer.flipX = false;
         }
 
         transform.position = Vector2.MoveTowards(transform.position, waypoint.transform.position, (100 * Time.deltaTime) * 0.015f);
@@ -298,20 +296,20 @@ public class Cat : MonoBehaviour
             this.emotionality = "Tired";
 
             StartCoroutine(notification_display.RemoveNotification(Mood.Hungry, 0));
-            if (isSleeping == false) {
+            if (is_sleeping == false) {
                 notification_display.SendNotification(Mood.Tired);
             }
             StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue > 60 && this.hunger >= 60) {
             this.emotionality = "Hungry and Tired";
-            if (isSleeping == false) {
+            if (is_sleeping == false) {
                 notification_display.SendNotification(Mood.Tired);
                 notification_display.SendNotification(Mood.Hungry);
             }
             StartCoroutine(notification_display.RemoveNotification(Mood.Happy, 0));
         } else if (this.fatigue <= 60 && this.hunger >= 60) {
             this.emotionality = "Hungry";
-            if (isSleeping == false) {
+            if (is_sleeping == false) {
                 notification_display.SendNotification(Mood.Hungry);
             }
             StartCoroutine(notification_display.RemoveNotification(Mood.Tired, 0));
@@ -319,47 +317,46 @@ public class Cat : MonoBehaviour
         }
 
         animator_component.Play(state.Animation);
-        state_name = state.GetType().ToString();
     }
 
     private void EnterRoom(string name) {
-        for (int i = 0; i < room.Waypoints.ListOfWaypoints.Count; i++) {
-            var newWaypoint = room.Waypoints.ListOfWaypoints[i];
-            if (newWaypoint.newRoom.Name == name) {
-                waypoint = newWaypoint;
+        for (var i = 0; i < room.waypoints.waypoints.Count; i++) {
+            var new_waypoint = room.waypoints.waypoints[i];
+            if (new_waypoint.new_room.name == name) {
+                waypoint = new_waypoint;
                 break;
             }
         }
     }
 
-    private WaypointController GetRandomWaypoint(bool ignoreOrigin) {
+    private WaypointController GetRandomWaypoint(bool ignore_origin) {
         if (waypoint != null) {
-            waypoint.isWaypointOccupied = false;
+            waypoint.is_waypoint_occupied = false;
         }
-        var availableWaypoints = new List<WaypointController>();
+        var availablewaypoints = new List<WaypointController>();
 
-        for (int i = 0; i < room.Waypoints.ListOfWaypoints.Count; i++) {
-            var waypoint = room.Waypoints.ListOfWaypoints[i];
+        for (var i = 0; i < room.waypoints.waypoints.Count; i++) {
+            var current_waypoint = room.waypoints.waypoints[i];
 
-            if (ignoreOrigin == true) {
-                if (waypoint.Type != WaypointType.Origin) {
-                    if (waypoint.isWaypointOccupied == false) {
-                        availableWaypoints.Add(waypoint);
+            if (ignore_origin == true) {
+                if (current_waypoint.type != WaypointType.Origin) {
+                    if (current_waypoint.is_waypoint_occupied == false) {
+                        availablewaypoints.Add(current_waypoint);
                     }
                 }
             } else {
-                if (waypoint.isWaypointOccupied == false) {
-                    availableWaypoints.Add(waypoint);
+                if (current_waypoint.is_waypoint_occupied == false) {
+                    availablewaypoints.Add(current_waypoint);
                 }
             }
         }
 
-        var newWaypoint = availableWaypoints[
-                   Random.Range(0, availableWaypoints.Count)];
+        var new_waypoint = availablewaypoints[
+                   Random.Range(0, availablewaypoints.Count)];
 
-        newWaypoint.isWaypointOccupied = true;
+        new_waypoint.is_waypoint_occupied = true;
 
-        return newWaypoint;
+        return new_waypoint;
     }
 
     /// <summary>
@@ -387,7 +384,7 @@ public class Cat : MonoBehaviour
         bowl.EatSustanence();
 
         model.ToggleCatEatingSounds(false);
-        isEating = false;
+        is_eating = false;
     }
 
     private void StopPlaying() {
@@ -395,13 +392,13 @@ public class Cat : MonoBehaviour
         StartCoroutine(notification_display.RemoveNotification(Mood.Playing, 0));
 
         model.ToggleCatPlayingSounds(false);
-        isPlaying = false;
+        is_playing = false;
     }
 
     private void StopSleeping() {
         state = new CatStanding(animator, animations["Standing"]);
         StartCoroutine(notification_display.RemoveNotification(Mood.Sleeping, 0));
 
-        isSleeping = false;
+        is_sleeping = false;
     }
 }

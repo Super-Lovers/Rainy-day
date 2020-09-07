@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  state_name: 
   emotionality: 
   happiness: 50
   hunger: 50
@@ -157,9 +156,9 @@ MonoBehaviour:
   toy: {fileID: 0}
   model: {fileID: 0}
   waypoint: {fileID: 0}
-  audioController: {fileID: 0}
-  isEating: 0
-  isPlaying: 0
+  audio_controller: {fileID: 0}
+  is_eating: 0
+  is_playing: 0
 --- !u!114 &6385480042700519357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,16 +171,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9cbb6544cb3b44e891a066e3e82e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEffects:
-  - Name: Purr_short
-    AudioClip: {fileID: 8300000, guid: 7954afefc9096d948b9f967e9cb90645, type: 3}
-  - Name: Meow 1
-    AudioClip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
-  - Name: Meow 2
-    AudioClip: {fileID: 8300000, guid: 0443dfeeda5dea2409e320360e47fb09, type: 3}
-  - Name: Meow 3
-    AudioClip: {fileID: 8300000, guid: 1370ef4d2d8937f458bf79aebf61f057, type: 3}
-  AudioType: 0
+  sound_effects:
+  - name: Purr_short
+    audio_clip: {fileID: 8300000, guid: 7954afefc9096d948b9f967e9cb90645, type: 3}
+  - name: Meow 1
+    audio_clip: {fileID: 8300000, guid: db8314eb6b143c742872fb519bc38a5d, type: 3}
+  - name: Meow 2
+    audio_clip: {fileID: 8300000, guid: 0443dfeeda5dea2409e320360e47fb09, type: 3}
+  - name: Meow 3
+    audio_clip: {fileID: 8300000, guid: 1370ef4d2d8937f458bf79aebf61f057, type: 3}
+  audio_type: 0
 --- !u!82 &1226023052998105778
 AudioSource:
   m_ObjectHideFlags: 0
@@ -194,7 +193,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -399,9 +398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99340725472706b4883e2e64fe065faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notificationPrefab: {fileID: 2034213105682197050, guid: b0465d295a7e683409b55cd8dfb04808,
+  notification_prefab: {fileID: 2034213105682197050, guid: b0465d295a7e683409b55cd8dfb04808,
     type: 3}
-  listLayout: {fileID: 4177115223677558668}
+  list_layout: {fileID: 4177115223677558668}
 --- !u!222 &8856572933853354937
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -590,4 +589,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235345f794d797445985f249fb969912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Cat
+  name: Cat

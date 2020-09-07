@@ -2,72 +2,71 @@
 
 public abstract class MouseController : MonoBehaviour
 {
-    public LayerMask InteractablesLayer;
-    private RaycastHit2D hitInteractable;
+    public LayerMask interactables_layer;
+    private RaycastHit2D hit_interactable;
 
-    #region Toy components
-    private ToyController _toyController;
-    private SpriteRenderer _toyRenderer;
-    #endregion
+    // Toy components
+    private ToyController toy_controller;
+    private SpriteRenderer toy_renderer;
 
     protected void Update()
     {
-        Vector3 mousePosition = 
+        var mouse_position = 
             Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0))
         {
-            hitInteractable = Physics2D.Raycast(
-                mousePosition,
+            hit_interactable = Physics2D.Raycast(
+                mouse_position,
                 Vector3.forward,
                 Mathf.Infinity,
-                InteractablesLayer);
+                interactables_layer);
 
-            if (hitInteractable.collider != null)
+            if (hit_interactable.collider != null)
             {
-                if (_toyRenderer != null) {
-                    if (_toyController.isDragging == true) {
-                        _toyController.Drop();
-                    } else if (_toyController.isDragging == false) {
-                        _toyController.Drag();
+                if (toy_renderer != null) {
+                    if (toy_controller.is_dragging == true) {
+                        toy_controller.Drop();
+                    } else if (toy_controller.is_dragging == false) {
+                        toy_controller.Drag();
                     }
                 } else {
-                    Execute(hitInteractable.collider.gameObject);
+                    Execute(hit_interactable.collider.gameObject);
                 }
             }
         } else if (Input.GetMouseButtonDown(1))
         {
-            hitInteractable = Physics2D.Raycast(
-                mousePosition,
+            hit_interactable = Physics2D.Raycast(
+                mouse_position,
                 Vector3.forward,
                 Mathf.Infinity,
-                InteractablesLayer);
+                interactables_layer);
 
-            if (hitInteractable.collider != null)
+            if (hit_interactable.collider != null)
             {
-                if (hitInteractable.collider.gameObject.GetComponentInParent<Cat>() != null) {
-                    //hitInteractable.collider.gameObject.GetComponentInParent<Cat>().Pet();
+                if (hit_interactable.collider.gameObject.GetComponentInParent<Cat>() != null) {
+                    //hit_interactable.collider.gameObject.GetComponentInParent<Cat>().Pet();
                 }
             }
         } else {
-            hitInteractable = Physics2D.Raycast(
-                mousePosition,
+            hit_interactable = Physics2D.Raycast(
+                mouse_position,
                 Vector3.forward,
                 Mathf.Infinity,
-                InteractablesLayer);
+                interactables_layer);
 
-            if (hitInteractable.collider != null)
+            if (hit_interactable.collider != null)
             {
-                if (hitInteractable.collider.GetComponent<ToyController>() != null) {
-                    _toyRenderer = hitInteractable.collider.gameObject.GetComponent<SpriteRenderer>();
-                    _toyController = hitInteractable.collider.gameObject.GetComponent<ToyController>();
-                    _toyRenderer.color = new Color(255, 255, 255, 0.5f);
+                if (hit_interactable.collider.GetComponent<ToyController>() != null) {
+                    toy_renderer = hit_interactable.collider.gameObject.GetComponent<SpriteRenderer>();
+                    toy_controller = hit_interactable.collider.gameObject.GetComponent<ToyController>();
+                    toy_renderer.color = new Color(255, 255, 255, 0.5f);
                 }
             } else {
-                if (_toyRenderer != null) {
-                    _toyRenderer.color = new Color(255, 255, 255, 1f);
-                    _toyController = null;
-                    _toyRenderer = null;
+                if (toy_renderer != null) {
+                    toy_renderer.color = new Color(255, 255, 255, 1f);
+                    toy_controller = null;
+                    toy_renderer = null;
                 }
             }
         }

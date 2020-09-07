@@ -1,35 +1,35 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public string Name;
+    public new string name;
     [Header("Only for the room which has the door facing it")]
-    public Animator EntranceDoor;
+    public Animator entrance_door;
     [NonSerialized]
-    public Sprite Background;
+    public Sprite background;
     [Header("Position of the camera entering the room")]
     [Space(10)]
-    public Transform CameraOrigin;
+    public Transform camera_origin;
     [Header("Boundaries of the room")]
     [Space(10)]
-    public Waypoints Waypoints;
+    public Waypoints waypoints;
 
     [Space(10)]
     [SerializeField]
-    private GameObject lights;
+    private GameObject lights = default;
 
     private void Awake()
     {
-        Background = GetComponentsInChildren<SpriteRenderer>()[0].sprite;
+        background = GetComponentsInChildren<SpriteRenderer>()[0].sprite;
     }
 
     private void Start() {
-        List<RoomController> listOfRooms = Rooms.Instance.ListOfRooms;
-        if (listOfRooms.Contains(this) == false)
+        var rooms = Rooms.Instance.rooms;
+
+        if (rooms.Contains(this) == false)
         {
-            listOfRooms.Add(this);
+            rooms.Add(this);
         }
     }
 

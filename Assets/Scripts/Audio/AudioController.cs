@@ -4,67 +4,66 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     [SerializeField]
-    private List<SoundFile> _soundEffects = new List<SoundFile>();
-    public AudioType AudioType;
+    private List<SoundFile> sound_effects = new List<SoundFile>();
+    public AudioType audio_type;
 
-    AudioManager _audioManager;
-    AudioSource _audioSource;
+    private AudioManager audio_manager;
+    private AudioSource audio_source;
 
     private void Start()
     {
-        _audioManager = AudioManager.Instance;
-        _audioSource = GetComponent<AudioSource>();
-        List<AudioSource> soundSources = _audioManager.SoundSources;
-        List<AudioSource> backgroundSources = _audioManager.BackgroundSources;
+        audio_manager = AudioManager.Instance;
+        audio_source = GetComponent<AudioSource>();
 
-        if (AudioType == AudioType.Sound && soundSources.Contains(_audioSource) == false)
-        {
-            soundSources.Add(_audioSource);
-            _audioSource.volume = _audioManager.SoundEffectsVolume / 100f;
-        }
-        else if (AudioType == AudioType.Background && backgroundSources.Contains(_audioSource) == false)
-        {
-            backgroundSources.Add(_audioSource);
-            _audioSource.volume = _audioManager.BackgroundMusicVolume / 100f;
+        if (audio_manager != null) {
+            var sound_sources = audio_manager.sound_sources;
+            var background_sources = audio_manager.background_sources;
+
+            if (audio_type == AudioType.Sound && sound_sources.Contains(audio_source) == false) {
+                sound_sources.Add(audio_source);
+                audio_source.volume = audio_manager.SoundEffectsVolume / 100f;
+            } else if (audio_type == AudioType.Background && background_sources.Contains(audio_source) == false) {
+                background_sources.Add(audio_source);
+                audio_source.volume = audio_manager.BackgroundMusicVolume / 100f;
+            }
         }
     }
 
-    public void PlaySound(string soundName)
+    public void PlaySound(string sound_name)
     {
-        bool isSoundFileFound = false;
-        foreach (SoundFile soundFile in _soundEffects) {
-            if (soundFile.Name == soundName && _audioSource.isPlaying == false)
+        var is_sound_file_found = false;
+        foreach (var sound_file in sound_effects) {
+            if (sound_file.name == sound_name && audio_source.isPlaying == false)
             {
-                isSoundFileFound = true;
-                _audioSource.PlayOneShot(soundFile.AudioClip);
+                is_sound_file_found = true;
+                audio_source.PlayOneShot(sound_file.audio_clip);
                 break;
             }
         }
 
-        if (isSoundFileFound == false)
-        {
-            Debug.Log($"The sound file <color=#ff0000>{soundName}</color> is not valid!");
+        if (PlayerController.Instance.debug_mode == true && is_sound_file_found == false) {
+            Debug.Log($"The sound file <color=#ff0000>{sound_name}</color> is not valid!");
         }
     }
 
-    public void PlayLoopedSound(string soundName) {
-        bool isSoundFileFound = false;
-        foreach (SoundFile soundFile in _soundEffects) {
-            if (soundFile.Name == soundName && _audioSource.isPlaying == false) {
-                isSoundFileFound = true;
+    public void PlayLoopedSound(string sound_name) {
+        var is_sound_file_found = false;
+        foreach (var sound_file in sound_effects) {
+            if (sound_file.name == sound_name && audio_source.isPlaying == false) {
+                is_sound_file_found = true;
 
-                _audioSource.clip = soundFile.AudioClip;
-                _audioSource.Play();
+                audio_source.clip = sound_file.audio_clip;
+                audio_source.Play();
                 break;
             }
         }
 
-        if (isSoundFileFound == false) {
-            Debug.Log($"The sound file <color=#ff0000>{soundName}</color> is not valid!");
+        if (PlayerController.Instance.debug_mode == true && is_sound_file_found == false) {
+            Debug.Log($"The sound file <color=#ff0000>{sound_name}</color> is not valid!");
         }
     }
 
     public void Stop() {
-        _audioSource.Stop();
+        audio_source.Stop();
     }
 }

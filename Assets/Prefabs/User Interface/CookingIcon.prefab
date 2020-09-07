@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f277525c0db312a4fb2b96f326b75c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  TimeToCook: 2
-  TimeToDevour: 1
+  name: 
+  time_to_cook: 15
+  time_to_devour: 120
 --- !u!114 &3071658504380860383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9cbb6544cb3b44e891a066e3e82e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEffects:
-  - Name: UI hover
-    AudioClip: {fileID: 8300000, guid: b0a5611c6cf02204290261fc72d41b4f, type: 3}
-  AudioType: 0
+  sound_effects:
+  - name: UI hover
+    audio_clip: {fileID: 8300000, guid: b0a5611c6cf02204290261fc72d41b4f, type: 3}
+  audio_type: 0
 --- !u!82 &6860634776826748048
 AudioSource:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

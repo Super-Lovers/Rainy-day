@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class NotificationDisplay : MonoBehaviour
 {
     [SerializeField]
-    private GameObject notificationPrefab;
+    private GameObject notification_prefab = default;
     [SerializeField]
-    private GameObject listLayout;
+    private GameObject list_layout = default;
 
     private List<string> notifications = new List<string>();
     private List<GameObject> notifications_objects = new List<GameObject>();
@@ -16,7 +16,7 @@ public class NotificationDisplay : MonoBehaviour
     public void SendNotification(Mood notification_type) {
         if (ExistNotification(notification_type)) { return; }
 
-        var notification = Instantiate(notificationPrefab, listLayout.transform);
+        var notification = Instantiate(notification_prefab, list_layout.transform);
         var notification_type_string = notification_type.ToString();
 
         switch (notification_type) {
@@ -59,7 +59,7 @@ public class NotificationDisplay : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         GameObject notification_to_remove = null;
-        for (int i = 0; i < notifications_objects.Count; i++) {
+        for (var i = 0; i < notifications_objects.Count; i++) {
             var notification_label = notifications_objects[i].GetComponent<Text>().text;
             var current_notification_type = Mood.Happy;
 

@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CatsModel.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioType.cs" />
@@ -73,6 +72,7 @@
     <Compile Include="Assets\Scripts\Cats\CatEating.cs" />
     <Compile Include="Assets\Scripts\Cats\CatPlaying.cs" />
     <Compile Include="Assets\Scripts\Cats\CatSleeping.cs" />
+    <Compile Include="Assets\Scripts\Cats\CatsModel.cs" />
     <Compile Include="Assets\Scripts\Cats\CatStanding.cs" />
     <Compile Include="Assets\Scripts\Cats\CatState.cs" />
     <Compile Include="Assets\Scripts\Cats\CatWalking.cs" />
@@ -91,12 +91,12 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Rooms\RoomController.cs" />
     <Compile Include="Assets\Scripts\Rooms\Rooms.cs" />
+    <Compile Include="Assets\Scripts\TimeController.cs" />
     <Compile Include="Assets\Scripts\User Interface\InterfaceManager.cs" />
     <Compile Include="Assets\Scripts\User Interface\NotificationDisplay.cs" />
     <Compile Include="Assets\Scripts\Waypoints\WaypointController.cs" />
     <Compile Include="Assets\Scripts\Waypoints\Waypoints.cs" />
     <Compile Include="Assets\Scripts\Waypoints\WaypointType.cs" />
-    <Compile Include="Assets\TimeController.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

@@ -2,5 +2,5 @@
 
 public class PropertiesController : MonoBehaviour
 {
-    public string Name;
+    public new string name;
 }

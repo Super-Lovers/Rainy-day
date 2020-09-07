@@ -1,52 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     // Types of audio sources
-    public List<AudioSource> BackgroundSources = new List<AudioSource>();
-    public List<AudioSource> SoundSources = new List<AudioSource>();
+    public List<AudioSource> background_sources = new List<AudioSource>();
+    public List<AudioSource> sound_sources = new List<AudioSource>();
 
-    private float _previousSoundEffectsVolume;
+    private float previous_sound_effects_volume;
     [SerializeField]
-    private float _soundEffectsVolume = 10;
+    private float sound_effects_volume = 10;
     public float SoundEffectsVolume
     {
-        get { return _soundEffectsVolume; }
+        get { return sound_effects_volume; }
         set
         {
             // We validate whether or not the volume is greater
             // than or less than it should be, to avoid exceptions.
-            if (value > 100) { _soundEffectsVolume = 100; }
-            else if (value < 0) { _soundEffectsVolume = 0; }
-            else { _soundEffectsVolume = value; }
+            if (value > 100) { sound_effects_volume = 100; }
+            else if (value < 0) { sound_effects_volume = 0; }
+            else { sound_effects_volume = value; }
             UpdateVolume();
         }
     }
 
-    private float _previousBackgroundMusicVolume;
+    private float previous_background_music_volume;
     [SerializeField]
-    private float _backgroundMusicVolume = 10;
+    private float background_music_volume = 10;
     public float BackgroundMusicVolume
     {
-        get { return _backgroundMusicVolume; }
+        get { return background_music_volume; }
         set
         {
-            if (value > 100) { _backgroundMusicVolume = 100; }
-            else if (value < 0) { _backgroundMusicVolume = 0; }
-            else { _backgroundMusicVolume = value; }
+            if (value > 100) { background_music_volume = 100; }
+            else if (value < 0) { background_music_volume = 0; }
+            else { background_music_volume = value; }
             UpdateVolume();
         }
     }
 
     [NonSerialized]
-    public AudioController AudioController;
+    public AudioController audio_controller;
 
     private void Awake()
     {
-        AudioController = GetComponent<AudioController>();
+        audio_controller = GetComponent<AudioController>();
 
         if (Instance != null && Instance != this)
         {
@@ -64,33 +64,33 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void UpdateVolume()
     {
-        foreach (AudioSource audioSource in SoundSources)
+        foreach (var audio_source in sound_sources)
         {
-            if (audioSource != null)
+            if (audio_source != null)
             {
-                audioSource.volume = SoundEffectsVolume / 100f;
+                audio_source.volume = SoundEffectsVolume / 100f;
             }
         }
 
-        foreach (AudioSource audioSource in BackgroundSources)
+        foreach (var audio_source in background_sources)
         {
-            if (audioSource != null)
+            if (audio_source != null)
             {
-                audioSource.volume = BackgroundMusicVolume / 100f;
+                audio_source.volume = BackgroundMusicVolume / 100f;
             }
         }
 
-        AudioManager.Instance.AudioController.PlaySound("Volume Update");
+        AudioManager.Instance.audio_controller.PlaySound("Volume Update");
     }
 
     public void MuteSoundEffects()
     {
-        _previousSoundEffectsVolume = SoundEffectsVolume;
+        previous_sound_effects_volume = SoundEffectsVolume;
         SoundEffectsVolume = 0;
     }
 
     public void UnmuteSoundEffects() {
-        SoundEffectsVolume = _previousSoundEffectsVolume;
+        SoundEffectsVolume = previous_sound_effects_volume;
     }
 
     public void IncreaseSoundVolume()
@@ -111,12 +111,12 @@ public class AudioManager : MonoBehaviour
 
     public void MuteBackgroundMusic()
     {
-        _previousBackgroundMusicVolume = BackgroundMusicVolume;
+        previous_background_music_volume = BackgroundMusicVolume;
         BackgroundMusicVolume = 0;
     }
 
     public void UnmuteBackgroundMusic() {
-        BackgroundMusicVolume = _previousBackgroundMusicVolume;
+        BackgroundMusicVolume = previous_background_music_volume;
     }
 
     public void IncreaseBackgroundVolume()

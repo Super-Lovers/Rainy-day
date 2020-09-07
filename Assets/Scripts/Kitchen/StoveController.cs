@@ -4,52 +4,54 @@ using UnityEngine;
 
 public class StoveController : MonoBehaviour
 {
-    public bool IsItCurrentlyCooking;
-    public MealController MealPrepared;
+    public bool is_cooking;
+    public MealController meal_prepared;
 
     [Header("Bowl distribution references")]
-    public List<BowlController> Bowls = new List<BowlController>();
+    public List<BowlController> bowls = new List<BowlController>();
 
     [Header("Phases of meal being prepared")]
-    public GameObject Effects;
-    public GameObject PanCooking;
-    public GameObject PanFinishedCooking;
+    public GameObject effects;
+    public GameObject pan_cooking;
+    public GameObject pan_finished_cooking;
 
     [Space(10)]
-    public GameObject foodPanel;
+    public GameObject food_panel;
 
     public void Cook(MealController meal)
     {
         StartCoroutine(CompleteCooking(meal));
-        foodPanel.SetActive(false);
+        food_panel.SetActive(false);
     }
 
     private IEnumerator CompleteCooking(MealController meal)
     {
-        PanCooking.SetActive(true);
-        Effects.SetActive(true);
-        IsItCurrentlyCooking = true;
+        pan_cooking.SetActive(true);
+        effects.SetActive(true);
+        is_cooking = true;
 
-        yield return new WaitForSeconds(meal.TimeToCook);
+        yield return new WaitForSeconds(meal.time_to_cook);
 
-        Effects.SetActive(false);
-        PanCooking.SetActive(false);
-        IsItCurrentlyCooking = false;
+        effects.SetActive(false);
+        pan_cooking.SetActive(false);
+        is_cooking = false;
 
-        MealPrepared = meal;
+        meal_prepared = meal;
 
-        Debug.Log($"The meal <color=#a52a2aff>{meal.Name}</color> is done cooking!");
-        PanFinishedCooking.SetActive(true);
+        if (PlayerController.Instance.debug_mode == true) {
+            Debug.Log($"The meal <color=#a52a2aff>{meal.name}</color> is done cooking!");
+        }
+        pan_finished_cooking.SetActive(true);
 
         UpdateMeals();
     }
 
     public void UpdateMeals()
     {
-        for (int i = 0; i < Bowls.Count; i++) {
-            var bowl = Bowls[i];
+        for (var i = 0; i < bowls.Count; i++) {
+            var bowl = bowls[i];
 
-            bowl.UpdateMeal(MealPrepared);
+            bowl.UpdateMeal(meal_prepared);
         }
     }
 }

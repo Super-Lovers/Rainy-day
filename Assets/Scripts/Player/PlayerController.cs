@@ -4,22 +4,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
-
-    private Camera _camera;
-    [Range(0, 50)]
-    public float CameraSpeed;
-    private bool _isPointerDown;
-    private bool _isCameraMoving;
-    private string _previousDirection;
+    public bool debug_mode;
 
     [Space(10)]
-    public RoomController CurrentRoomController;
-    private float _currentRoomBoundsLeft;
-    private float _currentRoomBoundsRight;
-    private bool _isCameraTransitioning;
+    public RoomController current_room_controller;
 
-    private RoomController _previousRoom;
-    private AudioController audioController;
+    private new Camera camera;
+
+    private AudioController audio_controller;
 
     private void Awake()
     {
@@ -35,83 +27,39 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _camera = FindObjectOfType<Camera>();
-        audioController = GetComponent<AudioController>();
+        camera = FindObjectOfType<Camera>();
+        audio_controller = GetComponent<AudioController>();
     }
 
-    private void Update()
-    {
-        if (_isPointerDown && _isCameraMoving)
+    public void ChangeRoom(string new_room) {
+
+        current_room_controller.entrance_door.Play("DoorOpenAnimation", -1, 0);
+        audio_controller.PlaySound("Open Door");
+
+        var is_room_valid = false;
+        foreach (var room in Rooms.Instance.rooms)
         {
-            MoveCameraInDirection(_previousDirection);
-        }
-    }
-
-    public void ChangeRoom(string newRoom) {
-
-        CurrentRoomController.EntranceDoor.Play("DoorOpenAnimation", -1, 0);
-        audioController.PlaySound("Open Door");
-
-        bool isRoomValid = false;
-        foreach (RoomController room in Rooms.Instance.ListOfRooms)
-        {
-            if (room.Name == newRoom)
+            if (room.name == new_room)
             {
-                _isCameraTransitioning = true;
-                isRoomValid = true;
+                is_room_valid = true;
 
-                _previousRoom = CurrentRoomController;
-                CurrentRoomController = room;
+                current_room_controller = room;
 
-                StartCoroutine(ChangeCameraOrigin(CurrentRoomController.CameraOrigin));
+                StartCoroutine(ChangeCameraOrigin(current_room_controller.camera_origin));
                 Rooms.Instance.StartRoomTransition();
 
                 break;
             }
         }
 
-        if (isRoomValid == false)
-        {
-            Debug.Log($"The room ${newRoom} is not valid!");
+        if (PlayerController.Instance.debug_mode == true && is_room_valid == false) {
+            Debug.Log($"The room ${new_room} is not valid!");
         }
     }
 
     private IEnumerator ChangeCameraOrigin(Transform newOrigin)
     {
         yield return new WaitForSeconds(1f);
-        _camera.transform.transform.position = new Vector3(newOrigin.position.x, newOrigin.position.y, _camera.transform.position.z);
-        _isCameraTransitioning = false;
-    }
-
-    public void MoveCameraInDirection(string direction)
-    {
-        if (_isCameraTransitioning == false)
-        {
-            _previousDirection = direction;
-            _isCameraMoving = true;
-            Vector3 newCameraPosition = _camera.transform.position;
-
-            if (direction == "Left")
-            {
-                if (_camera.transform.position.x - _camera.orthographicSize > _currentRoomBoundsLeft)
-                {
-                    newCameraPosition.x -= (CameraSpeed * 2) * Time.deltaTime;
-                }
-            }
-            else if (direction == "Right")
-            {
-                if (_camera.transform.position.x + _camera.orthographicSize < _currentRoomBoundsRight)
-                {
-                    newCameraPosition.x += (CameraSpeed * 2) * Time.deltaTime;
-                }
-            }
-
-            _camera.transform.position = newCameraPosition;
-        }
-    }
-
-    public void TogglePointerClick(bool boolean)
-    {
-        _isPointerDown = boolean;
+        camera.transform.transform.position = new Vector3(newOrigin.position.x, newOrigin.position.y, camera.transform.position.z);
     }
 }

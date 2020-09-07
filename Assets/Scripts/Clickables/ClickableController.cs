@@ -2,41 +2,33 @@
 
 public class ClickableController : MouseController
 {
-    public PlayerController PlayerController;
+    public PlayerController player_controller;
 
-    public override void Execute(GameObject interactableClicked)
+    public override void Execute(GameObject interactable_clicked)
     {
-        InteractableController interactableController;
-        PropertiesController properties = interactableClicked.GetComponent<PropertiesController>();
+        var properties_controller = interactable_clicked.GetComponent<PropertiesController>();
 
-        if (properties != null)
+        if (properties_controller != null)
         {
-            switch (properties.Name)
+            switch (properties_controller.name)
             {
                 default:
-                    interactableController = interactableClicked.GetComponent<InteractableController>();
-                    interactableController.ToggleObject();
+                    interactable_clicked.GetComponent<InteractableController>().ToggleObject();
                     break;
                 case "Doorway to Kitchen":
-                    PlayerController.ChangeRoom("Kitchen");
+                    player_controller.ChangeRoom("Kitchen");
                     break;
                 case "Doorway to Living room":
-                    PlayerController.ChangeRoom("Living room");
+                    player_controller.ChangeRoom("Living room");
                     break;
                 case "Stove":
-                    StoveController stove = interactableClicked.GetComponent<StoveController>();
-                    interactableController = interactableClicked.GetComponent<InteractableController>();
-
-                    interactableController.ToggleObject();
-                    break;
-                case "Bowl Selector":
-                    interactableController = interactableClicked.GetComponent<InteractableController>();
+                    interactable_clicked.GetComponent<InteractableController>().ToggleObject();
                     break;
                 case "Cat":
-                    var catController = interactableClicked.GetComponentInParent<Cat>();
-                    var audioController = catController.audioController;
+                    var catController = interactable_clicked.GetComponentInParent<Cat>();
+                    var audio_controller = catController.audio_controller;
 
-                    audioController.PlaySound("Purr_short");
+                    audio_controller.PlaySound("Purr_short");
                     catController.Pet();
                     break;
             }

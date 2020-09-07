@@ -1,18 +1,16 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Rooms : MonoBehaviour
 {
     public static Rooms Instance;
     [NonSerialized]
-    public List<RoomController> ListOfRooms = new List<RoomController>();
+    public List<RoomController> rooms = new List<RoomController>();
 
-    #region Transition mechanic references
     [Header("Field for fade effects controller when switching rooms.")]
-    public Animator TransitionAnimator;
-    #endregion
+    public Animator transition_animator;
 
     private void Awake()
     {
@@ -31,18 +29,18 @@ public class Rooms : MonoBehaviour
     }
 
     private IEnumerator StartRoomTransitionCoroutine() {
-        TransitionAnimator.SetBool("Display", true);
+        transition_animator.SetBool("Display", true);
         yield return new WaitForSeconds(1f);
-        TransitionAnimator.SetBool("Display", false);
+        transition_animator.SetBool("Display", false);
     }
 
     public IEnumerator DarkenCoroutine() {
-        TransitionAnimator.SetBool("Display", true);
+        transition_animator.SetBool("Display", true);
         yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator LightenCoroutine() {
-        TransitionAnimator.Play("FadeOutTransition", -1, 0f);
+        transition_animator.Play("FadeOutTransition", -1, 0f);
         yield return new WaitForEndOfFrame();
     }
 }
