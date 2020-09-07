@@ -10,6 +10,12 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
 
+    private void Start() {
+        if (SceneManager.GetActiveScene().name == "End Scene") {
+            StartCoroutine(Rooms.Instance.LightenCoroutine());
+        }
+    }
+
     public void ToggleWindow(Object window) {
         GameObject obj = (GameObject)window;
         obj.SetActive(!obj.activeSelf);
@@ -17,7 +23,8 @@ public class InterfaceManager : MonoBehaviour
     }
 
     private void Update() {
-        if (SceneManager.GetActiveScene().name == "Start Scene") {
+        if (SceneManager.GetActiveScene().name == "Start Scene" ||
+            SceneManager.GetActiveScene().name == "End Scene") {
             if (Input.GetKeyUp(KeyCode.Space)) {
                 SceneManager.LoadScene(sceneToLoadOnPress);
             }

@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TimeController : MonoBehaviour
     // Clock parameters
     private int hour = 17;
     private int minutes = 20;
+    private bool isGameOver = false;
 
     private float minute_increment = 0.30f;
     private float current_minute_increment = 0;
@@ -28,36 +30,48 @@ public class TimeController : MonoBehaviour
     }
 
     private void Update() {
-        if (background_elements != null) {
-            if (timer >= 1) {
-                if (current_minute_increment == 0.60f) {
-                    minutes++;
+        if (isGameOver == false) {
+            if (background_elements != null) {
+                if (timer >= 1) {
+                    if (current_minute_increment == 0.60f) {
+                        minutes++;
 
-                    if (minutes == 60) {
-                        hour++;
-                        minutes = 0;
+                        if (minutes == 60) {
+                            hour++;
+                            minutes = 0;
+                        }
+
+                        string minutesStr = minutes < 10 ? "0" + minutes : minutes.ToString();
+                        if (clock_text != null) {
+                            clock_text.text = string.Format("{0}:{1}", hour, minutesStr);
+                            if (clock_text.text == "20:30") {
+                                StartCoroutine(Rooms.Instance.DarkenCoroutine());
+                                Invoke("GoToEndScene", 1);
+
+                                isGameOver = true;
+                            }
+                        }
+
+                        current_minute_increment = 0;
+
+                        if (current_bg_color.r > 0.2f) {
+
+                            DarkenBackgroundElements();
+                        }
                     }
 
-                    string minutesStr = minutes < 10 ? "0" + minutes : minutes.ToString();
-                    if (clock_text != null) {
-                        clock_text.text = string.Format("{0}:{1}", hour, minutesStr);
-                    }
+                    current_minute_increment += minute_increment;
 
-                    current_minute_increment = 0;
-
-                    if (current_bg_color.r > 0.2f) {
-
-                        DarkenBackgroundElements();
-                    }
+                    timer = 0;
                 }
 
-                current_minute_increment += minute_increment;
-
-                timer = 0;
+                timer += Time.deltaTime;
             }
-
-            timer += Time.deltaTime;
         }
+    }
+
+    private void GoToEndScene() {
+        SceneManager.LoadScene("End Scene");
     }
 
     private void DarkenBackgroundElements() {

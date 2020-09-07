@@ -35,4 +35,14 @@ public class Rooms : MonoBehaviour
         yield return new WaitForSeconds(1f);
         TransitionAnimator.SetBool("Display", false);
     }
+
+    public IEnumerator DarkenCoroutine() {
+        TransitionAnimator.SetBool("Display", true);
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator LightenCoroutine() {
+        TransitionAnimator.Play("FadeOutTransition", -1, 0f);
+        yield return new WaitForEndOfFrame();
+    }
 }
