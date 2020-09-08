@@ -107,7 +107,6 @@ public class Cat : MonoBehaviour
         if (model.cats.Contains(this) == false) {
             model.cats.Add(this);
         }
-        //EnterRoom("Kitchen");
     }
 
     private void Update() {

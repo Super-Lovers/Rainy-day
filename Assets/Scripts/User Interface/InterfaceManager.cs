@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InterfaceManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField]
     private GameObject pause_menu = default;
+
+    [SerializeField]
+    private List<GameObject> interfaces = new List<GameObject>();
 
     private void Start() {
         if (SceneManager.GetActiveScene().name == "End Scene") {
@@ -32,6 +36,12 @@ public class InterfaceManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape)) {
             if (pause_menu != null) {
+                if (pause_menu.activeSelf == false) {
+                    for (int i = 0; i < interfaces.Count; i++) {
+                        interfaces[i].SetActive(false);
+                    }
+                }
+
                 pause_menu.SetActive(!pause_menu.activeSelf);
             }
         }

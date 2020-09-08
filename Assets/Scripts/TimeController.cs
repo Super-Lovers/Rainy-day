@@ -44,7 +44,7 @@ public class TimeController : MonoBehaviour
                         var minutesStr = minutes < 10 ? "0" + minutes : minutes.ToString();
                         if (clock_text != null) {
                             clock_text.text = string.Format("{0}:{1}", hour, minutesStr);
-                            if (clock_text.text == "17:21") {
+                            if (clock_text.text == "20:30") {
                                 StartCoroutine(Rooms.Instance.DarkenCoroutine());
                                 Invoke("GoToEndScene", 1);
 
