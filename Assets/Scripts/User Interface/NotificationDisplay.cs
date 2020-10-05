@@ -21,7 +21,7 @@ public class NotificationDisplay : MonoBehaviour
 
         switch (notification_type) {
             case Mood.Hungry:
-                notification.GetComponent<Text>().text = "(￣﹃￣)";
+                notification.GetComponent<Text>().text = "(￣q￣)";
                 break;
             case Mood.Tired:
                 notification.GetComponent<Text>().text = "(￣ヘ￣)";
@@ -63,7 +63,7 @@ public class NotificationDisplay : MonoBehaviour
             var notification_label = notifications_objects[i].GetComponent<Text>().text;
             var current_notification_type = Mood.Happy;
 
-            if (notification_label == "(￣﹃￣)") { current_notification_type = Mood.Hungry; }
+            if (notification_label == "(￣q￣)") { current_notification_type = Mood.Hungry; }
             else if (notification_label == "(￣ヘ￣)") { current_notification_type = Mood.Tired; }
             else if (notification_label == "(｡╯︵╰｡)") { current_notification_type = Mood.Hungry_and_tired; }
             else if (notification_label == "(￣ω￣)") { current_notification_type = Mood.Happy; }
